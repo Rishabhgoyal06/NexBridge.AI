@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "tertiary-fixed": "#dce5de", "on-secondary-container": "#66625d", "primary-fixed-dim": "#8bd79b", "inverse-primary": "#8bd79b", "on-secondary": "#ffffff", "on-primary-fixed-variant": "#005226", "secondary-fixed-dim": "#ccc5bf", "secondary-container": "#e5ded8", "surface-bright": "#fcf9f8", "surface": "#fcf9f8", "on-tertiary-container": "#c8d1ca", "on-tertiary-fixed-variant": "#404944", "tertiary": "#3a433e", "secondary": "#625e59", "surface-container-lowest": "#ffffff", "error-container": "#ffdad6", "on-primary-fixed": "#00210b", "secondary-fixed": "#e8e1db", "inverse-on-surface": "#f3f0ef", "surface-container-highest": "#e5e2e1", "on-surface": "#1c1b1b", "outline-variant": "#bfc9bd", "inverse-surface": "#313030", "outline": "#707a6f", "primary-fixed": "#a6f4b5", "tertiary-container": "#515a55", "on-primary": "#ffffff", "on-background": "#1c1b1b", "on-secondary-fixed-variant": "#4a4641", "on-tertiary": "#ffffff", "surface-container-low": "#f6f3f2", "surface-container": "#f0edec", "surface-dim": "#dcd9d9", "primary-container": "#166534", "surface-variant": "#e5e2e1", "on-error": "#ffffff", "background": "#fcf9f8", "on-tertiary-fixed": "#151d19", "on-error-container": "#93000a", "on-primary-container": "#93e0a2", "surface-tint": "#1f6c3a", "tertiary-fixed-dim": "#c0c9c2", "on-surface-variant": "#404940", "on-secondary-fixed": "#1e1b17", "primary": "#004c22", "surface-container-high": "#ebe7e7", "error": "#ba1a1a" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-md": "1rem", "margin-mobile": "1rem", "space-xl": "2.5rem", "space-xs": "0.25rem", "space-sm": "0.5rem", "margin": "2rem", "gutter": "1.5rem", "space-lg": "1.5rem", "gutter-mobile": "1rem" }, "fontFamily": { "body-lg": ["Inter"], "headline-lg": ["Inter"], "label-md": ["Inter"], "headline-md": ["Inter"], "headline-sm": ["Inter"], "body-sm": ["Inter"], "body-md": ["Inter"], "headline-xl": ["Inter"], "headline-xl-mobile": ["Inter"], "label-sm": ["Inter"] }, "fontSize": { "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "400" }], "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "-0.005em", "fontWeight": "500" }], "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0em", "fontWeight": "400" }], "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "-0.005em", "fontWeight": "400" }], "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "600" }], "headline-xl-mobile": ["30px", { "lineHeight": "36px", "letterSpacing": "-0.025em", "fontWeight": "600" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "500" }] } } } };</script></head><body class="bg-background font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between"><div class="flex flex-col"><div class="h-16 px-space-lg flex items-center gap-space-sm"><div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-on-primary font-headline-sm text-headline-sm font-bold">N</div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm font-semibold tracking-tight text-on-surface">NexBridge<span class="text-primary-container">.ai</span></span></div></div><div class="px-space-md py-space-sm"><span class="px-space-sm font-label-sm text-label-sm uppercase tracking-wider text-outline">Platform Navigation</span></div><nav class="px-space-sm space-y-1" data-active-classes="bg-surface-container text-primary font-semibold"><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="dashboard" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">grid_view</span><span class="font-body-md text-body-md">Dashboard</span></div></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="my-ideas" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">lightbulb</span><span class="font-body-md text-body-md">My Ideas</span></div><span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-medium">3</span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="candidates" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">group</span><span class="font-body-md text-body-md">Candidates</span></div><span class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-medium">5</span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="applications-and-matches" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">compare_arrows</span><span class="font-body-md text-body-md">Applications &amp; Matches</span></div></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="mentors" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">school</span><span class="font-body-md text-body-md">Mentors</span></div></a></nav></div><div class="p-space-md space-y-space-sm"><button class="w-full flex items-center justify-center gap-space-xs py-2 px-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-body-sm text-body-sm font-medium transition-colors shadow-[0_1px_3px_rgba(17,17,17,0.04)]" type="button"><span class="material-symbols-outlined text-primary-container text-[18px]">neurology</span><span>Ask assistant</span></button><div class="flex items-center gap-space-sm p-space-sm rounded-lg bg-surface-container-low"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="flex flex-col min-w-0 flex-1"><span class="font-label-md text-label-md text-on-surface truncate">Aarav Patel</span><span class="font-label-sm text-label-sm text-outline truncate">Seed Founder</span></div><button class="text-on-surface-variant hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[18px]">more_vert</span></button></div></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-16 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg"><div class="w-96 flex items-center gap-space-sm bg-surface-container-lowest px-space-sm py-2 rounded-lg shadow-[0_1px_3px_rgba(17,17,17,0.04)]"><span class="material-symbols-outlined text-outline text-[20px]">search</span><input class="w-full bg-transparent border-0 p-0 text-on-surface placeholder:text-outline font-body-sm text-body-sm focus:outline-none focus:ring-0" placeholder="Search candidates, matches, notes..." type="text"/></div><div class="flex items-center gap-space-md"><button class="h-9 px-space-md rounded-lg bg-primary-container hover:bg-primary text-on-primary font-body-sm text-body-sm font-medium flex items-center gap-space-xs transition-colors shadow-[0_1px_3px_rgba(17,17,17,0.04)]" type="button"><span class="material-symbols-outlined text-[18px]">cloud_upload</span><span>Upload Resume</span></button><div class="h-4 w-px bg-surface-container-highest"></div><button class="relative p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-primary-container ring-2 ring-surface"></span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="relative pt-16 bg-background min-h-screen"><div class="flex flex-col w-full">
+<div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+<!-- Top Context & Navigation Bar -->
+<div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<a class="inline-flex items-center gap-1 font-label-md text-label-md text-outline hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+<span>Back to Applications</span>
+</a>
+<span class="text-outline-variant font-label-sm text-label-sm">/</span>
+<span class="font-label-md text-label-md text-outline">HyperScale Labs</span>
+<span class="text-outline-variant font-label-sm text-label-sm">/</span>
+<span class="font-label-md text-label-md text-primary font-semibold">Growth &amp; Feedback Report</span>
+</div>
+<div class="flex flex-wrap items-center gap-2.5 pt-1">
+<h1 class="font-headline-lg text-headline-lg tracking-tight text-on-surface">Staff Distributed Systems Architect</h1>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+            HyperScale Labs • Seed (Founders Fund)
+          </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">psychology</span>
+            Constructive Feedback &amp; Readiness Plan
+          </span>
+</div>
+</div>
+<div class="flex items-center gap-2.5 self-start lg:self-auto">
+<button class="h-9 px-3.5 rounded-lg bg-surface-container-lowest text-on-surface hover:bg-surface-container-low shadow-[0_1px_3px_rgba(17,17,17,0.04)] font-label-md text-label-md flex items-center gap-1.5 transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px] text-outline">picture_as_pdf</span>
+<span>Export PDF Report</span>
+</button>
+<button class="h-9 px-3.5 rounded-lg bg-primary-container hover:bg-primary text-on-primary shadow-[0_1px_3px_rgba(17,17,17,0.06)] font-label-md text-label-md flex items-center gap-1.5 transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">share</span>
+<span>Share with Mentor (Marcus Vance)</span>
+</button>
+</div>
+</div>
+<!-- 1. "Ready By" Countdown Card (Prominent Callout) -->
+<div class="relative overflow-hidden rounded-xl bg-surface-container-lowest p-6 shadow-[0_1px_3px_rgba(17,17,17,0.04),0_4px_12px_rgba(17,17,17,0.02)]">
+<div class="absolute -right-16 -top-16 w-64 h-64 rounded-full bg-primary-fixed/20 blur-3xl pointer-events-none"></div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+<!-- Left: Countdown Timer -->
+<div class="md:col-span-4 flex items-start gap-4">
+<div class="w-12 h-12 rounded-xl bg-primary-fixed text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[26px]">event_repeat</span>
+</div>
+<div class="space-y-0.5">
+<div class="flex items-center gap-1.5 text-primary">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider font-semibold">Target Re-evaluation</span>
+</div>
+<div class="font-headline-md text-headline-md text-on-surface tracking-tight">Nov 7, 2024</div>
+<p class="font-body-sm text-body-sm text-outline">21 Days remaining • 3-Week Bridge Sprint</p>
+</div>
+</div>
+<!-- Center: Target Outcome -->
+<div class="md:col-span-5 px-0 md:px-4 py-2 md:py-0 bg-surface-container-low/60 rounded-lg p-3">
+<div class="font-label-sm text-label-sm uppercase tracking-wider text-outline mb-1 font-medium">Clear Re-entry Objective</div>
+<p class="font-body-md text-body-md text-on-surface leading-snug">
+            Full qualification for HyperScale Labs Tier-2 Re-evaluation &amp; Lumina AI vLLM PagedAttention Benchmark.
+          </p>
+</div>
+<!-- Right: Progress Indicator -->
+<div class="md:col-span-3 flex flex-col justify-center space-y-2">
+<div class="flex items-center justify-between text-label-md">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Curriculum Progress</span>
+<span class="font-label-sm text-label-sm font-semibold text-primary">18% (1 / 6 Units)</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="h-full bg-primary-container rounded-full transition-all duration-500" style="width: 18%"></div>
+</div>
+<span class="font-label-sm text-label-sm text-outline truncate">Active: Arrow Zero-Copy IPC buffers</span>
+</div>
+</div>
+</div>
+<!-- 2. Rejection Synthesis & Context Card -->
+<div class="rounded-xl bg-surface-container-lowest p-6 shadow-[0_1px_3px_rgba(17,17,17,0.04)] space-y-5">
+<div class="flex flex-wrap items-center justify-between gap-3 pb-3 bg-surface-container-lowest">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container text-[22px]">analytics</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Evaluation Synthesis &amp; Direct Hiring Committee Notes</h2>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2.5 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-sm text-label-sm font-medium">
+            Gap Severity: Minor (Tactical / Tooling Gap)
+          </span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">
+            Not Architectural
+          </span>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="lg:col-span-2 space-y-3">
+<p class="font-body-lg text-body-lg text-on-surface leading-relaxed">
+            HyperScale Labs was impressed by your low-level eBPF socket pooling, Linux kernel network driver performance, and Stanford academic record. The hiring committee ultimately selected a candidate with pre-existing production depth in Apache Arrow columnar in-memory tiering and NVMe-oF zero-copy memory layouts.
+          </p>
+<div class="p-3.5 rounded-lg bg-surface-container-low text-on-surface-variant font-body-md text-body-md flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5">verified</span>
+<span>
+              The committee explicitly confirmed this is an addressable technical gap manageable in 2 to 3 weeks of deliberate practice, and formally scheduled a fast-tracked re-assessment submission slot.
+            </span>
+</div>
+</div>
+<!-- Key Decision Metric Panel -->
+<div class="p-4 rounded-xl bg-surface-container-low flex flex-col justify-between space-y-4">
+<div>
+<div class="font-label-sm text-label-sm text-outline uppercase tracking-wider font-medium">Core Decisive Factor</div>
+<div class="mt-1 font-headline-sm text-headline-sm text-on-surface leading-snug">
+              Columnar Memory Alignment vs. Socket Network Routing
+            </div>
+<p class="mt-1 font-body-sm text-body-sm text-on-surface-variant">
+              System requirement shifted toward high-throughput in-memory tensor layouts rather than layer-3/4 packet inspection.
+            </p>
+</div>
+<div class="flex items-center justify-between pt-3 text-label-sm">
+<span class="text-outline">Committee Re-eval Window</span>
+<span class="font-semibold text-primary">Valid through Dec 1, 2024</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 3. Skills Comparison: 2 Columns + Radar Chart -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
+<!-- Left (7 Cols): Strengths and Gaps lists -->
+<div class="xl:col-span-7 rounded-xl bg-surface-container-lowest p-6 shadow-[0_1px_3px_rgba(17,17,17,0.04)] space-y-6">
+<div class="flex items-center justify-between">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Technical Assessment Matrix</h3>
+<p class="font-body-sm text-body-sm text-outline">Elena Rostova vs. HyperScale Labs Ideal Candidate Specification</p>
+</div>
+<span class="text-label-sm text-on-primary-fixed-variant bg-primary-fixed px-2.5 py-1 rounded-full font-medium">92% Baseline Match</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Column 1: Strengths -->
+<div class="p-4 rounded-xl bg-surface-container-low space-y-3.5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">check_circle</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface">Demonstrated Strengths</span>
+</div>
+<!-- Item -->
+<div class="space-y-1">
+<div class="flex justify-between items-center text-label-sm">
+<span class="font-medium text-on-surface">eBPF / XDP Kernel Networking</span>
+<span class="text-primary font-semibold">98% • Exceeds</span>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 98%"></div>
+</div>
+</div>
+<!-- Item -->
+<div class="space-y-1">
+<div class="flex justify-between items-center text-label-sm">
+<span class="font-medium text-on-surface">Linux Ring 0 Subsystems</span>
+<span class="text-primary font-semibold">95% • Exceeds</span>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 95%"></div>
+</div>
+</div>
+<!-- Item -->
+<div class="space-y-1">
+<div class="flex justify-between items-center text-label-sm">
+<span class="font-medium text-on-surface">Rust Primary Systems &amp; FFI</span>
+<span class="text-primary font-semibold">94% • Strong</span>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 94%"></div>
+</div>
+</div>
+<!-- Item -->
+<div class="space-y-1">
+<div class="flex justify-between items-center text-label-sm">
+<span class="font-medium text-on-surface">High-Throughput TLS 1.3 / Envoy</span>
+<span class="text-primary font-semibold">92% • Strong</span>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 92%"></div>
+</div>
+</div>
+</div>
+<!-- Column 2: Identified Gaps -->
+<div class="p-4 rounded-xl bg-surface-container-low space-y-3.5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-[18px]">timelapse</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface">Target Role Demands (Gaps)</span>
+</div>
+<!-- Gap 1 -->
+<div class="space-y-1">
+<div class="flex justify-between items-center text-label-sm">
+<span class="font-medium text-on-surface">Apache Arrow &amp; Parquet Memory</span>
+<span class="text-on-secondary-fixed-variant font-semibold">62% • Core Gap</span>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 62%"></div>
+</div>
+<p class="font-body-sm text-body-sm text-outline">Lacks columnar zero-copy IPC experience</p>
+</div>
+<!-- Gap 2 -->
+<div class="space-y-1">
+<div class="flex justify-between items-center text-label-sm">
+<span class="font-medium text-on-surface">NVMe-oF (Fabrics Storage)</span>
+<span class="text-on-secondary-fixed-variant font-semibold">68% • Minor Gap</span>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 68%"></div>
+</div>
+<p class="font-body-sm text-body-sm text-outline">Needs kernel block layer bypass drill</p>
+</div>
+<!-- Gap 3 -->
+<div class="space-y-1">
+<div class="flex justify-between items-center text-label-sm">
+<span class="font-medium text-on-surface">gRPC Protobuf v2 Streaming</span>
+<span class="text-on-secondary-fixed-variant font-semibold">80% • Moderate</span>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 80%"></div>
+</div>
+<p class="font-body-sm text-body-sm text-outline">Synthesizable in 1 sprint</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right (5 Cols): SVG Radar Chart -->
+<div class="xl:col-span-5 rounded-xl bg-surface-container-lowest p-6 shadow-[0_1px_3px_rgba(17,17,17,0.04)] flex flex-col justify-between space-y-4">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Competency Radar</h3>
+<div class="flex items-center gap-3 text-label-sm">
+<span class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container"></span>
+<span class="text-on-surface font-medium">Elena</span>
+</span>
+<span class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-outline"></span>
+<span class="text-outline">Role Target</span>
+</span>
+</div>
+</div>
+<!-- Inline SVG Radar Visualization -->
+<div class="relative flex items-center justify-center py-2">
+<svg class="w-full max-w-xs h-64 overflow-visible" viewbox="0 0 340 300">
+<!-- Background Rings -->
+<polygon fill="none" points="170,30 290,95 290,205 170,270 50,205 50,95" stroke="#e5e2e1" stroke-width="1"></polygon>
+<polygon fill="none" points="170,60 255,107 255,193 170,240 85,193 85,107" stroke="#e5e2e1" stroke-width="1"></polygon>
+<polygon fill="none" points="170,90 220,119 220,181 170,210 120,181 120,119" stroke="#e5e2e1" stroke-width="1"></polygon>
+<!-- Axis lines -->
+<line stroke="#e5e2e1" stroke-width="1" x1="170" x2="170" y1="150" y2="30"></line>
+<line stroke="#e5e2e1" stroke-width="1" x1="170" x2="290" y1="150" y2="95"></line>
+<line stroke="#e5e2e1" stroke-width="1" x1="170" x2="290" y1="150" y2="205"></line>
+<line stroke="#e5e2e1" stroke-width="1" x1="170" x2="170" y1="150" y2="270"></line>
+<line stroke="#e5e2e1" stroke-width="1" x1="170" x2="50" y1="150" y2="205"></line>
+<line stroke="#e5e2e1" stroke-width="1" x1="170" x2="50" y1="150" y2="95"></line>
+<!-- Role Benchmark Polygon (Dashed Slate) -->
+<polygon fill="none" points="170,50 270,105 260,195 170,230 75,190 70,110" stroke="#707a6f" stroke-dasharray="4,4" stroke-width="2"></polygon>
+<!-- Elena Profile Polygon (Green Semi-transparent) -->
+<!-- Note: Columnar/Arrow (bottom axis 170,270) pulled closer to center to clearly indicate gap -->
+<polygon fill="#166534" fill-opacity="0.22" points="170,34 225,120 220,175 170,195 65,198 56,100" stroke="#166534" stroke-width="2.2"></polygon>
+<!-- Highlight marker on the gap -->
+<circle cx="170" cy="195" fill="#f59e0b" r="4.5" stroke="#ffffff" stroke-width="1.5"></circle>
+<!-- Text Labels around axes -->
+<text fill="#1c1b1b" font-size="10" font-weight="600" text-anchor="middle" x="170" y="20">Kernel / eBPF (98%)</text>
+<text fill="#1c1b1b" font-size="10" font-weight="500" text-anchor="start" x="300" y="95">Rust / C++</text>
+<text fill="#707a6f" font-size="10" font-weight="500" text-anchor="start" x="300" y="210">Storage / NVMe</text>
+<text fill="#ba1a1a" font-size="10" font-weight="600" text-anchor="middle" x="170" y="288">Columnar / Arrow (Gap)</text>
+<text fill="#1c1b1b" font-size="10" font-weight="500" text-anchor="end" x="40" y="210">IPC &amp; RPC (80%)</text>
+<text fill="#1c1b1b" font-size="10" font-weight="500" text-anchor="end" x="40" y="95">Fault Tolerant</text>
+</svg>
+</div>
+<div class="p-2.5 rounded-lg bg-surface-container-low flex items-center justify-between text-label-sm">
+<span class="text-outline">Focal Delta to Target:</span>
+<span class="font-semibold text-primary">Arrow IPC + NVMe-oF Layer (+18 pts)</span>
+</div>
+</div>
+</div>
+<!-- 4. Focus Area Cards (3 Cards) -->
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Targeted Focus Areas</h3>
+<p class="font-body-sm text-body-sm text-outline">Engineered remediation plan curated for HyperScale Labs architecture</p>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Total Commitment: ~24 Engineering Hours</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+<!-- Focus Card 1 -->
+<div class="p-5 rounded-xl bg-surface-container-lowest shadow-[0_1px_3px_rgba(17,17,17,0.04)] flex flex-col justify-between space-y-4">
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-semibold">Priority: High</span>
+<span class="font-label-sm text-label-sm text-outline">Est. 12 hrs</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Apache Arrow Plasma Store &amp; IPC</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Master PyArrow and C++ zero-copy shared memory buffer sharing. Eliminate deserialization overhead across Python orchestrator and Rust nodes.
+            </p>
+</div>
+<div class="pt-3 flex items-center justify-between text-label-sm text-primary font-medium">
+<span>2 Curated Modules</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</div>
+</div>
+<!-- Focus Card 2 -->
+<div class="p-5 rounded-xl bg-surface-container-lowest shadow-[0_1px_3px_rgba(17,17,17,0.04)] flex flex-col justify-between space-y-4">
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold">Priority: Medium</span>
+<span class="font-label-sm text-label-sm text-outline">Est. 8 hrs</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">NVMe-oF &amp; Kernel Block Buffers</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Understand kernel-space bypass (SPDK) for high-IOPS solid-state storage arrays, aligning with distributed cache tiering requirements.
+            </p>
+</div>
+<div class="pt-3 flex items-center justify-between text-label-sm text-primary font-medium">
+<span>2 Curated Modules</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</div>
+</div>
+<!-- Focus Card 3 -->
+<div class="p-5 rounded-xl bg-surface-container-lowest shadow-[0_1px_3px_rgba(17,17,17,0.04)] flex flex-col justify-between space-y-4">
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-semibold">Priority: Low</span>
+<span class="font-label-sm text-label-sm text-outline">Est. 4 hrs</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">gRPC Streaming Flow Control</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Optimize HTTP/2 backpressure and window sizing for distributed caching tiers during bursty LLM token generation workloads.
+            </p>
+</div>
+<div class="pt-3 flex items-center justify-between text-label-sm text-primary font-medium">
+<span>1 Review Module</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 5. Vertical Week-by-Week Learning Timeline -->
+<div class="rounded-xl bg-surface-container-lowest p-6 shadow-[0_1px_3px_rgba(17,17,17,0.04)] space-y-6">
+<div class="flex flex-wrap items-center justify-between gap-4">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">3-Week Action Roadmap to Re-submission</h3>
+<p class="font-body-sm text-body-sm text-outline">Synchronized with HyperScale Labs Lead Architect calibration criteria</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[18px]">calendar_add_on</span>
+<span>Sync with Google Calendar</span>
+</button>
+</div>
+</div>
+<!-- Timeline Wrapper -->
+<div class="relative pl-6 md:pl-8 space-y-8">
+<!-- Connecting Vertical Line -->
+<div class="absolute left-2.5 md:left-3.5 top-3 bottom-4 w-0.5 bg-surface-container-highest"></div>
+<!-- Week 1: Active -->
+<div class="relative space-y-4">
+<!-- Timeline Node -->
+<div class="absolute -left-6 md:-left-8 top-1 w-6 h-6 rounded-full bg-primary-fixed flex items-center justify-center ring-4 ring-surface-container-lowest">
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+</div>
+<div class="flex flex-wrap items-center justify-between gap-2">
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface">Week 1: Foundations of Columnar In-Memory Layouts</span>
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-medium">In Progress</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Oct 14 – Oct 20</span>
+</div>
+<!-- Tasks -->
+<div class="space-y-2 max-w-3xl">
+<label class="flex items-start gap-3 p-2.5 rounded-lg bg-surface-container-low cursor-pointer hover:bg-surface-container transition-colors">
+<input checked="" class="mt-0.5 rounded text-primary-container focus:ring-0" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface line-through text-outline">
+                Review Arrow Format Specification v1.4 &amp; Memory Layout (Completed Oct 15)
+              </span>
+</label>
+<label class="flex items-start gap-3 p-2.5 rounded-lg bg-surface-container-low cursor-pointer hover:bg-surface-container transition-colors">
+<input class="mt-0.5 rounded text-primary-container focus:ring-0" type="checkbox"/>
+<div class="flex-1">
+<span class="font-body-md text-body-md text-on-surface">
+                  Implement zero-copy buffer slicing in Rust with <code class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-mono text-[12px]">arrow-rs</code>
+</span>
+<div class="font-label-sm text-label-sm text-primary font-medium mt-0.5">Due Oct 20 • Est. 4 hrs remaining</div>
+</div>
+</label>
+</div>
+<!-- Resource Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-3xl pt-1">
+<a class="p-3 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors flex items-center justify-between" href="#">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-outline text-[20px]">menu_book</span>
+<div>
+<div class="font-label-md text-label-md text-on-surface">Apache Arrow Official Format Spec</div>
+<div class="font-label-sm text-label-sm text-outline">Docs • 15 min read</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline text-[16px]">open_in_new</span>
+</a>
+<a class="p-3 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors flex items-center justify-between" href="#">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-outline text-[20px]">terminal</span>
+<div>
+<div class="font-label-md text-label-md text-on-surface"><code class="font-mono text-[12px]">apache/arrow-rs</code> Examples</div>
+<div class="font-label-sm text-label-sm text-outline">GitHub Repository • IPC Mapping</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline text-[16px]">open_in_new</span>
+</a>
+</div>
+</div>
+<!-- Week 2: Upcoming -->
+<div class="relative space-y-4">
+<!-- Timeline Node -->
+<div class="absolute -left-6 md:-left-8 top-1 w-6 h-6 rounded-full bg-surface-container-high flex items-center justify-center ring-4 ring-surface-container-lowest">
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+</div>
+<div class="flex flex-wrap items-center justify-between gap-2">
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface">Week 2: High-Throughput NVMe-oF Storage Tiering</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-medium">Upcoming</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Oct 21 – Oct 27</span>
+</div>
+<!-- Tasks -->
+<div class="space-y-2 max-w-3xl">
+<label class="flex items-start gap-3 p-2.5 rounded-lg bg-surface-container-low cursor-pointer hover:bg-surface-container transition-colors">
+<input class="mt-0.5 rounded text-primary-container focus:ring-0" type="checkbox"/>
+<div class="flex-1">
+<span class="font-body-md text-body-md text-on-surface">
+                  Build prototype DPDK / SPDK NVMe over Fabrics target in sandbox
+                </span>
+<div class="font-label-sm text-label-sm text-outline mt-0.5">Due Oct 27 • Target: &lt;15μs latency</div>
+</div>
+</label>
+<label class="flex items-start gap-3 p-2.5 rounded-lg bg-surface-container-low cursor-pointer hover:bg-surface-container transition-colors">
+<input class="mt-0.5 rounded text-primary-container focus:ring-0" type="checkbox"/>
+<div class="flex-1">
+<span class="font-body-md text-body-md text-on-surface">
+                  Benchmark P99 read latency on 100GB synthetic embedding vector dataset
+                </span>
+<div class="font-label-sm text-label-sm text-outline mt-0.5">Automated validation harness provided by NexBridge</div>
+</div>
+</label>
+</div>
+<!-- Resource Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-3xl pt-1">
+<a class="p-3 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors flex items-center justify-between" href="#">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-outline text-[20px]">smart_display</span>
+<div>
+<div class="font-label-md text-label-md text-on-surface">SPDK Architecture Deep Dive</div>
+<div class="font-label-sm text-label-sm text-outline">NexBridge Tech Course • 45 min</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline text-[16px]">open_in_new</span>
+</a>
+<a class="p-3 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors flex items-center justify-between" href="#">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-outline text-[20px]">description</span>
+<div>
+<div class="font-label-md text-label-md text-on-surface">POSIX Compliant SPDK RFC</div>
+<div class="font-label-sm text-label-sm text-outline">Technical RFC Paper</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline text-[16px]">open_in_new</span>
+</a>
+</div>
+</div>
+<!-- Week 3: Capstone & Re-application -->
+<div class="relative space-y-4">
+<!-- Timeline Node -->
+<div class="absolute -left-6 md:-left-8 top-1 w-6 h-6 rounded-full bg-surface-container-high flex items-center justify-center ring-4 ring-surface-container-lowest">
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+</div>
+<div class="flex flex-wrap items-center justify-between gap-2">
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface">Week 3: Integration Benchmark &amp; Re-application Dossier</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-medium">Scheduled</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Oct 28 – Nov 7</span>
+</div>
+<!-- Tasks -->
+<div class="space-y-2 max-w-3xl">
+<label class="flex items-start gap-3 p-2.5 rounded-lg bg-surface-container-low cursor-pointer hover:bg-surface-container transition-colors">
+<input class="mt-0.5 rounded text-primary-container focus:ring-0" type="checkbox"/>
+<div class="flex-1">
+<span class="font-body-md text-body-md text-on-surface">
+                  Conduct mock technical debrief with Marcus Vance (ex-CTO CloudScale)
+                </span>
+<div class="font-label-sm text-label-sm text-outline mt-0.5">Live architecture defense • 45 min</div>
+</div>
+</label>
+<label class="flex items-start gap-3 p-2.5 rounded-lg bg-surface-container-low cursor-pointer hover:bg-surface-container transition-colors">
+<input class="mt-0.5 rounded text-primary-container focus:ring-0" type="checkbox"/>
+<div class="flex-1">
+<span class="font-body-md text-body-md text-on-surface">
+                  Trigger NexBridge Automated Re-assessment Dossier for HyperScale Labs
+                </span>
+<div class="font-label-sm text-label-sm text-outline mt-0.5">Packages code repo, benchmark profiles, and peer review</div>
+</div>
+</label>
+</div>
+<!-- Resource Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-3xl pt-1">
+<a class="p-3 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors flex items-center justify-between" href="#">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-outline text-[20px]">task_alt</span>
+<div>
+<div class="font-label-md text-label-md text-on-surface">Capstone Evaluation Suite</div>
+<div class="font-label-sm text-label-sm text-outline">Stage Gate 2 Automated Harness</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline text-[16px]">open_in_new</span>
+</a>
+<a class="p-3 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors flex items-center justify-between" href="#">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-primary text-[20px]">calendar_today</span>
+<div>
+<div class="font-label-md text-label-md text-on-surface">1-on-1 Calibration with Marcus Vance</div>
+<div class="font-label-sm text-label-sm text-primary font-medium">Book 30-min Slot</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- 6. Bottom Sticky Re-application & Actions Rail -->
+<div class="sticky bottom-4 z-30 rounded-xl bg-surface-container-lowest p-4 shadow-[0_4px_16px_rgba(17,17,17,0.08),0_8px_32px_rgba(17,17,17,0.04)]">
+<div class="flex flex-col md:flex-row items-center justify-between gap-4">
+<!-- Reassurance quote with avatar badge -->
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center font-semibold text-[13px] shrink-0">
+            KF
+          </div>
+<div class="text-left">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Katelyn Foley</span>
+<span class="font-label-sm text-label-sm text-outline">• Talent Partner at Founders Fund</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic">
+              "Candidates completing this tailored roadmap have an 84% conversion rate on Stage Gate 2 re-evaluation."
+            </p>
+</div>
+</div>
+<!-- Action CTAs -->
+<div class="flex items-center gap-3 w-full md:w-auto shrink-0">
+<button class="flex-1 md:flex-initial h-10 px-4 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md flex items-center justify-center gap-2 transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">bookmark_border</span>
+<span>Save Roadmap</span>
+</button>
+<button class="flex-1 md:flex-initial h-10 px-5 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-label-md text-label-md font-medium flex items-center justify-center gap-2 shadow-[0_1px_3px_rgba(17,17,17,0.08)] transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">send</span>
+<span>Request Re-evaluation from HyperScale</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div></main></div></body></html>

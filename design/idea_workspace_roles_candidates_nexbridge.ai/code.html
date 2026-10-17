@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-primary":"#ffffff","on-surface":"#1c1b1b","surface-bright":"#fcf9f8","tertiary-fixed-dim":"#c0c9c2","surface":"#fcf9f8","on-tertiary":"#ffffff","secondary-container":"#e5ded8","surface-container":"#f0edec","surface-container-low":"#f6f3f2","inverse-on-surface":"#f3f0ef","on-tertiary-fixed":"#151d19","on-tertiary-fixed-variant":"#404944","background":"#fcf9f8","on-primary-container":"#93e0a2","error":"#ba1a1a","primary":"#004c22","on-primary-fixed-variant":"#005226","on-secondary-fixed":"#1e1b17","inverse-surface":"#313030","surface-tint":"#1f6c3a","on-secondary":"#ffffff","inverse-primary":"#8bd79b","primary-container":"#166534","secondary-fixed-dim":"#ccc5bf","tertiary":"#3a433e","surface-variant":"#e5e2e1","on-error-container":"#93000a","on-secondary-fixed-variant":"#4a4641","primary-fixed":"#a6f4b5","outline":"#707a6f","on-primary-fixed":"#00210b","surface-dim":"#dcd9d9","tertiary-container":"#515a55","surface-container-highest":"#e5e2e1","on-background":"#1c1b1b","on-error":"#ffffff","surface-container-lowest":"#ffffff","outline-variant":"#bfc9bd","primary-fixed-dim":"#8bd79b","secondary-fixed":"#e8e1db","on-secondary-container":"#66625d","on-tertiary-container":"#c8d1ca","secondary":"#625e59","tertiary-fixed":"#dce5de","error-container":"#ffdad6","on-surface-variant":"#404940","surface-container-high":"#ebe7e7"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"space-xs":"0.25rem","space-lg":"1.5rem","space-md":"1rem","gutter":"1.5rem","margin":"2rem","margin-mobile":"1rem","space-xl":"2.5rem","space-sm":"0.5rem","gutter-mobile":"1rem"},fontFamily:{"headline-xl-mobile":["Inter"],"label-md":["Inter"],"label-sm":["Inter"],"headline-sm":["Inter"],"body-md":["Inter"],"body-sm":["Inter"],"headline-md":["Inter"],"headline-lg":["Inter"],"body-lg":["Inter"],"headline-xl":["Inter"]},fontSize:{"headline-xl-mobile":["30px",{lineHeight:"36px",letterSpacing:"-0.025em",fontWeight:"600"}],"label-md":["13px",{lineHeight:"18px",letterSpacing:"-0.005em",fontWeight:"500"}],"label-sm":["11px",{lineHeight:"14px",letterSpacing:"0.02em",fontWeight:"500"}],"headline-sm":["18px",{lineHeight:"24px",letterSpacing:"-0.015em",fontWeight:"600"}],"body-md":["14px",{lineHeight:"20px",letterSpacing:"-0.005em",fontWeight:"400"}],"body-sm":["12px",{lineHeight:"16px",letterSpacing:"0em",fontWeight:"400"}],"headline-md":["22px",{lineHeight:"28px",letterSpacing:"-0.02em",fontWeight:"600"}],"headline-lg":["28px",{lineHeight:"36px",letterSpacing:"-0.02em",fontWeight:"600"}],"body-lg":["16px",{lineHeight:"24px",letterSpacing:"-0.01em",fontWeight:"400"}],"headline-xl":["40px",{lineHeight:"48px",letterSpacing:"-0.03em",fontWeight:"600"}]}}}};</script></head><body class="bg-surface-container-low font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-screen w-[232px] bg-surface-container-lowest border-r border-outline-variant/30 z-50 flex flex-col justify-between select-none"><div class="flex flex-col"><div class="h-14 px-4 flex items-center gap-2.5 border-b border-outline-variant/20"><img alt="NexBridge Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WVGLNXfjlrMNpqehfxN8cLQtyvuEx-MtvlXcMal4sUtGKAJ8Z2U7WLtgoEgDb8TH8B9W3CSxMF2vjGgWpZbS_x8vkrJZ1vkRtaApS4tX0LM0GpbNmcQJG3gXVR63EyPrDyvlKM4Oi0RAUSTbuVbARJQh0SUjl7Kemou3Jzas_e6ly_oZ2qCN3srGBHhaWJJ-HE2W6X8_MFzGo-ZbpXHHoRpfGUFd-tJiuoIis7D7ulOMp6S8ABIQMxCHZd"/><span class="font-headline-sm text-[15px] font-semibold tracking-tight text-on-surface leading-none">NexBridge.ai</span><span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container text-secondary font-medium uppercase tracking-wider scale-90">BETA</span></div><div class="p-3"><nav class="flex flex-col gap-1" data-active-classes="bg-primary-fixed/30 text-primary-container font-medium"><a class="flex items-center justify-between px-3 py-2 rounded-lg font-body-md text-body-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="dashboard" href="#"><div class="flex items-center gap-3"><span>Dashboard</span></div></a><a class="flex items-center justify-between px-3 py-2 rounded-lg font-body-md text-body-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="idea-workspace-plan" href="#"><div class="flex items-center gap-3"><span>My Ideas</span></div><span class="font-label-sm text-label-sm px-1.5 py-0.2 rounded-full bg-surface-container text-secondary font-medium">3</span></a><a class="flex items-center justify-between px-3 py-2 rounded-lg font-body-md text-body-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="idea-workspace-roles-candidates" href="#"><div class="flex items-center gap-3"><span>Candidates</span></div><span class="font-label-sm text-label-sm px-1.5 py-0.2 rounded-full bg-surface-container text-secondary font-medium">5</span></a><a class="flex items-center justify-between px-3 py-2 rounded-lg font-body-md text-body-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="mentors" href="#"><div class="flex items-center gap-3"><span>Mentors</span></div></a></nav><div class="my-3 border-t border-outline-variant/30"></div><div class="flex flex-col gap-1"><a class="flex items-center justify-between px-3 py-2 rounded-lg font-body-md text-body-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="assistant" href="#"><div class="flex items-center gap-3"><span class="text-primary-container font-medium">Ask assistant</span></div><kbd class="font-label-sm text-[11px] px-1.5 py-0.5 rounded bg-surface-container-high text-secondary border border-outline-variant/40 leading-none">⌘J</kbd></a></div></div></div><div class="p-3 border-t border-outline-variant/20"><div class="flex items-center justify-between p-2 rounded-xl hover:bg-surface-container transition-colors cursor-pointer"><div class="flex items-center gap-2.5 overflow-hidden"><img alt="Profile" class="w-8 h-8 rounded-full object-cover shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBm8-FrUrOOqXHiUe2FPlxIziDvYRUYXrcXzI82FmldCZ_V9s4rsNIoGOcBnqeK6nrEdRgnzPgY5SEFsxzmHt9pL4PbXsyXB-6UEQUzzcUCyBTNqTB1f8qFbvX28byHronaRelnZ8_A0owDnFN1X1SR0-WOuTMnHw7hKyXXwMFomd3hfMvJyVO4r4VNQ0tSTHvDbIyDGQibYWPrMsv2Awg34LOZO1WQepmWFQ9kBXSmCZ9thYkp7VPEzQ"/><div class="flex flex-col min-w-0"><span class="font-body-md text-[13px] font-semibold text-on-surface truncate leading-tight">Aarav Patel</span><span class="font-body-sm text-body-sm text-secondary truncate leading-tight">Seed Founder</span></div></div><span class="material-symbols-outlined text-secondary text-[18px]">more_vert</span></div></div></aside><div class="pl-[232px]"><header class="fixed top-0 left-[232px] right-0 bg-surface-container-lowest border-b border-outline-variant/30 z-40"><div class="h-14 px-8 border-b border-outline-variant/20 flex items-center justify-between"><div class="flex items-center gap-1.5 font-body-md text-body-md text-secondary"><span class="hover:text-on-surface transition-colors cursor-pointer">Workspace</span><span class="text-outline-variant">/</span><span class="hover:text-on-surface transition-colors cursor-pointer">Lumina AI</span><span class="text-outline-variant">/</span><button class="flex items-center gap-1 font-medium text-on-surface hover:text-primary transition-colors"><span>Roles &amp; Candidates</span><span class="material-symbols-outlined text-[16px]">expand_more</span></button></div><div class="flex items-center gap-4"><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-3 text-[18px] text-secondary">search</span><input class="w-64 pl-9 pr-12 py-1.5 h-9 bg-surface-container-low border border-outline-variant/40 rounded-lg font-body-sm text-body-sm text-on-surface placeholder:text-secondary focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" placeholder="Search candidates, skills..." type="text"/><kbd class="absolute right-2.5 font-label-sm text-[10px] px-1 py-0.5 rounded bg-surface-container text-secondary border border-outline-variant/40 leading-none">⌘K</kbd></div><button class="relative p-2 rounded-full hover:bg-surface-container text-secondary hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 bg-primary-container rounded-full ring-2 ring-surface-container-lowest"></span></button><button class="inline-flex items-center gap-1.5 px-3.5 h-9 rounded-lg border border-outline-variant/50 bg-surface-container-lowest text-on-surface font-body-md text-body-md font-medium hover:bg-surface-container transition-colors shadow-sm"><span class="material-symbols-outlined text-[16px] text-secondary">download</span><span>Export List</span></button><button class="inline-flex items-center gap-1.5 px-4 h-9 rounded-lg bg-primary-container text-on-primary font-body-md text-body-md font-medium hover:bg-primary transition-colors shadow-sm"><span class="material-symbols-outlined text-[16px]">add</span><span>Create Role</span></button></div></div><div class="px-8 py-3.5 flex items-center justify-between gap-6"><div class="flex items-center gap-3.5 min-w-0"><div class="w-10 h-10 rounded-xl bg-primary-container/10 border border-primary-container/20 flex items-center justify-center text-primary-container shrink-0"><span class="material-symbols-outlined text-[22px]">memory</span></div><div class="min-w-0"><div class="flex items-center gap-2.5"><h1 class="font-headline-sm text-headline-sm font-semibold text-on-surface tracking-tight truncate">Lumina AI — Enterprise vLLM Routing &amp; Proxy</h1><span class="inline-flex items-center px-2 py-0.5 rounded-full font-label-sm text-[11px] font-semibold tracking-wide uppercase bg-primary-fixed/40 text-primary-container border border-primary-container/20 shrink-0">VALIDATING • B2B INFRA • STAGE GATE 2</span></div></div></div><div class="flex items-center gap-4 shrink-0"><div class="flex items-center gap-2.5 px-3 py-1.5 rounded-xl bg-surface-container-low border border-outline-variant/30"><div class="relative w-8 h-8 flex items-center justify-center"><svg class="w-8 h-8 -rotate-90 transform" viewbox="0 0 36 36"><path class="text-outline-variant/40" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3.5"></path><path class="text-primary-container" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="78, 100" stroke-linecap="round" stroke-width="3.5"></path></svg><span class="absolute font-label-sm text-[10px] font-bold text-on-surface">78</span></div><div class="flex flex-col"><span class="font-label-sm text-[10px] font-semibold uppercase tracking-wider text-secondary leading-tight">Conviction</span><span class="font-body-sm text-[12px] font-semibold text-on-surface leading-tight">78/100 Strong</span></div></div></div></div><div class="px-8 border-t border-outline-variant/20 flex items-center gap-2"><nav class="flex items-center gap-1 font-body-md text-body-md -mb-px" data-active-classes="border-primary-container text-primary-container font-semibold"><a class="px-3.5 py-3 border-b-2 border-transparent text-secondary hover:text-on-surface transition-colors" data-path="idea-workspace-validation" href="#">Validation</a><a class="px-3.5 py-3 border-b-2 border-transparent text-secondary hover:text-on-surface transition-colors flex items-center gap-1.5" data-path="idea-workspace-competitors" href="#"><span>Competitors</span><span class="font-label-sm text-[11px] px-1.5 py-0.2 rounded-full bg-surface-container text-secondary font-medium">6</span></a><a class="px-3.5 py-3 border-b-2 border-transparent text-secondary hover:text-on-surface transition-colors" data-path="idea-workspace-revenue" href="#">Revenue</a><a class="px-3.5 py-3 border-b-2 border-transparent text-secondary hover:text-on-surface transition-colors" data-path="idea-workspace-plan" href="#"><span>Plan</span></a><a class="px-3.5 py-3 border-b-2 border-transparent text-secondary hover:text-on-surface transition-colors flex items-center gap-1.5" data-path="idea-workspace-roles-candidates" href="#"><span>Roles &amp; Candidates</span><span class="font-label-sm text-[11px] px-1.5 py-0.2 rounded-full bg-primary-fixed/40 text-primary-container font-semibold border border-primary-container/20">2 Roles • 5 Candidates</span></a></nav></div></header><main class="relative pt-[172px] w-full min-h-screen"><div class="flex flex-col w-full">
+<!-- Sub-header Workspace Control Strip -->
+<div class="px-8 py-5 bg-surface-container-lowest shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-primary-fixed/40 flex items-center justify-center text-primary-container shrink-0 shadow-inner">
+<span class="material-symbols-outlined text-[26px]">groups</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Founding Team Synthesis</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+<span class="font-label-sm text-label-sm text-primary-container font-medium">Stage Gate 2 Active</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface tracking-tight">Co-Founder &amp; Core Systems Talent Mapping</h2>
+</div>
+</div>
+<!-- Quick Action Tooling -->
+<div class="flex items-center gap-2.5 shrink-0">
+<div class="hidden xl:flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-surface-container-low text-secondary text-body-sm font-body-sm">
+<span class="material-symbols-outlined text-[16px] text-primary-container">verified_user</span>
+<span>Candidate Database: <strong>5,248 Verified Engineers</strong></span>
+</div>
+<button class="inline-flex items-center gap-2 px-3.5 h-9 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-body-md text-body-md font-medium transition-colors">
+<span class="material-symbols-outlined text-[17px] text-secondary">ios_share</span>
+<span>Export Talent Spec</span>
+</button>
+<button class="inline-flex items-center gap-2 px-4 h-9 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-body-md text-body-md font-medium transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[17px]">sync</span>
+<span>Re-run Candidate Matcher</span>
+</button>
+</div>
+</div>
+<!-- Main Content Grid -->
+<div class="px-8 py-6 w-full max-w-[1580px] mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- ================= LEFT COLUMN: SYNTHESIZED ROLES (col-span-4) ================= -->
+<section class="lg:col-span-4 flex flex-col gap-4">
+<!-- Roles Header & Meta -->
+<div class="bg-surface-container-lowest p-5 rounded-xl shadow-sm flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Synthesized Roles</h3>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-primary-fixed/40 text-primary-container font-semibold">2 Open</span>
+</div>
+<button class="inline-flex items-center gap-1 font-label-md text-label-md font-medium text-primary-container hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+<span>Add Custom</span>
+</button>
+</div>
+<!-- Equity & Budget Runway Allocation Snippet -->
+<div class="p-3 bg-surface-container-low rounded-lg flex flex-col gap-2">
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-secondary">Equity Budget Allocation</span>
+<span class="font-medium text-on-surface">3.5% / 7.0% pool utilized</span>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="h-full rounded-full bg-primary-container" style="width: 50%;"></div>
+</div>
+<div class="flex items-center justify-between text-[11px] font-label-sm text-secondary">
+<span>Target Salary: $370k–$450k/yr</span>
+<span class="text-primary-container font-medium">Seed Run: 18 Mo. Protected</span>
+</div>
+</div>
+</div>
+<!-- Role 1: ACTIVE / SELECTED -->
+<article class="bg-surface-container-lowest rounded-xl p-5 shadow-sm transition-all relative overflow-hidden ring-2 ring-primary-container/80 cursor-pointer">
+<div class="absolute left-0 top-0 bottom-0 w-1.5 bg-primary-container"></div>
+<div class="flex flex-col gap-3 pl-1">
+<div class="flex items-start justify-between gap-2">
+<div class="flex flex-wrap items-center gap-1.5">
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed/40 text-primary-container font-label-sm text-label-sm font-semibold tracking-wide uppercase">
+                  P0 • Critical Blocker
+                </span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm">
+                  Co-Founder Track
+                </span>
+</div>
+<span class="material-symbols-outlined text-primary-container text-[20px]">radio_button_checked</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Founding eBPF &amp; Kernel Engineer</h4>
+<p class="font-label-md text-label-md text-primary-container font-medium mt-0.5">
+                $180k – $220k • 2.0% – 3.5% Equity
+              </p>
+</div>
+<p class="font-body-sm text-body-sm text-secondary line-clamp-2">
+              Own zero-copy XDP hook packet parsing, Ring 0 kernel security, and microsecond-level proxy routing layer.
+            </p>
+<!-- Skill Tags -->
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 bg-surface-container-low text-on-surface font-label-sm text-label-sm rounded-md">eBPF / XDP</span>
+<span class="px-2 py-0.5 bg-surface-container-low text-on-surface font-label-sm text-label-sm rounded-md">Rust / C</span>
+<span class="px-2 py-0.5 bg-surface-container-low text-on-surface font-label-sm text-label-sm rounded-md">Kernel Net</span>
+<span class="px-2 py-0.5 bg-surface-container-low text-on-surface font-label-sm text-label-sm rounded-md">TLS Term</span>
+<span class="px-2 py-0.5 bg-surface-container-low text-secondary font-label-sm text-label-sm rounded-md">+1</span>
+</div>
+<!-- Match Metric Footnote -->
+<div class="pt-3 flex items-center justify-between text-body-sm font-body-sm">
+<div class="flex items-center gap-1.5 text-primary-container font-medium">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>3 High Matches ready</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary">Active View</span>
+</div>
+</div>
+</article>
+<!-- Role 2: Standby -->
+<article class="bg-surface-container-lowest rounded-xl p-5 shadow-sm hover:shadow-md transition-all cursor-pointer opacity-90 hover:opacity-100">
+<div class="flex flex-col gap-3">
+<div class="flex items-start justify-between gap-2">
+<div class="flex flex-wrap items-center gap-1.5">
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold tracking-wide uppercase">
+                  P1 • High Priority
+                </span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm">
+                  AI Architecture
+                </span>
+</div>
+<span class="material-symbols-outlined text-secondary text-[20px]">radio_button_unchecked</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Lead Inference &amp; Distributed ML Engineer</h4>
+<p class="font-label-md text-label-md text-secondary font-medium mt-0.5">
+                $190k – $230k • 1.5% – 2.5% Equity
+              </p>
+</div>
+<p class="font-body-sm text-body-sm text-secondary line-clamp-2">
+              Scale PagedAttention, dynamic continuous batching, and speculative token routing across heterogeneous GPU pools.
+            </p>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 bg-surface-container-low text-on-surface font-label-sm text-label-sm rounded-md">vLLM</span>
+<span class="px-2 py-0.5 bg-surface-container-low text-on-surface font-label-sm text-label-sm rounded-md">Ray / Triton</span>
+<span class="px-2 py-0.5 bg-surface-container-low text-on-surface font-label-sm text-label-sm rounded-md">CUDA / C++</span>
+<span class="px-2 py-0.5 bg-surface-container-low text-on-surface font-label-sm text-label-sm rounded-md">NCCL</span>
+</div>
+<div class="pt-3 flex items-center justify-between text-body-sm font-body-sm">
+<div class="flex items-center gap-1.5 text-on-surface-variant font-medium">
+<span class="material-symbols-outlined text-[18px] text-secondary">group</span>
+<span>2 High Matches ready</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary hover:text-primary transition-colors">Select Role →</span>
+</div>
+</div>
+</article>
+<!-- Role 3: Advisory -->
+<article class="bg-surface-container-lowest rounded-xl p-5 shadow-sm hover:shadow-md transition-all cursor-pointer opacity-80 hover:opacity-100">
+<div class="flex flex-col gap-3">
+<div class="flex items-start justify-between gap-2">
+<div class="flex flex-wrap items-center gap-1.5">
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm font-medium tracking-wide">
+                  Advisory / Fractional
+                </span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm">
+                  0.25% - 0.5% Eq
+                </span>
+</div>
+<span class="material-symbols-outlined text-secondary text-[20px]">radio_button_unchecked</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Enterprise Security &amp; Compliance Advisor</h4>
+<p class="font-label-md text-label-md text-secondary font-medium mt-0.5">
+                Quarterly Advisory • Retainer + Advisory Grant
+              </p>
+</div>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 bg-surface-container-low text-on-surface font-label-sm text-label-sm rounded-md">SOC2 Type II</span>
+<span class="px-2 py-0.5 bg-surface-container-low text-on-surface font-label-sm text-label-sm rounded-md">AWS Enclaves</span>
+<span class="px-2 py-0.5 bg-surface-container-low text-on-surface font-label-sm text-label-sm rounded-md">FedRAMP</span>
+</div>
+<div class="pt-2 flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-secondary">1 Specialist Match</span>
+<span class="font-label-sm text-label-sm text-secondary">Review</span>
+</div>
+</div>
+</article>
+</section>
+<!-- ================= RIGHT COLUMN: CANDIDATES LIST (col-span-8) ================= -->
+<section class="lg:col-span-8 flex flex-col gap-5">
+<!-- Filter and Context Banner -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm flex flex-col gap-4">
+<div class="flex flex-col md:flex-row md:items-start justify-between gap-4">
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-headline-lg text-headline-lg text-on-surface">Ranked Candidates</h3>
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed/30 text-primary-container font-label-sm text-label-sm font-semibold">eBPF Specialist Pool</span>
+</div>
+<p class="font-body-md text-body-md text-secondary mt-1">
+                Matched from NexBridge Verified Talent Pool (5,200+ engineers) based on repo commits, past venture exits, and kernel patents.
+              </p>
+</div>
+<!-- Sort Dropdown -->
+<div class="flex items-center gap-2 shrink-0">
+<span class="font-label-sm text-label-sm text-secondary">Sort:</span>
+<div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm font-medium cursor-pointer">
+<span>Rank: Match %</span>
+<span class="material-symbols-outlined text-[16px] text-secondary">arrow_drop_down</span>
+</div>
+</div>
+</div>
+<!-- Filter Pills & Synthesis Tag -->
+<div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 rounded-full bg-primary-container text-on-primary font-label-md text-label-md font-medium shadow-sm">
+                All (3)
+              </button>
+<button class="px-3 py-1.5 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md font-medium transition-colors">
+                Available immediately (2)
+              </button>
+<button class="px-3 py-1.5 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md font-medium transition-colors">
+                Previous Founders (1)
+              </button>
+</div>
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-fixed/20 text-primary-container text-[11px] font-label-sm font-medium">
+<span class="material-symbols-outlined text-[15px]">psychology</span>
+<span>Synthesized by Agent 05 (Founding Team Matcher) • Calibrated against Stack Layers 1 &amp; 6</span>
+</div>
+</div>
+</div>
+<!-- CANDIDATE 1: Top Match (Elena Rostova) -->
+<article class="bg-surface-container-lowest p-6 rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col gap-5 relative">
+<!-- Top Row: Avatar, Meta, Score Ring -->
+<div class="flex items-start justify-between gap-4">
+<div class="flex items-start gap-4">
+<!-- Avatar with verified pip -->
+<div class="relative shrink-0">
+<img class="w-16 h-16 rounded-xl object-cover shadow-sm" data-alt="Close-up editorial studio portrait of Elena Rostova, a 34-year-old female computer science systems researcher with confident, intelligent expression, wearing dark minimalist apparel against an architectural neutral studio background with soft warm natural lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_NDwQL0DHq_mZFhNXhMj6GvKTCL3SZkw7rMUnDjQ4io0IbWXGrJ33erSJR_Fs9u2JVp6gDbZvEYdckY3IhKmaLuFUbfui6j_lEXNlxnLKRQvujvC2D8TGaRyXBEAeHHREAPGmApWzAwchop5Px5SYYUa5paS9KvbxJCkkSnB6OYFb0I2hqTtIb4nhc5pcWekfwqvwpQVRy840KqMcLBtfcRcm3sZjwKW9L52K9VmhLAEVVfS9iwJXcQ"/>
+<span class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-primary-container text-on-primary flex items-center justify-center shadow">
+<span class="material-symbols-outlined text-[13px]">verified</span>
+</span>
+</div>
+<!-- Name and Headings -->
+<div class="flex flex-col">
+<div class="flex flex-wrap items-center gap-2">
+<h4 class="font-headline-md text-headline-md text-on-surface">Elena Rostova, Ph.D.</h4>
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed/30 text-primary-container font-label-sm text-label-sm font-semibold">Top Recommendation</span>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-secondary">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span> Active on GitHub 2h ago
+                  </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface font-medium mt-0.5">
+                  Senior Systems Engineer @ Fastly • ex-Cloudflare Workers Core • Cilium eBPF Contributor
+                </p>
+<div class="flex flex-wrap items-center gap-3 mt-1 text-body-sm font-body-sm text-secondary">
+<span class="inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]">location_on</span> San Francisco, CA (Open to Remote / Relo)
+                  </span>
+<span>•</span>
+<span class="inline-flex items-center gap-1 text-primary-container font-medium">
+<span class="material-symbols-outlined text-[15px]">schedule</span> Available in 3 weeks
+                  </span>
+</div>
+</div>
+</div>
+<!-- Match Score Progress Radial -->
+<div class="flex flex-col items-center shrink-0">
+<div class="relative w-14 h-14 flex items-center justify-center">
+<svg class="w-14 h-14 -rotate-90 transform" viewbox="0 0 36 36">
+<path class="text-surface-container-high" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"></path>
+<path class="text-primary-container" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="96, 100" stroke-linecap="round" stroke-width="3.2"></path>
+</svg>
+<div class="absolute flex flex-col items-center">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface leading-none">96%</span>
+</div>
+</div>
+<span class="font-label-sm text-[10px] uppercase font-bold text-primary-container mt-1 tracking-wider">Kernel Fit</span>
+</div>
+</div>
+<!-- Past Venture Experience -->
+<div class="p-3 rounded-lg bg-surface-container-low flex items-center gap-3 text-body-sm font-body-sm text-on-surface">
+<span class="material-symbols-outlined text-primary-container text-[18px]">rocket_launch</span>
+<div>
+<span class="font-medium">Prior Venture Outcome:</span> Founding Engineer at early-stage CDN routing startup (<span class="text-secondary">Acquired by Fastly for $42M</span>). Experience in fast product iteration from seed to series A.
+            </div>
+</div>
+<!-- Matched vs Developing Skills Matrix -->
+<div class="flex flex-col gap-2">
+<div class="flex flex-wrap items-center gap-2">
+<span class="px-2.5 py-1 rounded-md bg-primary-fixed/30 text-primary-container font-label-sm text-label-sm font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check</span> eBPF / XDP Hooks (Top 1% GitHub)
+              </span>
+<span class="px-2.5 py-1 rounded-md bg-primary-fixed/30 text-primary-container font-label-sm text-label-sm font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check</span> High-Performance Rust
+              </span>
+<span class="px-2.5 py-1 rounded-md bg-primary-fixed/30 text-primary-container font-label-sm text-label-sm font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check</span> Linux Kernel Net Subsystem
+              </span>
+<span class="px-2.5 py-1 rounded-md bg-primary-fixed/30 text-primary-container font-label-sm text-label-sm font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check</span> WireGuard &amp; mTLS
+              </span>
+<span class="px-2.5 py-1 rounded-md bg-primary-fixed/30 text-primary-container font-label-sm text-label-sm font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check</span> AWS Nitro Enclaves
+              </span>
+</div>
+<div class="flex items-center gap-2 pt-0.5">
+<span class="px-2 py-0.5 rounded-md bg-amber-100 text-amber-900 font-label-sm text-label-sm font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">warning</span> vLLM Ray Architecture (Minor Gap)
+              </span>
+<span class="text-body-sm font-body-sm text-secondary italic">Easily offset by Lead Inference Engineer hire</span>
+</div>
+</div>
+<!-- Fit Assessment AI Commentary -->
+<div class="p-4 rounded-xl bg-surface-container flex items-start gap-3">
+<span class="material-symbols-outlined text-primary-container text-[20px] shrink-0 mt-0.5">auto_awesome</span>
+<div class="text-body-sm font-body-sm text-on-surface">
+<span class="font-semibold text-primary-container">NexBridge AI Fit Synthesis:</span> Ideal co-founder profile. Has written production XDP filters processing 10M+ pkts/sec at Fastly edge POPs. Directly authored 3 accepted kernel patches in Linux 6.4 network ring buffers.
+            </div>
+</div>
+<!-- Card Actions Footer -->
+<div class="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-secondary hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[18px]">bookmark</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-secondary hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[18px]">share</span>
+</button>
+<span class="font-body-sm text-body-sm text-secondary">Verified GitHub: @erostova-sys</span>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-4 h-10 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-body-md text-body-md font-medium transition-colors">
+                View Full Audit &amp; Code Commits
+              </button>
+<button class="inline-flex items-center gap-2 px-5 h-10 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-body-md text-body-md font-medium shadow-sm transition-colors" onclick="document.getElementById('outreach-modal').classList.remove('hidden')">
+<span class="material-symbols-outlined text-[18px]">send</span>
+<span>Send Outreach</span>
+</button>
+</div>
+</div>
+</article>
+<!-- CANDIDATE 2: Strong Match (Marcus Vance) -->
+<article class="bg-surface-container-lowest p-6 rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col gap-5">
+<div class="flex items-start justify-between gap-4">
+<div class="flex items-start gap-4">
+<div class="relative shrink-0">
+<img class="w-16 h-16 rounded-xl object-cover shadow-sm" data-alt="Professional studio portrait of Marcus Vance, a 38-year-old male cloud systems engineer with clean beard and modern glasses, confident thoughtful demeanor, wearing an obsidian crewneck in a softly lit industrial studio loft." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsbMM9VFO25Z8tNg2SGJKTgmiWKa2fwg7uwnozijb7Pe7BHFCKT_xjq7mMIm-RER9sqLRCDQqZ4hp8UbCgqhRop_B4jEmNa98mp63dqjSBpgL_mZYIC4x03tfgKakXZjAXbXWGHYliacMGf2Cr00V4iBnmJ3ygTTNKt4sBHSJpcGNhnDicOB0rYEfA5tZxIdu_V45K0M5poQcdvLkTI7oC2cFyQ-gIy-o4pphM-rsalce_klIVr64v6w"/>
+<span class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-surface-container-highest text-secondary flex items-center justify-center shadow">
+<span class="material-symbols-outlined text-[13px]">check_circle</span>
+</span>
+</div>
+<div class="flex flex-col">
+<div class="flex flex-wrap items-center gap-2">
+<h4 class="font-headline-md text-headline-md text-on-surface">Marcus Vance</h4>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold">Scale Architect</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface font-medium mt-0.5">
+                  Staff Infrastructure Architect @ Datadog • Lead Architect for Network Performance Monitoring
+                </p>
+<div class="flex flex-wrap items-center gap-3 mt-1 text-body-sm font-body-sm text-secondary">
+<span class="inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]">location_on</span> New York, NY (Hybrid / Remote)
+                  </span>
+<span>•</span>
+<span class="inline-flex items-center gap-1 text-on-surface font-medium">
+<span class="material-symbols-outlined text-[15px]">explore</span> Exploring Founder-in-Residence Roles
+                  </span>
+</div>
+</div>
+</div>
+<!-- Match Score Progress Radial -->
+<div class="flex flex-col items-center shrink-0">
+<div class="relative w-14 h-14 flex items-center justify-center">
+<svg class="w-14 h-14 -rotate-90 transform" viewbox="0 0 36 36">
+<path class="text-surface-container-high" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"></path>
+<path class="text-primary-container" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="91, 100" stroke-linecap="round" stroke-width="3.2"></path>
+</svg>
+<div class="absolute flex flex-col items-center">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface leading-none">91%</span>
+</div>
+</div>
+<span class="font-label-sm text-[10px] uppercase font-bold text-secondary mt-1 tracking-wider">Strong Fit</span>
+</div>
+</div>
+<!-- Matched vs Developing Skills Matrix -->
+<div class="flex flex-col gap-2">
+<div class="flex flex-wrap items-center gap-2">
+<span class="px-2.5 py-1 rounded-md bg-primary-fixed/30 text-primary-container font-label-sm text-label-sm font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check</span> Rust &amp; C++ Systems
+              </span>
+<span class="px-2.5 py-1 rounded-md bg-primary-fixed/30 text-primary-container font-label-sm text-label-sm font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check</span> eBPF Kernel Tracing
+              </span>
+<span class="px-2.5 py-1 rounded-md bg-primary-fixed/30 text-primary-container font-label-sm text-label-sm font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check</span> Distributed Envoy Proxy
+              </span>
+<span class="px-2.5 py-1 rounded-md bg-primary-fixed/30 text-primary-container font-label-sm text-label-sm font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check</span> Zero-Copy Packet Pipelines
+              </span>
+</div>
+<div class="flex items-center gap-2 pt-0.5">
+<span class="px-2 py-0.5 rounded-md bg-amber-100 text-amber-900 font-label-sm text-label-sm font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">warning</span> Startup Stage 0-1 (Mostly Big-Tech / Scale-Up)
+              </span>
+</div>
+</div>
+<div class="p-4 rounded-xl bg-surface-container flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-[20px] shrink-0 mt-0.5">auto_awesome</span>
+<div class="text-body-sm font-body-sm text-on-surface">
+<span class="font-semibold text-secondary">NexBridge AI Fit Synthesis:</span> Deep domain expertise in enterprise network tracing and live inspection. High technical ceiling, but may require thorough alignment on early-stage risk appetite and founder equity terms.
+            </div>
+</div>
+<div class="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+<span class="font-body-sm text-body-sm text-secondary">Patent Holder: US-11849202 (Kernel bypass socket redirect)</span>
+<div class="flex items-center gap-3">
+<button class="px-4 h-10 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-body-md text-body-md font-medium transition-colors">
+                View Profile &amp; Patents
+              </button>
+<button class="inline-flex items-center gap-2 px-5 h-10 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-body-md text-body-md font-medium shadow-sm transition-colors">
+<span class="material-symbols-outlined text-[18px]">send</span>
+<span>Send Outreach</span>
+</button>
+</div>
+</div>
+</article>
+<!-- CANDIDATE 3: Specialist Match (Dr. Hiroshi Tanaka) -->
+<article class="bg-surface-container-lowest p-6 rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col gap-5">
+<div class="flex items-start justify-between gap-4">
+<div class="flex items-start gap-4">
+<div class="relative shrink-0">
+<img class="w-16 h-16 rounded-xl object-cover shadow-sm" data-alt="Distinguished professional headshot of Dr. Hiroshi Tanaka, a 46-year-old Japanese principal software architect with calm academic confidence, charcoal tailored blazer, set against a warm minimalist modern architectural background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnaVD8VWYoRNG0iyFyRQF2tjCMvnnb9GO-qxzskqz2EQRXl-9xR8o4YPlweYLLmEI93rubBqz1ukIPXUwm6WAb30CkADDLnf9mQvE9mHYPgQ98wfCauq9lvfJaUcp4HUDCrk3g_gzW6MPpe2t3-zKCCGwXrao38gyyaLaDQoWkC8OqryjTuTdqnv6jbcfyEZqnsBgr5PFC9YghH6GsR7V5z8iMBCyEozyqe4H7vCg7VzSFsbzU7OEb5w"/>
+<span class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-surface-container-highest text-secondary flex items-center justify-center shadow">
+<span class="material-symbols-outlined text-[13px]">school</span>
+</span>
+</div>
+<div class="flex flex-col">
+<div class="flex flex-wrap items-center gap-2">
+<h4 class="font-headline-md text-headline-md text-on-surface">Dr. Hiroshi Tanaka</h4>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm font-semibold">Subsystem Maintainer</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface font-medium mt-0.5">
+                  Principal Research Engineer @ Red Hat • Linux Kernel Networking Subsystem Maintainer
+                </p>
+<div class="flex flex-wrap items-center gap-3 mt-1 text-body-sm font-body-sm text-secondary">
+<span class="inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]">location_on</span> Seattle, WA
+                  </span>
+<span>•</span>
+<span class="inline-flex items-center gap-1 text-secondary font-medium">
+<span class="material-symbols-outlined text-[15px]">handshake</span> Advisory / Fractional Founding Engineer
+                  </span>
+</div>
+</div>
+</div>
+<!-- Match Score Progress Radial -->
+<div class="flex flex-col items-center shrink-0">
+<div class="relative w-14 h-14 flex items-center justify-center">
+<svg class="w-14 h-14 -rotate-90 transform" viewbox="0 0 36 36">
+<path class="text-surface-container-high" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"></path>
+<path class="text-primary-container" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="87, 100" stroke-linecap="round" stroke-width="3.2"></path>
+</svg>
+<div class="absolute flex flex-col items-center">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface leading-none">87%</span>
+</div>
+</div>
+<span class="font-label-sm text-[10px] uppercase font-bold text-secondary mt-1 tracking-wider">Advisory Fit</span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex flex-wrap items-center gap-2">
+<span class="px-2.5 py-1 rounded-md bg-primary-fixed/30 text-primary-container font-label-sm text-label-sm font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check</span> Linux Kernel Core
+              </span>
+<span class="px-2.5 py-1 rounded-md bg-primary-fixed/30 text-primary-container font-label-sm text-label-sm font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check</span> XDP / TC BPF Offload
+              </span>
+<span class="px-2.5 py-1 rounded-md bg-primary-fixed/30 text-primary-container font-label-sm text-label-sm font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check</span> Cryptographic Hardware Acceleration
+              </span>
+</div>
+<div class="flex flex-wrap items-center gap-2 pt-0.5">
+<span class="px-2 py-0.5 rounded-md bg-amber-100 text-amber-900 font-label-sm text-label-sm font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">warning</span> Python / Modern LLM Tooling
+              </span>
+<span class="px-2 py-0.5 rounded-md bg-amber-100 text-amber-900 font-label-sm text-label-sm font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">warning</span> Available 20 hrs/week initially
+              </span>
+</div>
+</div>
+<div class="p-4 rounded-xl bg-surface-container flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-[20px] shrink-0 mt-0.5">auto_awesome</span>
+<div class="text-body-sm font-body-sm text-on-surface">
+<span class="font-semibold text-secondary">NexBridge AI Fit Synthesis:</span> Exceptional candidate for Technical Advisory Board or Fractional Principal Architect. Would validate low-level proxy primitives and give instant credibility with enterprise security procurement.
+            </div>
+</div>
+<div class="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+<span class="font-body-sm text-body-sm text-secondary">Author of 14 IEEE Publications on OS Virtualization</span>
+<div class="flex items-center gap-3">
+<button class="px-4 h-10 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-body-md text-body-md font-medium transition-colors">
+                View Research Papers
+              </button>
+<button class="inline-flex items-center gap-2 px-5 h-10 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-body-md text-body-md font-medium shadow-sm transition-colors">
+<span class="material-symbols-outlined text-[18px]">send</span>
+<span>Send Outreach</span>
+</button>
+</div>
+</div>
+</article>
+</section>
+</div>
+</div>
+<!-- Bottom AI Copilot Floating Context Bar -->
+<div class="sticky bottom-6 px-8 max-w-5xl mx-auto w-full z-30">
+<div class="bg-surface-container-lowest/95 backdrop-blur-md rounded-full shadow-xl p-2 pl-6 flex items-center justify-between gap-4">
+<div class="flex items-center gap-3 min-w-0">
+<span class="w-8 h-8 rounded-full bg-primary-fixed/40 flex items-center justify-center text-primary-container shrink-0">
+<span class="material-symbols-outlined text-[18px]">smart_toy</span>
+</span>
+<p class="font-body-sm text-body-sm text-on-surface truncate">
+<strong class="font-semibold text-primary-container">Agent 05 Insight:</strong> How do we structure milestone vesting for Elena Rostova to de-risk Series A proxy latency gates?
+        </p>
+</div>
+<div class="flex items-center gap-2 shrink-0">
+<button class="px-4 py-2 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-body-sm text-body-sm font-medium transition-colors">
+          Dismiss
+        </button>
+<button class="px-5 py-2 rounded-full bg-primary-container hover:bg-primary text-on-primary font-body-sm text-body-sm font-medium shadow transition-colors flex items-center gap-1.5">
+<span>Simulate Co-founder Split</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Outreach Modal (Hidden by default, toggled via JS) -->
+<div class="hidden fixed inset-0 z-50 flex items-center justify-center bg-inverse-surface/40 backdrop-blur-sm p-4" id="outreach-modal">
+<div class="bg-surface-container-lowest rounded-2xl max-w-xl w-full p-6 shadow-2xl flex flex-col gap-5">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary-fixed/40 text-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">outgoing_mail</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Synthesize Executive Outreach</h4>
+<p class="font-body-sm text-body-sm text-secondary">Target: Elena Rostova, Ph.D. (via Private Founder Pipeline)</p>
+</div>
+</div>
+<button class="p-1 rounded-lg hover:bg-surface-container text-secondary hover:text-on-surface transition-colors" onclick="document.getElementById('outreach-modal').classList.add('hidden')">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Preview Tone & Angle -->
+<div class="p-3 bg-surface-container-low rounded-xl flex flex-col gap-2">
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-secondary">AI Pitch Angle Calibration:</span>
+<span class="font-medium text-primary-container">Technical Autonomy + Co-Founder Equity</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface">
+          "Hi Elena, saw your Cilium eBPF packet ring PR #8491. Aarav here — we're building Lumina AI, solving multi-tenant GPU proxy routing at Ring 0. We've reserved 2.5–3.5% equity for our Founding Kernel Lead."
+        </p>
+</div>
+<!-- Controls -->
+<div class="flex flex-col gap-3">
+<label class="font-label-md text-label-md text-on-surface font-medium">Channel Delivery</label>
+<div class="grid grid-cols-2 gap-3">
+<div class="p-3 rounded-lg bg-primary-fixed/20 text-primary-container flex items-center gap-2 cursor-pointer font-body-sm text-body-sm font-medium">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>NexBridge Warm Referral</span>
+</div>
+<div class="p-3 rounded-lg bg-surface-container-low text-secondary flex items-center gap-2 cursor-pointer font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+<span>Direct Work Email</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-end gap-3 pt-2">
+<button class="px-4 h-10 rounded-lg hover:bg-surface-container text-secondary font-body-md text-body-md transition-colors" onclick="document.getElementById('outreach-modal').classList.add('hidden')">
+          Cancel
+        </button>
+<button class="px-5 h-10 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-body-md text-body-md font-medium shadow-sm transition-colors flex items-center gap-2" onclick="alert('Warm introduction dispatch initiated via NexBridge Founder Network.'); document.getElementById('outreach-modal').classList.add('hidden');">
+<span class="material-symbols-outlined text-[18px]">send</span>
+<span>Dispatch Warm Introduction</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Simple micro-interactions for selection and active tabs
+  document.querySelectorAll('article[class*="cursor-pointer"]').forEach(card => {
+    card.addEventListener('click', function(e) {
+      if (e.target.closest('button')) return;
+      // UI visual feedback logic can be mounted here
+    });
+  });
+</script></main></div></body></html>

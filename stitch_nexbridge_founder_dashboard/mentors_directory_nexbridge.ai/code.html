@@ -1,0 +1,578 @@
+<!DOCTYPE html><html class="h-full" lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface-tint":"#1f6c3a","surface-dim":"#dcd9d9","surface-container-low":"#f6f3f2","inverse-on-surface":"#f3f0ef","tertiary-container":"#515a55","background":"#fcf9f8","tertiary-fixed-dim":"#c0c9c2","outline-variant":"#bfc9bd","on-primary-fixed-variant":"#005226","on-surface-variant":"#404940","surface-container-highest":"#e5e2e1","inverse-surface":"#313030","on-error-container":"#93000a","on-error":"#ffffff","primary-fixed-dim":"#8bd79b","on-tertiary-fixed-variant":"#404944","secondary-fixed-dim":"#ccc5bf","secondary-container":"#e5ded8","primary-container":"#166534","tertiary-fixed":"#dce5de","error":"#ba1a1a","outline":"#707a6f","tertiary":"#3a433e","primary":"#004c22","on-tertiary":"#ffffff","secondary-fixed":"#e8e1db","on-secondary-fixed-variant":"#4a4641","surface-container-lowest":"#ffffff","on-primary-container":"#93e0a2","surface-bright":"#fcf9f8","inverse-primary":"#8bd79b","on-secondary-container":"#66625d","on-primary-fixed":"#00210b","on-tertiary-fixed":"#151d19","surface-container":"#f0edec","on-secondary":"#ffffff","surface":"#fcf9f8","surface-variant":"#e5e2e1","on-background":"#1c1b1b","error-container":"#ffdad6","primary-fixed":"#a6f4b5","on-surface":"#1c1b1b","surface-container-high":"#ebe7e7","secondary":"#625e59","on-secondary-fixed":"#1e1b17","on-tertiary-container":"#c8d1ca","on-primary":"#ffffff"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"space-md":"1rem","gutter":"1.5rem","space-xs":"0.25rem","space-xl":"2.5rem","space-sm":"0.5rem","gutter-mobile":"1rem","space-lg":"1.5rem","margin":"2rem","margin-mobile":"1rem"},fontFamily:{"headline-xl-mobile":["Inter"],"label-md":["Inter"],"body-sm":["Inter"],"headline-lg":["Inter"],"headline-md":["Inter"],"headline-xl":["Inter"],"body-lg":["Inter"],"label-sm":["Inter"],"body-md":["Inter"],"headline-sm":["Inter"]},fontSize:{"headline-xl-mobile":["30px",{lineHeight:"36px",letterSpacing:"-0.025em",fontWeight:"600"}],"label-md":["13px",{lineHeight:"18px",letterSpacing:"-0.005em",fontWeight:"500"}],"body-sm":["12px",{lineHeight:"16px",letterSpacing:"0em",fontWeight:"400"}],"headline-lg":["28px",{lineHeight:"36px",letterSpacing:"-0.02em",fontWeight:"600"}],"headline-md":["22px",{lineHeight:"28px",letterSpacing:"-0.02em",fontWeight:"600"}],"headline-xl":["40px",{lineHeight:"48px",letterSpacing:"-0.03em",fontWeight:"600"}],"body-lg":["16px",{lineHeight:"24px",letterSpacing:"-0.01em",fontWeight:"400"}],"label-sm":["11px",{lineHeight:"14px",letterSpacing:"0.02em",fontWeight:"500"}],"body-md":["14px",{lineHeight:"20px",letterSpacing:"-0.005em",fontWeight:"400"}],"headline-sm":["18px",{lineHeight:"24px",letterSpacing:"-0.015em",fontWeight:"600"}]}}}};</script></head><body class="bg-surface-container-low font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-screen w-[232px] bg-surface-container-lowest border-r border-outline-variant/30 z-50 flex flex-col justify-between select-none"><div class="flex flex-col"><div class="h-14 px-4 flex items-center gap-2.5 border-b border-outline-variant/20"><img alt="NexBridge Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WVGLNXfjlrMNpqehfxN8cLQtyvuEx-MtvlXcMal4sUtGKAJ8Z2U7WLtgoEgDb8TH8B9W3CSxMF2vjGgWpZbS_x8vkrJZ1vkRtaApS4tX0LM0GpbNmcQJG3gXVR63EyPrDyvlKM4Oi0RAUSTbuVbARJQh0SUjl7Kemou3Jzas_e6ly_oZ2qCN3srGBHhaWJJ-HE2W6X8_MFzGo-ZbpXHHoRpfGUFd-tJiuoIis7D7ulOMp6S8ABIQMxCHZd"><span class="font-headline-sm text-[15px] font-semibold tracking-tight text-on-surface leading-none">NexBridge.ai</span><span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container text-secondary font-medium uppercase tracking-wider scale-90">BETA</span></div><div class="p-3"><nav class="flex flex-col gap-1" data-active-classes="bg-primary-fixed/30 text-primary-container font-medium"><a class="flex items-center justify-between px-3 py-2 rounded-lg font-body-md text-body-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="dashboard" href="#"><span class="truncate">Dashboard</span></a><a class="flex items-center justify-between px-3 py-2 rounded-lg font-body-md text-body-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="my-ideas" href="#"><span class="truncate">My Ideas</span><span class="font-label-sm text-label-sm px-1.5 py-0.2 rounded-full bg-surface-container text-secondary font-medium">3</span></a><a class="flex items-center justify-between px-3 py-2 rounded-lg font-body-md text-body-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="candidates" href="#"><span class="truncate">Candidates</span><span class="font-label-sm text-label-sm px-1.5 py-0.2 rounded-full bg-surface-container text-secondary font-medium">5</span></a><a aria-current="page" class="flex items-center justify-between px-3 py-2 rounded-lg transition-colors bg-primary-fixed/30 text-primary-container font-medium" data-path="mentors" href="#"><span class="truncate">Mentors</span></a></nav><div class="my-3 border-t border-outline-variant/30"></div><div class="flex flex-col gap-1"><a class="flex items-center justify-between px-3 py-2 rounded-lg font-body-md text-body-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="assistant" href="#"><span class="text-primary-container font-medium truncate">Ask assistant</span><kbd class="font-label-sm text-[11px] px-1.5 py-0.5 rounded bg-surface-container-high text-secondary border border-outline-variant/40 leading-none">⌘J</kbd></a></div></div></div><div class="p-3 border-t border-outline-variant/20"><div class="flex items-center justify-between p-2 rounded-xl hover:bg-surface-container transition-colors cursor-pointer"><div class="flex items-center gap-2.5 overflow-hidden"><img alt="Profile" class="w-8 h-8 rounded-full object-cover shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBm8-FrUrOOqXHiUe2FPlxIziDvYRUYXrcXzI82FmldCZ_V9s4rsNIoGOcBnqeK6nrEdRgnzPgY5SEFsxzmHt9pL4PbXsyXB-6UEQUzzcUCyBTNqTB1f8qFbvX28byHronaRelnZ8_A0owDnFN1X1SR0-WOuTMnHw7hKyXXwMFomd3hfMvJyVO4r4VNQ0tSTHvDbIyDGQibYWPrMsv2Awg34LOZO1WQepmWFQ9kBXSmCZ9thYkp7VPEzQ"><div class="flex flex-col min-w-0"><span class="font-body-md text-[13px] font-semibold text-on-surface truncate leading-tight">Aarav Patel</span><span class="font-body-sm text-body-sm text-secondary truncate leading-tight">Seed Founder</span></div></div><button aria-label="User menu" class="text-secondary hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[18px]">more_vert</span></button></div></div></aside><div class="pl-[232px]"><header class="fixed top-0 left-[232px] right-0 h-14 bg-surface-container-low/80 backdrop-blur-md border-b border-outline-variant/30 z-40 px-8 flex items-center justify-between"><div class="flex items-center gap-2 font-body-md text-body-md text-secondary"><a class="hover:text-on-surface transition-colors cursor-pointer" data-path="mentors" href="#">Mentors</a><span class="text-outline-variant">/</span><span class="font-medium text-on-surface">Directory</span></div><div class="flex items-center gap-4"><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-3 text-[18px] text-secondary">search</span><input class="w-72 pl-9 pr-12 py-1.5 h-9 bg-surface-container-lowest border border-outline-variant/40 rounded-lg font-body-sm text-body-sm text-on-surface placeholder:text-secondary focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" placeholder="Search mentors, expertise, domains..." type="text"><kbd class="absolute right-2.5 font-label-sm text-[10px] px-1 py-0.5 rounded bg-surface-container text-secondary border border-outline-variant/40 leading-none">⌘K</kbd></div><button aria-label="Notifications" class="relative p-2 rounded-full hover:bg-surface-container text-secondary hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 bg-primary-container rounded-full ring-2 ring-surface-container-low"></span></button><button class="inline-flex items-center gap-1.5 px-4 h-9 rounded-full bg-primary-container text-on-primary font-body-md text-body-md font-medium hover:bg-primary transition-colors shadow-sm"><span class="material-symbols-outlined text-[16px]">add</span><span>Request Mentor</span></button></div></header><main class="relative pt-14 w-full"><div class="flex flex-col w-full">
+<div class="px-8 py-8 max-w-[1400px] mx-auto w-full flex flex-col gap-8">
+<!-- Hero / Editorial Page Title & Context Header -->
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-2">
+<div class="flex flex-col gap-2 max-w-3xl">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-primary-fixed/40 text-primary-container font-label-sm text-label-sm uppercase tracking-wider font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span>
+            Curated Advisory Network
+          </span>
+<span class="text-secondary font-label-sm text-label-sm">• Fall Cohort 2024</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight leading-tight">
+          Venture &amp; Technical Mentors
+        </h1>
+<p class="font-body-lg text-body-lg text-secondary max-w-2xl">
+          Direct advisory sessions with battle-tested operators, unicorn founders, and enterprise infrastructure specialists.
+        </p>
+</div>
+<!-- Action Cluster -->
+<div class="flex items-center gap-3 shrink-0">
+<button class="inline-flex items-center gap-2 px-4 h-10 rounded-lg bg-surface-container-lowest text-on-surface font-body-md text-body-md font-medium shadow-sm hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined text-[18px] text-secondary">calendar_today</span>
+<span>Browse Office Hours</span>
+</button>
+<button class="inline-flex items-center gap-2 px-4 h-10 rounded-lg bg-primary-container text-on-primary font-body-md text-body-md font-medium shadow-sm hover:bg-primary transition-all">
+<span class="material-symbols-outlined text-[18px] text-on-primary-container">auto_awesome</span>
+<span>Recommend for Lumina AI</span>
+</button>
+</div>
+</div>
+<!-- AI Match Callout Banner -->
+<div class="relative overflow-hidden rounded-xl bg-surface-container-lowest shadow-sm p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="absolute left-0 top-0 bottom-0 w-1.5 bg-primary-container"></div>
+<div class="flex items-start md:items-center gap-4 pl-2">
+<div class="w-10 h-10 rounded-full bg-primary-fixed/40 flex items-center justify-center shrink-0 text-primary-container">
+<span class="material-symbols-outlined text-[22px]">smart_toy</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md font-semibold text-primary-container uppercase tracking-wide">NexBridge Match Engine</span>
+<span class="inline-flex items-center px-2 py-0.2 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm font-medium">Sprint 3 Context</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface mt-0.5">
+<span class="font-semibold text-on-surface">4 mentors</span> have deep direct experience in sovereign enclaves, eBPF routing, and B2B infra sales cycles matching <span class="font-medium text-primary-container">Lumina AI</span>'s roadmap.
+          </p>
+</div>
+</div>
+<div class="flex items-center gap-3 shrink-0 pl-14 md:pl-0">
+<button class="inline-flex items-center gap-1.5 px-3.5 h-8.5 py-1.5 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md font-medium hover:bg-primary transition-colors shadow-sm">
+<span>View Matched (4)</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Filter System & Control Deck -->
+<div class="flex flex-col gap-4">
+<!-- Filter Row 1: Expertise Pills -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 bg-surface-container-lowest p-4 rounded-xl shadow-sm">
+<div class="flex flex-wrap items-center gap-2">
+<span class="font-label-sm text-label-sm text-secondary uppercase font-semibold tracking-wider mr-1">Domain:</span>
+<button class="px-3 py-1.5 rounded-full font-label-md text-label-md font-medium bg-primary-fixed/40 text-primary-container transition-colors shadow-xs">
+            All Expertise
+          </button>
+<button class="px-3 py-1.5 rounded-full font-label-md text-label-md font-medium bg-surface-container-low text-on-surface-variant hover:bg-surface-container transition-colors">
+            eBPF &amp; Kernel
+          </button>
+<button class="px-3 py-1.5 rounded-full font-label-md text-label-md font-medium bg-surface-container-low text-on-surface-variant hover:bg-surface-container transition-colors">
+            Enterprise GTM
+          </button>
+<button class="px-3 py-1.5 rounded-full font-label-md text-label-md font-medium bg-surface-container-low text-on-surface-variant hover:bg-surface-container transition-colors">
+            Seed Fundraising
+          </button>
+<button class="px-3 py-1.5 rounded-full font-label-md text-label-md font-medium bg-surface-container-low text-on-surface-variant hover:bg-surface-container transition-colors">
+            ML Infra / vLLM
+          </button>
+<button class="px-3 py-1.5 rounded-full font-label-md text-label-md font-medium bg-surface-container-low text-on-surface-variant hover:bg-surface-container transition-colors">
+            SOC2 &amp; Compliance
+          </button>
+</div>
+<!-- Metric Counter & Secondary Controls -->
+<div class="flex items-center gap-4 self-end lg:self-auto shrink-0">
+<span class="font-body-sm text-body-sm text-secondary">
+            Showing <strong class="font-semibold text-on-surface">18 Verified Mentors</strong>
+</span>
+<div class="h-4 w-px bg-surface-container-high"></div>
+<div class="flex items-center gap-1.5 text-secondary hover:text-on-surface cursor-pointer">
+<span class="font-label-md text-label-md font-medium">Sort:</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface">Top Matched first</span>
+<span class="material-symbols-outlined text-[16px]">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Secondary Sub-filters: Industry + Availability -->
+<div class="flex flex-wrap items-center justify-between gap-4 px-1">
+<div class="flex flex-wrap items-center gap-6">
+<!-- Availability quick filters -->
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-secondary font-medium">Availability:</span>
+<div class="flex items-center gap-1.5">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-label-sm font-medium bg-surface-container text-on-surface cursor-pointer hover:bg-surface-container-high transition-colors">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+                This Week (Available)
+              </span>
+<span class="px-2.5 py-1 rounded-md text-label-sm font-medium bg-surface-container-lowest text-secondary hover:text-on-surface cursor-pointer shadow-xs transition-colors">
+                Free 20-min Intro
+              </span>
+<span class="px-2.5 py-1 rounded-md text-label-sm font-medium bg-surface-container-lowest text-secondary hover:text-on-surface cursor-pointer shadow-xs transition-colors">
+                Office Hours Open
+              </span>
+</div>
+</div>
+<!-- Sector dropdown selector -->
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-secondary font-medium">Sector:</span>
+<div class="flex items-center gap-1 px-2.5 py-1 rounded-md bg-surface-container-lowest text-on-surface text-label-sm font-medium shadow-xs cursor-pointer">
+<span>All Domains (B2B, Infra, DevTools)</span>
+<span class="material-symbols-outlined text-[14px] text-secondary">arrow_drop_down</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-secondary">Sprint 3 Goal:</span>
+<span class="font-label-sm text-label-sm font-medium px-2 py-0.5 rounded bg-primary-fixed/30 text-primary-container">
+            Enclave Kernel Validation
+          </span>
+</div>
+</div>
+</div>
+<!-- Responsive 3-Column Grid of High-Fidelity Mentor Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Card 1: Top Recommended for Lumina AI -->
+<div class="flex flex-col justify-between rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+<!-- AI Matched Highlight Strip -->
+<div class="h-1 bg-gradient-to-r from-primary-container to-primary-fixed"></div>
+<div class="p-6 flex flex-col gap-4">
+<!-- Top Row: Avatar & Badges -->
+<div class="flex items-start justify-between gap-3">
+<div class="relative">
+<img class="w-14 h-14 rounded-full object-cover shadow-xs" data-alt="Professional studio portrait of Marcus Vance, a seasoned male tech executive in his mid-40s with sharp wireframe glasses and a charcoal merino sweater, soft natural warm office bokeh lighting, refined and trustworthy look" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiub2iNcN8oXt0k3iI7iGMXerc0i04xTUkce2woeOHYzd-zbwtYIlKXBthxwcb2tS8FcZdWfr6DsqHyWcyLR_jD4TvXIdnJf2bVv3fuIYFNLNYVYXVBfVexqcqXdZSfkt4m9-f0ZGEGSKr9iTevFpYHO0Qe0rpco5pgArGIYqmpzHIkWSf3L_66BzFECaq58-1XBmph6Kr0ekl6iV58lHroPG0AKolPIu65vG9x5FuzerWVYygLgICmw">
+<div class="absolute -bottom-1 -right-1 bg-primary-container text-on-primary rounded-full p-0.5 flex items-center justify-center shadow-xs" title="Verified Operator">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</div>
+</div>
+<div class="flex flex-col items-end gap-1.5">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary-fixed/50 text-primary-container font-label-sm text-label-sm font-semibold tracking-wide shadow-xs">
+<span class="material-symbols-outlined text-[13px]">bolt</span>
+                Top AI Match (98%)
+              </span>
+<span class="font-label-sm text-label-sm text-secondary">Active now</span>
+</div>
+</div>
+<!-- Name & Title -->
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-1.5">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight">Marcus Vance</h3>
+<span class="material-symbols-outlined text-[16px] text-primary-container" title="Top Tier Mentor">verified</span>
+</div>
+<p class="font-body-sm text-body-sm text-primary-container font-medium line-clamp-1">
+              Ex-CTO @ CloudScale (Acquired by Cisco)
+            </p>
+<p class="font-body-sm text-body-sm text-secondary">
+              Series B Infra Advisor
+            </p>
+</div>
+<!-- Bio Snippet -->
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3 leading-relaxed">
+            Scaled multi-tenant network proxies from 0 to 80M daily reqs. Advises founders on kernel bypass, enterprise compliance, and Series A diligence.
+          </p>
+<!-- Expertise Chips -->
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant font-medium">eBPF / XDP</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant font-medium">Zero-Trust Infra</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant font-medium">Series A GTM</span>
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed/30 font-label-sm text-label-sm text-primary-container font-medium">AWS Nitro Enclaves</span>
+</div>
+</div>
+<!-- Card Footer Divider & Actions -->
+<div class="p-6 pt-4 bg-surface-container-low/40 mt-auto flex flex-col gap-3">
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-amber-600" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-semibold text-on-surface">5.0</span>
+<span class="text-secondary">(28 sessions)</span>
+</div>
+<span class="text-secondary font-label-sm text-label-sm">Avg response: 2h</span>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm font-bold text-primary-container">Free 20m intro</span>
+<span class="font-label-sm text-label-sm text-secondary">then $250/hr</span>
+</div>
+<button class="inline-flex items-center gap-1 px-3.5 h-9 rounded-lg bg-primary-container text-on-primary font-body-md text-body-md font-medium hover:bg-primary transition-colors shadow-sm">
+<span>View Profile</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 2: Dr. Elena Rostova -->
+<div class="flex flex-col justify-between rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="p-6 flex flex-col gap-4">
+<!-- Top Row: Avatar & Badges -->
+<div class="flex items-start justify-between gap-3">
+<div class="relative">
+<img class="w-14 h-14 rounded-full object-cover shadow-xs" data-alt="Editorial portrait of Dr. Elena Rostova, a female systems engineer in her early 40s with calm composed expression, clean modern architectural office interior with subtle neutral tones, professional executive lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOl49t0q-2uAk8AebpWvQAckBlAxS0e7Cw55zf8zwel-kYv-fwzb5uP9iDxa9t7iqiOuQwEWaToyh5ZbqKF07g_oLFbPtiSOZcLclfCMn2GuXxzjf_IbTIjtCwAPjcBVFGwrcnssr0zJAnFCQmH5BG_grWNJyogSSjNOuWirm01wqxd_yrvpjTHVHHvhhkK1h2CAGF6SefoUUmq1haYnWIoMUSPlm6v8arIldpERT6M823kqJwAyP05Q">
+<div class="absolute -bottom-1 -right-1 bg-primary-container text-on-primary rounded-full p-0.5 flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</div>
+</div>
+<div class="flex flex-col items-end gap-1.5">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm font-semibold tracking-wide">
+<span class="material-symbols-outlined text-[13px]">military_tech</span>
+                Unicorn Founder
+              </span>
+<span class="font-label-sm text-label-sm text-secondary">3 slots open</span>
+</div>
+</div>
+<!-- Name & Title -->
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-1.5">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight">Dr. Elena Rostova</h3>
+<span class="material-symbols-outlined text-[16px] text-primary-container">verified</span>
+</div>
+<p class="font-body-sm text-body-sm text-primary-container font-medium line-clamp-1">
+              Co-Founder &amp; VP Eng @ Fastly Systems
+            </p>
+<p class="font-body-sm text-body-sm text-secondary">
+              Ex-Cloudflare Core Architect
+            </p>
+</div>
+<!-- Bio Snippet -->
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3 leading-relaxed">
+            Led core networking and edge compute infrastructure. Expert in low-latency systems engineering, advisory equity compensation, and technical co-founder hiring.
+          </p>
+<!-- Expertise Chips -->
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant font-medium">Low-Latency C++</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant font-medium">Edge Compute</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant font-medium">Technical Co-founders</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant font-medium">Open Source GTM</span>
+</div>
+</div>
+<!-- Card Footer -->
+<div class="p-6 pt-4 bg-surface-container-low/40 mt-auto flex flex-col gap-3">
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-amber-600" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-semibold text-on-surface">4.9</span>
+<span class="text-secondary">(42 sessions)</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary-container font-medium bg-primary-fixed/30 px-1.5 py-0.2 rounded">Top 1% Rated</span>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm font-bold text-primary-container">Free 20m intro</span>
+<span class="font-label-sm text-label-sm text-secondary">Follow-ups via equity</span>
+</div>
+<button class="inline-flex items-center gap-1 px-3.5 h-9 rounded-lg bg-surface-container text-on-surface font-body-md text-body-md font-medium hover:bg-surface-container-high transition-colors">
+<span>View Profile</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 3: Sarah Lin, Ph.D. -->
+<div class="flex flex-col justify-between rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="p-6 flex flex-col gap-4">
+<!-- Top Row: Avatar & Badges -->
+<div class="flex items-start justify-between gap-3">
+<div class="relative">
+<img class="w-14 h-14 rounded-full object-cover shadow-xs" data-alt="Confident headshot of Sarah Lin Ph.D., an Asian-American venture partner and former AI executive in minimal Scandinavian beige tailored blazer, bright airy natural sunlight, elegant minimalist aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1JQxZs13ILWT3TzQYROaTPNac_hXr3Ux3g_r4XhWF1Zop4Aok53_dvCYBXRXQx8n5rCOzC8oHKXFPfZsBsvXsVoBtSZMIo84Qlssf7aCqobvnF28ajgYIZVHD2spMbNsDnFE51TDqciteRgJ3VaNwlDJTzjCvuHhpPLJmAF-dnRrdMAZJOL7nV-dXEPp2pp0-n4dA4mBHa51gQXhqv02Czp90q4PFlN3JxjrPEoknBT4eYOtQ3iONnQ">
+<div class="absolute -bottom-1 -right-1 bg-primary-container text-on-primary rounded-full p-0.5 flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</div>
+</div>
+<div class="flex flex-col items-end gap-1.5">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm font-semibold">
+                VC Partner
+              </span>
+<span class="font-label-sm text-label-sm text-secondary">Available tomorrow</span>
+</div>
+</div>
+<!-- Name & Title -->
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-1.5">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight">Sarah Lin, Ph.D.</h3>
+<span class="material-symbols-outlined text-[16px] text-primary-container">verified</span>
+</div>
+<p class="font-body-sm text-body-sm text-primary-container font-medium line-clamp-1">
+              Partner @ Apex Capital
+            </p>
+<p class="font-body-sm text-body-sm text-secondary">
+              Ex-Head of AI Infra @ Databricks
+            </p>
+</div>
+<!-- Bio Snippet -->
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3 leading-relaxed">
+            Helps AI infrastructure startups navigate enterprise security hurdles and proof-of-concept procurement cycles in Fortune 500 banks.
+          </p>
+<!-- Expertise Chips -->
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant font-medium">Seed Fundraising</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant font-medium">Enterprise Pricing</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant font-medium">vLLM Serving</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant font-medium">GPU Procurement</span>
+</div>
+</div>
+<!-- Card Footer -->
+<div class="p-6 pt-4 bg-surface-container-low/40 mt-auto flex flex-col gap-3">
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-amber-600" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-semibold text-on-surface">5.0</span>
+<span class="text-secondary">(35 sessions)</span>
+</div>
+<span class="text-secondary font-label-sm text-label-sm">1 Free Intro / month</span>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">$300<span class="font-body-sm text-body-sm font-normal text-secondary">/hr</span></span>
+<span class="font-label-sm text-label-sm text-primary-container font-medium">Founder Grant eligible</span>
+</div>
+<button class="inline-flex items-center gap-1 px-3.5 h-9 rounded-lg bg-surface-container text-on-surface font-body-md text-body-md font-medium hover:bg-surface-container-high transition-colors">
+<span>View Profile</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 4: Dr. Hiroshi Tanaka -->
+<div class="flex flex-col justify-between rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="p-6 flex flex-col gap-4">
+<!-- Top Row: Avatar & Badges -->
+<div class="flex items-start justify-between gap-3">
+<div class="relative">
+<div class="w-14 h-14 rounded-full bg-surface-container-high flex items-center justify-center font-headline-sm text-on-surface-variant font-semibold tracking-tight">
+                HT
+              </div>
+<div class="absolute -bottom-1 -right-1 bg-primary-container text-on-primary rounded-full p-0.5 flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</div>
+</div>
+<div class="flex flex-col items-end gap-1.5">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary-fixed/30 text-primary-container font-label-sm text-label-sm font-semibold">
+                Kernel Maintainer
+              </span>
+<span class="font-label-sm text-label-sm text-secondary">Next: Thursday</span>
+</div>
+</div>
+<!-- Name & Title -->
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-1.5">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight">Dr. Hiroshi Tanaka</h3>
+<span class="material-symbols-outlined text-[16px] text-primary-container">verified</span>
+</div>
+<p class="font-body-sm text-body-sm text-primary-container font-medium line-clamp-1">
+              Principal Research Engineer @ Red Hat
+            </p>
+<p class="font-body-sm text-body-sm text-secondary">
+              Linux Kernel Subsystem Maintainer
+            </p>
+</div>
+<!-- Bio Snippet -->
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3 leading-relaxed">
+            Author of 14 IEEE papers on OS virtualization. Guides seed founders on deep-tech patent defensibility and upstream Linux kernel acceptance.
+          </p>
+<!-- Expertise Chips -->
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant font-medium">Kernel Networking</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant font-medium">Hardware Attestation</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant font-medium">Patent Strategy</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant font-medium">DeepTech Moats</span>
+</div>
+</div>
+<!-- Card Footer -->
+<div class="p-6 pt-4 bg-surface-container-low/40 mt-auto flex flex-col gap-3">
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-amber-600" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-semibold text-on-surface">4.95</span>
+<span class="text-secondary">(19 sessions)</span>
+</div>
+<span class="text-secondary font-label-sm text-label-sm">Response: &lt; 4h</span>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm font-bold text-primary-container">Free 20m intro</span>
+<span class="font-label-sm text-label-sm text-secondary">then $200/hr</span>
+</div>
+<button class="inline-flex items-center gap-1 px-3.5 h-9 rounded-lg bg-surface-container text-on-surface font-body-md text-body-md font-medium hover:bg-surface-container-high transition-colors">
+<span>View Profile</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 5: Chloe Dubois -->
+<div class="flex flex-col justify-between rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="p-6 flex flex-col gap-4">
+<!-- Top Row: Avatar & Badges -->
+<div class="flex items-start justify-between gap-3">
+<div class="relative">
+<div class="w-14 h-14 rounded-full bg-surface-container-high flex items-center justify-center font-headline-sm text-on-surface-variant font-semibold tracking-tight">
+                CD
+              </div>
+<div class="absolute -bottom-1 -right-1 bg-primary-container text-on-primary rounded-full p-0.5 flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</div>
+</div>
+<div class="flex flex-col items-end gap-1.5">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm font-semibold">
+                Product Leader
+              </span>
+<span class="font-label-sm text-label-sm text-secondary">Office Hours open</span>
+</div>
+</div>
+<!-- Name & Title -->
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-1.5">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight">Chloe Dubois</h3>
+<span class="material-symbols-outlined text-[16px] text-primary-container">verified</span>
+</div>
+<p class="font-body-sm text-body-sm text-primary-container font-medium line-clamp-1">
+              Ex-VP Product @ Snowflake
+            </p>
+<p class="font-body-sm text-body-sm text-secondary">
+              Founder in Residence @ Sequoia
+            </p>
+</div>
+<!-- Bio Snippet -->
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3 leading-relaxed">
+            Specialized in consumption pricing models, usage metering architecture, and developer-first outbound sales playbooks.
+          </p>
+<!-- Expertise Chips -->
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant font-medium">Usage-Based Pricing</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant font-medium">DevTools GTM</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant font-medium">Product-Led Growth</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant font-medium">Salesforce Integrations</span>
+</div>
+</div>
+<!-- Card Footer -->
+<div class="p-6 pt-4 bg-surface-container-low/40 mt-auto flex flex-col gap-3">
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-amber-600" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-semibold text-on-surface">4.88</span>
+<span class="text-secondary">(31 sessions)</span>
+</div>
+<span class="text-secondary font-label-sm text-label-sm">High Demand</span>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">$200<span class="font-body-sm text-body-sm font-normal text-secondary">/hr</span></span>
+<span class="font-label-sm text-label-sm text-secondary">15% discount for NexBridge</span>
+</div>
+<button class="inline-flex items-center gap-1 px-3.5 h-9 rounded-lg bg-surface-container text-on-surface font-body-md text-body-md font-medium hover:bg-surface-container-high transition-colors">
+<span>View Profile</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 6: David Kovacs -->
+<div class="flex flex-col justify-between rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="p-6 flex flex-col gap-4">
+<!-- Top Row: Avatar & Badges -->
+<div class="flex items-start justify-between gap-3">
+<div class="relative">
+<div class="w-14 h-14 rounded-full bg-surface-container-high flex items-center justify-center font-headline-sm text-on-surface-variant font-semibold tracking-tight">
+                DK
+              </div>
+<div class="absolute -bottom-1 -right-1 bg-primary-container text-on-primary rounded-full p-0.5 flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</div>
+</div>
+<div class="flex flex-col items-end gap-1.5">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary-fixed/40 text-primary-container font-label-sm text-label-sm font-semibold">
+                Security &amp; CISO
+              </span>
+<span class="font-label-sm text-label-sm text-secondary">Available Today</span>
+</div>
+</div>
+<!-- Name & Title -->
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-1.5">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight">David Kovacs</h3>
+<span class="material-symbols-outlined text-[16px] text-primary-container">verified</span>
+</div>
+<p class="font-body-sm text-body-sm text-primary-container font-medium line-clamp-1">
+              CISO Advisor @ CyberSecure
+            </p>
+<p class="font-body-sm text-body-sm text-secondary">
+              Ex-Head of Compliance @ Stripe
+            </p>
+</div>
+<!-- Bio Snippet -->
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3 leading-relaxed">
+            Demystifying SOC2 Type II, FedRAMP, and HIPAA for AI startups looking to close 6-figure enterprise contracts in regulated industries.
+          </p>
+<!-- Expertise Chips -->
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant font-medium">SOC2 Compliance</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant font-medium">HIPAA / FedRAMP</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant font-medium">Enterprise Security Reviews</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant font-medium">Data Enclaves</span>
+</div>
+</div>
+<!-- Card Footer -->
+<div class="p-6 pt-4 bg-surface-container-low/40 mt-auto flex flex-col gap-3">
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-amber-600" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-semibold text-on-surface">5.0</span>
+<span class="text-secondary">(24 sessions)</span>
+</div>
+<span class="text-secondary font-label-sm text-label-sm">Fast SLA: 1h</span>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm font-bold text-primary-container">Free 20m intro</span>
+<span class="font-label-sm text-label-sm text-secondary">Audit blueprints included</span>
+</div>
+<button class="inline-flex items-center gap-1 px-3.5 h-9 rounded-lg bg-surface-container text-on-surface font-body-md text-body-md font-medium hover:bg-surface-container-high transition-colors">
+<span>View Profile</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Pagination Deck & AI Context Banner -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 pb-2">
+<div class="font-body-sm text-body-sm text-secondary">
+        Showing <span class="font-medium text-on-surface">1–6</span> of <span class="font-medium text-on-surface">18</span> mentors
+      </div>
+<!-- Pagination controls -->
+<div class="flex items-center gap-1.5">
+<button class="w-8 h-8 rounded-lg bg-surface-container-lowest text-secondary flex items-center justify-center hover:bg-surface-container shadow-xs transition-colors" disabled="">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-lg bg-primary-container text-on-primary font-body-sm text-body-sm font-semibold flex items-center justify-center shadow-xs">
+          1
+        </button>
+<button class="w-8 h-8 rounded-lg bg-surface-container-lowest text-on-surface font-body-sm text-body-sm font-medium flex items-center justify-center hover:bg-surface-container shadow-xs transition-colors">
+          2
+        </button>
+<button class="w-8 h-8 rounded-lg bg-surface-container-lowest text-on-surface font-body-sm text-body-sm font-medium flex items-center justify-center hover:bg-surface-container shadow-xs transition-colors">
+          3
+        </button>
+<button class="w-8 h-8 rounded-lg bg-surface-container-lowest text-secondary flex items-center justify-center hover:bg-surface-container shadow-xs transition-colors">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Bottom Interactive Banner for Sprint Matching -->
+<div class="rounded-xl bg-surface-container-lowest shadow-sm p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-8">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-primary-fixed/30 text-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[26px]">psychology</span>
+</div>
+<div class="flex flex-col">
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Want AI to match mentors to your Sprint 3 blockers?</h4>
+<p class="font-body-md text-body-md text-secondary mt-0.5">
+            NexBridge analyzes your codebase commits, SOC2 gap checklist, and investor pipeline to surface mentors with identical technical solves.
+          </p>
+</div>
+</div>
+<button class="inline-flex items-center gap-2 px-5 h-10 rounded-lg bg-primary-container text-on-primary font-body-md text-body-md font-semibold hover:bg-primary transition-colors shadow-sm shrink-0">
+<span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+<span>Match for Lumina AI</span>
+</button>
+</div>
+</div>
+</div></main></div></body></html>

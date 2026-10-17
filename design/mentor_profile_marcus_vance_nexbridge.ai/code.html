@@ -1,0 +1,550 @@
+<!DOCTYPE html><html class="h-full" lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface-tint":"#1f6c3a","surface-dim":"#dcd9d9","surface-container-low":"#f6f3f2","inverse-on-surface":"#f3f0ef","tertiary-container":"#515a55","background":"#fcf9f8","tertiary-fixed-dim":"#c0c9c2","outline-variant":"#bfc9bd","on-primary-fixed-variant":"#005226","on-surface-variant":"#404940","surface-container-highest":"#e5e2e1","inverse-surface":"#313030","on-error-container":"#93000a","on-error":"#ffffff","primary-fixed-dim":"#8bd79b","on-tertiary-fixed-variant":"#404944","secondary-fixed-dim":"#ccc5bf","secondary-container":"#e5ded8","primary-container":"#166534","tertiary-fixed":"#dce5de","error":"#ba1a1a","outline":"#707a6f","tertiary":"#3a433e","primary":"#004c22","on-tertiary":"#ffffff","secondary-fixed":"#e8e1db","on-secondary-fixed-variant":"#4a4641","surface-container-lowest":"#ffffff","on-primary-container":"#93e0a2","surface-bright":"#fcf9f8","inverse-primary":"#8bd79b","on-secondary-container":"#66625d","on-primary-fixed":"#00210b","on-tertiary-fixed":"#151d19","surface-container":"#f0edec","on-secondary":"#ffffff","surface":"#fcf9f8","surface-variant":"#e5e2e1","on-background":"#1c1b1b","error-container":"#ffdad6","primary-fixed":"#a6f4b5","on-surface":"#1c1b1b","surface-container-high":"#ebe7e7","secondary":"#625e59","on-secondary-fixed":"#1e1b17","on-tertiary-container":"#c8d1ca","on-primary":"#ffffff"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"space-md":"1rem","gutter":"1.5rem","space-xs":"0.25rem","space-xl":"2.5rem","space-sm":"0.5rem","gutter-mobile":"1rem","space-lg":"1.5rem","margin":"2rem","margin-mobile":"1rem"},fontFamily:{"headline-xl-mobile":["Inter"],"label-md":["Inter"],"body-sm":["Inter"],"headline-lg":["Inter"],"headline-md":["Inter"],"headline-xl":["Inter"],"body-lg":["Inter"],"label-sm":["Inter"],"body-md":["Inter"],"headline-sm":["Inter"]},fontSize:{"headline-xl-mobile":["30px",{lineHeight:"36px",letterSpacing:"-0.025em",fontWeight:"600"}],"label-md":["13px",{lineHeight:"18px",letterSpacing:"-0.005em",fontWeight:"500"}],"body-sm":["12px",{lineHeight:"16px",letterSpacing:"0em",fontWeight:"400"}],"headline-lg":["28px",{lineHeight:"36px",letterSpacing:"-0.02em",fontWeight:"600"}],"headline-md":["22px",{lineHeight:"28px",letterSpacing:"-0.02em",fontWeight:"600"}],"headline-xl":["40px",{lineHeight:"48px",letterSpacing:"-0.03em",fontWeight:"600"}],"body-lg":["16px",{lineHeight:"24px",letterSpacing:"-0.01em",fontWeight:"400"}],"label-sm":["11px",{lineHeight:"14px",letterSpacing:"0.02em",fontWeight:"500"}],"body-md":["14px",{lineHeight:"20px",letterSpacing:"-0.005em",fontWeight:"400"}],"headline-sm":["18px",{lineHeight:"24px",letterSpacing:"-0.015em",fontWeight:"600"}]}}}};</script></head><body class="bg-surface-container-low font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-screen w-[232px] bg-surface-container-lowest border-r border-outline-variant/30 z-50 flex flex-col justify-between select-none"><div class="flex flex-col"><div class="h-14 px-4 flex items-center gap-2.5 border-b border-outline-variant/20"><img alt="NexBridge Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WVGLNXfjlrMNpqehfxN8cLQtyvuEx-MtvlXcMal4sUtGKAJ8Z2U7WLtgoEgDb8TH8B9W3CSxMF2vjGgWpZbS_x8vkrJZ1vkRtaApS4tX0LM0GpbNmcQJG3gXVR63EyPrDyvlKM4Oi0RAUSTbuVbARJQh0SUjl7Kemou3Jzas_e6ly_oZ2qCN3srGBHhaWJJ-HE2W6X8_MFzGo-ZbpXHHoRpfGUFd-tJiuoIis7D7ulOMp6S8ABIQMxCHZd"><span class="font-headline-sm text-[15px] font-semibold tracking-tight text-on-surface leading-none">NexBridge.ai</span><span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container text-secondary font-medium uppercase tracking-wider scale-90">BETA</span></div><div class="p-3"><nav class="flex flex-col gap-1" data-active-classes="bg-primary-fixed/30 text-primary-container font-medium"><a class="flex items-center justify-between px-3 py-2 rounded-lg font-body-md text-body-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="dashboard" href="#"><span class="truncate">Dashboard</span></a><a class="flex items-center justify-between px-3 py-2 rounded-lg font-body-md text-body-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="my-ideas" href="#"><span class="truncate">My Ideas</span><span class="font-label-sm text-label-sm px-1.5 py-0.2 rounded-full bg-surface-container text-secondary font-medium">3</span></a><a class="flex items-center justify-between px-3 py-2 rounded-lg font-body-md text-body-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="candidates" href="#"><span class="truncate">Candidates</span><span class="font-label-sm text-label-sm px-1.5 py-0.2 rounded-full bg-surface-container text-secondary font-medium">5</span></a><a class="flex items-center justify-between px-3 py-2 rounded-lg font-body-md text-body-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="mentors" href="#"><span class="truncate">Mentors</span></a></nav><div class="my-3 border-t border-outline-variant/30"></div><div class="flex flex-col gap-1"><a class="flex items-center justify-between px-3 py-2 rounded-lg font-body-md text-body-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="assistant" href="#"><span class="text-primary-container font-medium truncate">Ask assistant</span><kbd class="font-label-sm text-[11px] px-1.5 py-0.5 rounded bg-surface-container-high text-secondary border border-outline-variant/40 leading-none">⌘J</kbd></a></div></div></div><div class="p-3 border-t border-outline-variant/20"><div class="flex items-center justify-between p-2 rounded-xl hover:bg-surface-container transition-colors cursor-pointer"><div class="flex items-center gap-2.5 overflow-hidden"><img alt="Profile" class="w-8 h-8 rounded-full object-cover shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBm8-FrUrOOqXHiUe2FPlxIziDvYRUYXrcXzI82FmldCZ_V9s4rsNIoGOcBnqeK6nrEdRgnzPgY5SEFsxzmHt9pL4PbXsyXB-6UEQUzzcUCyBTNqTB1f8qFbvX28byHronaRelnZ8_A0owDnFN1X1SR0-WOuTMnHw7hKyXXwMFomd3hfMvJyVO4r4VNQ0tSTHvDbIyDGQibYWPrMsv2Awg34LOZO1WQepmWFQ9kBXSmCZ9thYkp7VPEzQ"><div class="flex flex-col min-w-0"><span class="font-body-md text-[13px] font-semibold text-on-surface truncate leading-tight">Aarav Patel</span><span class="font-body-sm text-body-sm text-secondary truncate leading-tight">Seed Founder</span></div></div><button aria-label="User menu" class="text-secondary hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[18px]">more_vert</span></button></div></div></aside><div class="pl-[232px]"><header class="fixed top-0 left-[232px] right-0 h-14 bg-surface-container-low/80 backdrop-blur-md border-b border-outline-variant/30 z-40 px-8 flex items-center justify-between"><div class="flex items-center gap-2 font-body-md text-body-md text-secondary"><a class="hover:text-on-surface transition-colors cursor-pointer" data-path="mentors" href="#">Mentors</a><span class="text-outline-variant">/</span><span class="font-medium text-on-surface">Directory</span></div><div class="flex items-center gap-4"><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-3 text-[18px] text-secondary">search</span><input class="w-72 pl-9 pr-12 py-1.5 h-9 bg-surface-container-lowest border border-outline-variant/40 rounded-lg font-body-sm text-body-sm text-on-surface placeholder:text-secondary focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" placeholder="Search mentors, expertise, domains..." type="text"><kbd class="absolute right-2.5 font-label-sm text-[10px] px-1 py-0.5 rounded bg-surface-container text-secondary border border-outline-variant/40 leading-none">⌘K</kbd></div><button aria-label="Notifications" class="relative p-2 rounded-full hover:bg-surface-container text-secondary hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 bg-primary-container rounded-full ring-2 ring-surface-container-low"></span></button><button class="inline-flex items-center gap-1.5 px-4 h-9 rounded-full bg-primary-container text-on-primary font-body-md text-body-md font-medium hover:bg-primary transition-colors shadow-sm"><span class="material-symbols-outlined text-[16px]">add</span><span>Request Mentor</span></button></div></header><main class="relative pt-14 w-full"><div class="flex flex-col w-full">
+<div class="px-8 py-6 w-full max-w-[1440px] mx-auto space-y-6">
+<!-- Breadcrumb & Navigation Header -->
+<div class="flex items-center justify-between">
+<nav class="flex items-center gap-2 font-body-sm text-body-sm text-secondary">
+<a class="inline-flex items-center gap-1.5 font-medium text-primary-container hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+<span>Back to Directory</span>
+</a>
+<span class="text-outline-variant">/</span>
+<span class="text-secondary">Mentors</span>
+<span class="text-outline-variant">/</span>
+<span class="text-secondary">Infrastructure &amp; Systems</span>
+<span class="text-outline-variant">/</span>
+<span class="font-medium text-on-surface">Marcus Vance</span>
+</nav>
+<div class="flex items-center gap-3">
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container-lowest text-secondary hover:text-on-surface hover:bg-surface-container transition-colors shadow-sm font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px]">bookmark_border</span>
+<span>Save Mentor</span>
+</button>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container-lowest text-secondary hover:text-on-surface hover:bg-surface-container transition-colors shadow-sm font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px]">share</span>
+<span>Share Profile</span>
+</button>
+</div>
+</div>
+<!-- Profile Header Hero -->
+<div class="relative bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden p-6 lg:p-8">
+<div class="absolute -right-24 -top-24 w-80 h-80 rounded-full bg-primary-fixed/20 blur-3xl pointer-events-none"></div>
+<div class="relative flex flex-col lg:flex-row lg:items-start gap-6 lg:gap-8 justify-between">
+<div class="flex flex-col sm:flex-row items-start gap-5 min-w-0">
+<!-- Mentor Avatar with Status -->
+<div class="relative shrink-0">
+<div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-tertiary-container to-surface-container-highest flex items-center justify-center text-on-tertiary font-headline-lg text-headline-lg tracking-tight shadow-md">
+              MV
+            </div>
+<span class="absolute -bottom-1 -right-1 w-5 h-5 bg-primary-container rounded-full ring-4 ring-surface-container-lowest flex items-center justify-center text-on-primary" title="Online &amp; Active">
+<span class="w-2 h-2 rounded-full bg-primary-fixed animate-pulse"></span>
+</span>
+</div>
+<!-- Name & Details -->
+<div class="flex flex-col min-w-0 space-y-2">
+<div class="flex flex-wrap items-center gap-2.5">
+<h1 class="font-headline-lg text-headline-lg font-semibold text-on-surface tracking-tight">Marcus Vance</h1>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary-fixed/30 text-primary-container font-label-sm text-label-sm font-semibold tracking-wide uppercase">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+                Verified Operator
+              </span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm">
+                Series B Infra Advisor
+              </span>
+</div>
+<p class="font-body-md text-body-md text-secondary font-medium leading-relaxed max-w-2xl">
+              Ex-CTO @ CloudScale (Acquired by Cisco) • Series B Infra Advisor • Active Angel
+            </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-3xl leading-normal">
+              18+ years building enterprise high-throughput networking, kernel packet inspection, and micro-arbitrage proxies. Helping early-stage technical founders bridge the gap between engineering breakthroughs and enterprise-grade procurement.
+            </p>
+<!-- Metadata Badges -->
+<div class="flex flex-wrap items-center gap-2 pt-2">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-low font-label-sm text-label-sm text-on-surface font-medium">
+<span class="material-symbols-outlined text-[15px] text-primary-container">hotel_class</span>
+                Top 1% Mentor
+              </span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-low font-label-sm text-label-sm text-on-surface font-medium">
+<span class="material-symbols-outlined text-[15px] text-primary-container">bolt</span>
+                Fast Responder (&lt; 2h)
+              </span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-low font-label-sm text-label-sm text-on-surface font-medium">
+<span class="material-symbols-outlined text-[15px] text-amber-600" style="font-variation-settings: 'FILL' 1;">star</span>
+                5.0 ★ (28 sessions)
+              </span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-low font-label-sm text-label-sm text-secondary">
+<span class="material-symbols-outlined text-[15px]">schedule</span>
+                San Francisco, CA (PST)
+              </span>
+</div>
+</div>
+</div>
+<!-- Social & Verification Links -->
+<div class="flex lg:flex-col items-center lg:items-end justify-between gap-3 shrink-0 pt-2 lg:pt-0">
+<div class="flex items-center gap-2">
+<a class="p-2 rounded-lg bg-surface-container text-secondary hover:text-on-surface hover:bg-surface-container-high transition-colors" href="#" title="LinkedIn Profile">
+<svg class="w-4 h-4 fill-currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.65 1.65 0 0 0 1.66-1.66 1.66 1.66 0 0 0-3.32 0c0 .92.74 1.66 1.66 1.66m1.39 9.74v-8.37H5.07v8.37h2.78z"></path></svg>
+</a>
+<a class="p-2 rounded-lg bg-surface-container text-secondary hover:text-on-surface hover:bg-surface-container-high transition-colors" href="#" title="GitHub: @marcusvance-net">
+<svg class="w-4 h-4 fill-currentColor" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"></path></svg>
+</a>
+<a class="p-2 rounded-lg bg-surface-container text-secondary hover:text-on-surface hover:bg-surface-container-high transition-colors" href="#" title="Twitter / X">
+<svg class="w-4 h-4 fill-currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+</a>
+</div>
+<a class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container text-secondary hover:text-primary-container font-label-sm text-label-sm transition-colors" href="#">
+<span class="material-symbols-outlined text-[14px]">policy</span>
+<span class="font-mono">US-11849202</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Main Two-Column Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+<!-- Left Column: Detailed Bio, Focus, Timeline, Reviews (~65% / 8 cols) -->
+<div class="lg:col-span-8 space-y-6">
+<!-- About & Advisory Focus -->
+<section class="bg-surface-container-lowest rounded-xl p-6 shadow-sm space-y-5">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container text-[20px]">psychology</span>
+              About &amp; Advisory Focus
+            </h2>
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider font-semibold">Founder Operator</span>
+</div>
+<div class="space-y-3 font-body-md text-body-md text-on-surface-variant leading-relaxed">
+<p>
+              I spent the last 15 years in the trenches of low-level networking, Linux kernel bypass primitives, and distributed systems. As co-founder &amp; CTO of CloudScale Systems, I led an engineering organization of 65 world-class systems architects, driving our proprietary programmable packet pipeline from inception to $34M in annual recurring revenue across Global 2000 financial services and telecommunications before our acquisition by Cisco Systems.
+            </p>
+<p>
+              Today, I selectively partner with deep tech and AI systems founders navigating high-stakes technical architectural hurdles. I focus heavily on turning cutting-edge infrastructure breakthroughs into compliant, enterprise-hardened platforms ready to clear Tier-1 procurement pipelines.
+            </p>
+</div>
+<!-- Key Advising Strengths (Bento Tiles) -->
+<div class="pt-2">
+<div class="font-label-md text-label-md font-semibold text-on-surface mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-primary-container">check_circle</span>
+              Core Advisory Pillars
+            </div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+<div class="p-3.5 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-2 font-headline-sm text-[15px] font-semibold text-on-surface">
+<span class="material-symbols-outlined text-primary-container text-[18px]">memory</span>
+                  eBPF &amp; Kernel Bypass in Production
+                </div>
+<p class="font-body-sm text-body-sm text-secondary mt-1">
+                  XDP routing, AF_XDP socket pooling, memory isolation, and packet filtering under multi-gigabit workloads.
+                </p>
+</div>
+<div class="p-3.5 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-2 font-headline-sm text-[15px] font-semibold text-on-surface">
+<span class="material-symbols-outlined text-primary-container text-[18px]">lock</span>
+                  Hardware-Attestation Security
+                </div>
+<p class="font-body-sm text-body-sm text-secondary mt-1">
+                  Architecting AWS Nitro enclaves, confidential compute trust chains, and banking-grade KMS key delegation.
+                </p>
+</div>
+<div class="p-3.5 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-2 font-headline-sm text-[15px] font-semibold text-on-surface">
+<span class="material-symbols-outlined text-primary-container text-[18px]">query_stats</span>
+                  First $1M ARR Pipeline Construction
+                </div>
+<p class="font-body-sm text-body-sm text-secondary mt-1">
+                  Converting open-source developer enthusiasm into six-figure ACV enterprise infrastructure contracts.
+                </p>
+</div>
+<div class="p-3.5 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-2 font-headline-sm text-[15px] font-semibold text-on-surface">
+<span class="material-symbols-outlined text-primary-container text-[18px]">checklist</span>
+                  Series A Technical Diligence Checklist
+                </div>
+<p class="font-body-sm text-body-sm text-secondary mt-1">
+                  Bulletproofing architecture diagrams, latency benchmarking methodology, and unit economics for top-tier VCs.
+                </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Topics Marcus Advises On -->
+<section class="bg-surface-container-lowest rounded-xl p-6 shadow-sm space-y-4">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container text-[20px]">forum</span>
+              Advisory Topics &amp; Playbooks
+            </h2>
+<span class="font-body-sm text-body-sm text-secondary">Click any topic to pre-select for booking</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="topic-selector-group">
+<div class="topic-card cursor-pointer p-4 rounded-xl bg-surface-container-low hover:bg-surface-container transition-all group active:scale-[0.99] ring-2 ring-primary-container/20 bg-primary-fixed/10" onclick="selectTopic(this, 'eBPF Kernel Bypass &amp; Network Latency')" role="button" tabindex="0">
+<div class="flex items-start justify-between">
+<span class="font-headline-sm text-[14px] font-semibold text-on-surface group-hover:text-primary-container transition-colors">
+                  eBPF Kernel Bypass &amp; Network Latency
+                </span>
+<span class="font-label-sm text-[10px] px-2 py-0.5 rounded-full bg-primary-container text-on-primary font-medium shrink-0 ml-2">Top Rated</span>
+</div>
+<div class="flex items-center gap-3 mt-3 text-secondary font-body-sm text-body-sm">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-primary-container">groups</span>
+                  14 sessions held
+                </span>
+<span>•</span>
+<span class="text-on-surface font-medium">Stage Gate 2-4</span>
+</div>
+</div>
+<div class="topic-card cursor-pointer p-4 rounded-xl bg-surface-container-low hover:bg-surface-container transition-all group active:scale-[0.99]" onclick="selectTopic(this, 'Designing B2B Infra Consumption Pricing')" role="button" tabindex="0">
+<div class="flex items-start justify-between">
+<span class="font-headline-sm text-[14px] font-semibold text-on-surface group-hover:text-primary-container transition-colors">
+                  Designing B2B Infra Consumption Pricing
+                </span>
+</div>
+<div class="flex items-center gap-3 mt-3 text-secondary font-body-sm text-body-sm">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-primary-container">groups</span>
+                  9 sessions held
+                </span>
+<span>•</span>
+<span>Token &amp; Core-hour models</span>
+</div>
+</div>
+<div class="topic-card cursor-pointer p-4 rounded-xl bg-surface-container-low hover:bg-surface-container transition-all group active:scale-[0.99]" onclick="selectTopic(this, 'Overcoming Fortune 500 Security Questionnaires (SOC2 &amp; Nitro)')" role="button" tabindex="0">
+<div class="flex items-start justify-between">
+<span class="font-headline-sm text-[14px] font-semibold text-on-surface group-hover:text-primary-container transition-colors">
+                  Overcoming Fortune 500 Security Questionnaires
+                </span>
+</div>
+<div class="flex items-center gap-3 mt-3 text-secondary font-body-sm text-body-sm">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-primary-container">groups</span>
+                  11 sessions held
+                </span>
+<span>•</span>
+<span>SOC2 Type II &amp; Enclave specs</span>
+</div>
+</div>
+<div class="topic-card cursor-pointer p-4 rounded-xl bg-surface-container-low hover:bg-surface-container transition-all group active:scale-[0.99]" onclick="selectTopic(this, 'Seed to Series A Technical Diligence Checklist')" role="button" tabindex="0">
+<div class="flex items-start justify-between">
+<span class="font-headline-sm text-[14px] font-semibold text-on-surface group-hover:text-primary-container transition-colors">
+                  Seed to Series A Technical Diligence Checklist
+                </span>
+</div>
+<div class="flex items-center gap-3 mt-3 text-secondary font-body-sm text-body-sm">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-primary-container">groups</span>
+                  8 sessions held
+                </span>
+<span>•</span>
+<span>Investor decks &amp; code reviews</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Experience & Track Record Timeline -->
+<section class="bg-surface-container-lowest rounded-xl p-6 shadow-sm space-y-6">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container text-[20px]">history_edu</span>
+              Experience &amp; Track Record
+            </h2>
+<span class="font-label-sm text-label-sm text-secondary uppercase font-semibold">Verified Career Record</span>
+</div>
+<div class="relative pl-6 space-y-8 before:absolute before:left-2 before:top-2 before:bottom-2 before:w-0.5 before:bg-surface-container-high">
+<!-- Timeline Item 1 -->
+<div class="relative">
+<div class="absolute -left-[27px] top-1 w-3.5 h-3.5 rounded-full bg-primary-container ring-4 ring-surface-container-lowest"></div>
+<div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
+<h3 class="font-headline-sm text-[15px] font-semibold text-on-surface">Advisory Partner &amp; Active Angel</h3>
+<span class="font-label-sm text-label-sm text-primary-container font-semibold">2022 — Present</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary mt-0.5">NexBridge Venture Network &amp; Founders Co-op</p>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2 leading-normal">
+                Directly advising early-stage technical founders across cloud-native networking, low-latency microservices, and AI edge runtimes. Personally guided 12 seed infra companies; 4 have successfully completed competitive Series A rounds led by Bessemer and Lightspeed.
+              </p>
+</div>
+<!-- Timeline Item 2 -->
+<div class="relative">
+<div class="absolute -left-[27px] top-1 w-3.5 h-3.5 rounded-full bg-secondary-fixed ring-4 ring-surface-container-lowest"></div>
+<div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
+<h3 class="font-headline-sm text-[15px] font-semibold text-on-surface">Chief Technology Officer</h3>
+<span class="font-label-sm text-label-sm text-secondary">2017 — 2022</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary mt-0.5">CloudScale Systems (Acquired by Cisco for $180M)</p>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2 leading-normal">
+                Led global engineering of 65 core distributed systems and kernel engineers. Architected an ultra-low latency carrier-grade eBPF data plane handling 400Gbps network interfaces. Drove commercialization up to $34M ARR with Fortune 50 clients prior to Cisco acquisition.
+              </p>
+</div>
+<!-- Timeline Item 3 -->
+<div class="relative">
+<div class="absolute -left-[27px] top-1 w-3.5 h-3.5 rounded-full bg-secondary-fixed ring-4 ring-surface-container-lowest"></div>
+<div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
+<h3 class="font-headline-sm text-[15px] font-semibold text-on-surface">Principal Systems Architect</h3>
+<span class="font-label-sm text-label-sm text-secondary">2014 — 2017</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary mt-0.5">Datadog</p>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2 leading-normal">
+                Architected high-throughput metric intake engines and time-series aggregation algorithms. Successfully scaled multi-tenant metric ingestion pipeline from 200 billion to 15+ trillion data points per day.
+              </p>
+</div>
+</div>
+</section>
+<!-- Founder Reviews & Endorsements -->
+<section class="bg-surface-container-lowest rounded-xl p-6 shadow-sm space-y-4">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container text-[20px]">rate_review</span>
+              Founder Endorsements
+            </h2>
+<div class="flex items-center gap-1 font-body-sm text-body-sm font-semibold text-on-surface">
+<span class="material-symbols-outlined text-amber-600 text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>5.0</span>
+<span class="text-secondary font-normal">(28 verified founders)</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+<!-- Review 1 -->
+<div class="p-4 rounded-xl bg-surface-container-low flex flex-col justify-between space-y-4">
+<p class="font-body-md text-body-md text-on-surface italic leading-relaxed">
+                “Marcus helped us cut our AWS Nitro latency overhead by 60% in a single 45-minute working session. Essential advice for anyone dealing with sensitive cloud enclaves.”
+              </p>
+<div class="flex items-center gap-3 pt-2">
+<div class="w-9 h-9 rounded-full bg-tertiary-container text-on-tertiary flex items-center justify-center font-headline-sm text-[13px] font-semibold">
+                  LG
+                </div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-[13px] font-semibold text-on-surface">Liam Gallagher</span>
+<span class="font-body-sm text-[11px] text-secondary">Founder &amp; CEO @ KernelFlow (Y Combinator S23)</span>
+</div>
+</div>
+</div>
+<!-- Review 2 -->
+<div class="p-4 rounded-xl bg-surface-container-low flex flex-col justify-between space-y-4">
+<p class="font-body-md text-body-md text-on-surface italic leading-relaxed">
+                “His feedback on our SOC2 enterprise security questionnaire saved our $120k pilot contract. He knows exactly what Tier-1 CISOs look for and how to satisfy compliance without re-engineering.”
+              </p>
+<div class="flex items-center gap-3 pt-2">
+<div class="w-9 h-9 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-headline-sm text-[13px] font-semibold">
+                  PN
+                </div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-[13px] font-semibold text-on-surface">Priya Nandakumar</span>
+<span class="font-body-sm text-[11px] text-secondary">Co-Founder @ EnclaveGuard (Techstars '23)</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Sticky Request Advisory Session Booking Card (~35% / 4 cols) -->
+<div class="lg:col-span-4 sticky top-20 space-y-4">
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-md space-y-5">
+<!-- Card Header & Pricing Selector -->
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm font-semibold text-on-surface">Request a Session</h2>
+<span class="flex items-center gap-1 font-label-sm text-label-sm text-primary-container font-medium">
+<span class="w-2 h-2 rounded-full bg-primary-container animate-ping"></span>
+                Next opening today
+              </span>
+</div>
+<!-- Session Type Selector Tabs -->
+<div class="grid grid-cols-2 p-1 bg-surface-container-low rounded-lg gap-1" id="session-type-tabs">
+<button class="session-tab-btn py-2 px-2 rounded-md font-label-md text-label-md font-semibold text-center transition-all bg-surface-container-lowest text-primary-container shadow-sm" onclick="switchSessionType(this, 'intro')" type="button">
+<span>Free 20-min Intro</span>
+<span class="block font-label-sm text-[10px] text-secondary font-normal mt-0.5">For Lumina AI</span>
+</button>
+<button class="session-tab-btn py-2 px-2 rounded-md font-label-md text-label-md font-medium text-center text-secondary hover:text-on-surface transition-all" onclick="switchSessionType(this, 'deepdive')" type="button">
+<span>60-min Deep Dive</span>
+<span class="block font-label-sm text-[10px] text-secondary font-normal mt-0.5">$250 honorarium</span>
+</button>
+</div>
+</div>
+<!-- Form Fields -->
+<div class="space-y-4 pt-1">
+<!-- Topic Selector Dropdown -->
+<div class="space-y-1.5">
+<label class="font-label-md text-label-md font-medium text-on-surface flex items-center justify-between" for="topic-select">
+<span>Select Topic to Discuss</span>
+<span class="text-primary-container font-label-sm text-[11px] font-semibold">Matched to Stage Gate 2</span>
+</label>
+<div class="relative">
+<select class="w-full h-10 px-3 pr-8 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-2 focus:ring-primary-container appearance-none transition-all cursor-pointer" id="topic-select">
+<option selected="" value="eBPF Kernel Bypass &amp; Network Latency">eBPF Kernel Bypass &amp; Enclave Routing (Lumina AI Context)</option>
+<option value="Overcoming Fortune 500 Security Questionnaires">Fortune 500 Security &amp; Nitro Driver Signing</option>
+<option value="Designing B2B Infra Consumption Pricing">Token &amp; GPU Execution Consumption Pricing</option>
+<option value="Seed to Series A Technical Diligence Checklist">Series A Technical Diligence Preparation</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-2.5 text-secondary pointer-events-none text-[18px]">expand_more</span>
+</div>
+</div>
+<!-- Pre-filled Context Note -->
+<div class="space-y-1.5">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md font-medium text-on-surface" for="session-context">Session Context / Blocker</label>
+<span class="font-label-sm text-[11px] text-secondary">164 chars</span>
+</div>
+<textarea class="w-full p-3 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm placeholder:text-secondary focus:outline-none focus:ring-2 focus:ring-primary-container resize-none leading-relaxed transition-all" id="session-context" rows="3">Hi Marcus, building Lumina AI (eBPF vLLM proxy). We are currently in Stage Gate 2 and would love your guidance on P99 latency benchmarks and Nitro enclave driver signing.</textarea>
+</div>
+<!-- Attach Idea Dossier Switch -->
+<div class="p-3 rounded-lg bg-surface-container-low flex items-center justify-between gap-3">
+<div class="flex items-center gap-2.5 min-w-0">
+<span class="material-symbols-outlined text-primary-container text-[20px] shrink-0">attach_file</span>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md font-semibold text-on-surface truncate">Share Lumina AI Dossier</span>
+<span class="font-body-sm text-[11px] text-secondary">Stage Gate 2 validated score (78/100)</span>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer shrink-0">
+<input checked="" class="sr-only peer" id="dossier-toggle" type="checkbox">
+<div class="w-9 h-5 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-surface-container-lowest after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface-container-lowest after:border-surface-container after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+<!-- Available Time Slots -->
+<div class="space-y-2 pt-1">
+<label class="font-label-md text-label-md font-medium text-on-surface flex items-center justify-between">
+<span>Available Slots (Marcus Vance)</span>
+<span class="text-secondary font-label-sm text-[11px]">PST Timezone</span>
+</label>
+<!-- Date Picker Chips -->
+<div class="grid grid-cols-3 gap-1.5" id="date-chips">
+<button class="date-chip py-1.5 px-1 rounded-lg text-center font-label-sm text-label-sm bg-surface-container-low text-secondary hover:text-on-surface transition-colors" onclick="selectDate(this)" type="button">
+<span class="block font-normal text-[10px]">Tomorrow</span>
+<span class="font-semibold text-on-surface">Wed, Oct 16</span>
+</button>
+<button class="date-chip py-1.5 px-1 rounded-lg text-center font-label-sm text-label-sm bg-primary-fixed/30 text-primary-container font-semibold transition-colors ring-1 ring-primary-container" onclick="selectDate(this)" type="button">
+<span class="block font-normal text-[10px]">Optimal</span>
+<span class="font-semibold">Thu, Oct 17</span>
+</button>
+<button class="date-chip py-1.5 px-1 rounded-lg text-center font-label-sm text-label-sm bg-surface-container-low text-secondary hover:text-on-surface transition-colors" onclick="selectDate(this)" type="button">
+<span class="block font-normal text-[10px]">Friday</span>
+<span class="font-semibold text-on-surface">Fri, Oct 18</span>
+</button>
+</div>
+<!-- Time Slot Pills -->
+<div class="grid grid-cols-2 gap-2 pt-1" id="time-pills">
+<button class="time-pill py-2 px-3 rounded-lg text-center font-label-sm text-label-sm bg-surface-container-low text-on-surface hover:bg-surface-container transition-all" onclick="selectTime(this)" type="button">
+                  10:00 AM PST
+                </button>
+<button class="time-pill py-2 px-3 rounded-lg text-center font-label-sm text-label-sm bg-primary-fixed/30 text-primary-container font-semibold ring-1 ring-primary-container transition-all" onclick="selectTime(this)" type="button">
+                  2:30 PM PST
+                </button>
+<button class="time-pill py-2 px-3 rounded-lg text-center font-label-sm text-label-sm bg-surface-container-low text-on-surface hover:bg-surface-container transition-all" onclick="selectTime(this)" type="button">
+                  4:00 PM PST
+                </button>
+<button class="time-pill py-2 px-3 rounded-lg text-center font-label-sm text-label-sm bg-surface-container-low text-on-surface hover:bg-surface-container transition-all" onclick="selectTime(this)" type="button">
+                  5:30 PM PST
+                </button>
+</div>
+</div>
+<!-- Meeting Logistics -->
+<div class="flex items-center gap-2 p-2.5 rounded-lg bg-surface-container-low/70 text-secondary font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[18px] text-primary-container">video_camera_front</span>
+<span>Google Meet link auto-generated upon confirmation</span>
+</div>
+<!-- Confirmation Action Button -->
+<div class="pt-2">
+<button class="w-full h-11 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-headline-sm text-[14px] font-semibold flex items-center justify-center gap-2 shadow-sm hover:shadow transition-all active:scale-[0.98]" id="confirm-booking-btn" onclick="submitRequest()" type="button">
+<span>Confirm Session Request</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+<!-- Guarantee Note -->
+<div class="flex items-start gap-2 pt-1 text-secondary font-body-sm text-[11px] leading-tight text-center justify-center">
+<span class="material-symbols-outlined text-[14px] text-primary-container shrink-0">verified_user</span>
+<span>Free cancellation up to 4 hours before session. Mentor confirmed in &lt; 12h.</span>
+</div>
+</div>
+</div>
+<!-- Quick Advisory Stats Micro-card -->
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container text-[24px]">electric_bolt</span>
+<div class="flex flex-col">
+<span class="font-headline-sm text-[13px] font-semibold text-on-surface">NexBridge Sprint Guarantee</span>
+<span class="font-body-sm text-[11px] text-secondary">Priority response within Founder Stage Gate 2</span>
+</div>
+</div>
+<span class="font-label-sm text-[11px] px-2 py-0.5 rounded bg-primary-fixed/20 text-primary-container font-semibold">Active</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  function selectTopic(cardElement, topicTitle) {
+    // Highlight topic card
+    document.querySelectorAll('.topic-card').forEach(el => {
+      el.classList.remove('ring-2', 'ring-primary-container/20', 'bg-primary-fixed/10');
+    });
+    cardElement.classList.add('ring-2', 'ring-primary-container/20', 'bg-primary-fixed/10');
+
+    // Update Select Dropdown
+    const select = document.getElementById('topic-select');
+    if (select) {
+      let found = false;
+      for (let i = 0; i < select.options.length; i++) {
+        if (select.options[i].text.toLowerCase().includes(topicTitle.toLowerCase().slice(0, 15))) {
+          select.selectedIndex = i;
+          found = true;
+          break;
+        }
+      }
+      if (!found) {
+        select.selectedIndex = 0;
+      }
+    }
+  }
+
+  function switchSessionType(btnElement, type) {
+    document.querySelectorAll('.session-tab-btn').forEach(btn => {
+      btn.classList.remove('bg-surface-container-lowest', 'text-primary-container', 'shadow-sm', 'font-semibold');
+      btn.classList.add('text-secondary', 'font-medium');
+    });
+    btnElement.classList.add('bg-surface-container-lowest', 'text-primary-container', 'shadow-sm', 'font-semibold');
+    btnElement.classList.remove('text-secondary', 'font-medium');
+
+    const submitBtn = document.getElementById('confirm-booking-btn');
+    if (type === 'deepdive') {
+      submitBtn.innerHTML = '<span>Book 60-min Deep Dive ($250)</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span>';
+    } else {
+      submitBtn.innerHTML = '<span>Confirm Free Intro Request</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span>';
+    }
+  }
+
+  function selectDate(chip) {
+    document.querySelectorAll('.date-chip').forEach(c => {
+      c.classList.remove('bg-primary-fixed/30', 'text-primary-container', 'ring-1', 'ring-primary-container', 'font-semibold');
+      c.classList.add('bg-surface-container-low', 'text-secondary');
+    });
+    chip.classList.remove('bg-surface-container-low', 'text-secondary');
+    chip.classList.add('bg-primary-fixed/30', 'text-primary-container', 'ring-1', 'ring-primary-container', 'font-semibold');
+  }
+
+  function selectTime(pill) {
+    document.querySelectorAll('.time-pill').forEach(p => {
+      p.classList.remove('bg-primary-fixed/30', 'text-primary-container', 'font-semibold', 'ring-1', 'ring-primary-container');
+      p.classList.add('bg-surface-container-low', 'text-on-surface');
+    });
+    pill.classList.remove('bg-surface-container-low', 'text-on-surface');
+    pill.classList.add('bg-primary-fixed/30', 'text-primary-container', 'font-semibold', 'ring-1', 'ring-primary-container');
+  }
+
+  function submitRequest() {
+    const btn = document.getElementById('confirm-booking-btn');
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<span class="material-symbols-outlined animate-spin text-[16px]">sync</span><span>Sending Request to Marcus...</span>';
+    btn.disabled = true;
+
+    setTimeout(() => {
+      btn.innerHTML = '<span class="material-symbols-outlined text-[16px]">check_circle</span><span>Request Sent Successfully!</span>';
+      btn.classList.remove('bg-primary-container');
+      btn.classList.add('bg-primary');
+      setTimeout(() => {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+        btn.classList.remove('bg-primary');
+        btn.classList.add('bg-primary-container');
+      }, 3500);
+    }, 1200);
+  }
+</script></main></div></body></html>

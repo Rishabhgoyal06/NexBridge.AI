@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-primary":"#ffffff","on-surface":"#1c1b1b","surface-bright":"#fcf9f8","tertiary-fixed-dim":"#c0c9c2","surface":"#fcf9f8","on-tertiary":"#ffffff","secondary-container":"#e5ded8","surface-container":"#f0edec","surface-container-low":"#f6f3f2","inverse-on-surface":"#f3f0ef","on-tertiary-fixed":"#151d19","on-tertiary-fixed-variant":"#404944","background":"#fcf9f8","on-primary-container":"#93e0a2","error":"#ba1a1a","primary":"#004c22","on-primary-fixed-variant":"#005226","on-secondary-fixed":"#1e1b17","inverse-surface":"#313030","surface-tint":"#1f6c3a","on-secondary":"#ffffff","inverse-primary":"#8bd79b","primary-container":"#166534","secondary-fixed-dim":"#ccc5bf","tertiary":"#3a433e","surface-variant":"#e5e2e1","on-error-container":"#93000a","on-secondary-fixed-variant":"#4a4641","primary-fixed":"#a6f4b5","outline":"#707a6f","on-primary-fixed":"#00210b","surface-dim":"#dcd9d9","tertiary-container":"#515a55","surface-container-highest":"#e5e2e1","on-background":"#1c1b1b","on-error":"#ffffff","surface-container-lowest":"#ffffff","outline-variant":"#bfc9bd","primary-fixed-dim":"#8bd79b","secondary-fixed":"#e8e1db","on-secondary-container":"#66625d","on-tertiary-container":"#c8d1ca","secondary":"#625e59","tertiary-fixed":"#dce5de","error-container":"#ffdad6","on-surface-variant":"#404940","surface-container-high":"#ebe7e7"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"space-xs":"0.25rem","space-lg":"1.5rem","space-md":"1rem","gutter":"1.5rem","margin":"2rem","margin-mobile":"1rem","space-xl":"2.5rem","space-sm":"0.5rem","gutter-mobile":"1rem"},fontFamily:{"headline-xl-mobile":["Inter"],"label-md":["Inter"],"label-sm":["Inter"],"headline-sm":["Inter"],"body-md":["Inter"],"body-sm":["Inter"],"headline-md":["Inter"],"headline-lg":["Inter"],"body-lg":["Inter"],"headline-xl":["Inter"]},fontSize:{"headline-xl-mobile":["30px",{lineHeight:"36px",letterSpacing:"-0.025em",fontWeight:"600"}],"label-md":["13px",{lineHeight:"18px",letterSpacing:"-0.005em",fontWeight:"500"}],"label-sm":["11px",{lineHeight:"14px",letterSpacing:"0.02em",fontWeight:"500"}],"headline-sm":["18px",{lineHeight:"24px",letterSpacing:"-0.015em",fontWeight:"600"}],"body-md":["14px",{lineHeight:"20px",letterSpacing:"-0.005em",fontWeight:"400"}],"body-sm":["12px",{lineHeight:"16px",letterSpacing:"0em",fontWeight:"400"}],"headline-md":["22px",{lineHeight:"28px",letterSpacing:"-0.02em",fontWeight:"600"}],"headline-lg":["28px",{lineHeight:"36px",letterSpacing:"-0.02em",fontWeight:"600"}],"body-lg":["16px",{lineHeight:"24px",letterSpacing:"-0.01em",fontWeight:"400"}],"headline-xl":["40px",{lineHeight:"48px",letterSpacing:"-0.03em",fontWeight:"600"}]}}}};</script></head><body class="bg-surface-container-low font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-screen w-[232px] bg-surface-container-lowest border-r border-outline-variant/30 z-50 flex flex-col justify-between select-none"><div class="flex flex-col"><div class="h-14 px-4 flex items-center gap-2.5 border-b border-outline-variant/20"><img alt="NexBridge Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WVGLNXfjlrMNpqehfxN8cLQtyvuEx-MtvlXcMal4sUtGKAJ8Z2U7WLtgoEgDb8TH8B9W3CSxMF2vjGgWpZbS_x8vkrJZ1vkRtaApS4tX0LM0GpbNmcQJG3gXVR63EyPrDyvlKM4Oi0RAUSTbuVbARJQh0SUjl7Kemou3Jzas_e6ly_oZ2qCN3srGBHhaWJJ-HE2W6X8_MFzGo-ZbpXHHoRpfGUFd-tJiuoIis7D7ulOMp6S8ABIQMxCHZd"/><span class="font-headline-sm text-[15px] font-semibold tracking-tight text-on-surface leading-none">NexBridge.ai</span><span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container text-secondary font-medium uppercase tracking-wider scale-90">BETA</span></div><div class="p-3"><nav class="flex flex-col gap-1" data-active-classes="bg-primary-fixed/30 text-primary-container font-medium"><a class="flex items-center justify-between px-3 py-2 rounded-lg font-body-md text-body-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="dashboard" href="#"><div class="flex items-center gap-3"><span>Dashboard</span></div></a><a class="flex items-center justify-between px-3 py-2 rounded-lg font-body-md text-body-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="idea-workspace-plan" href="#"><div class="flex items-center gap-3"><span>My Ideas</span></div><span class="font-label-sm text-label-sm px-1.5 py-0.2 rounded-full bg-surface-container text-secondary font-medium">3</span></a><a class="flex items-center justify-between px-3 py-2 rounded-lg font-body-md text-body-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="idea-workspace-roles-candidates" href="#"><div class="flex items-center gap-3"><span>Candidates</span></div><span class="font-label-sm text-label-sm px-1.5 py-0.2 rounded-full bg-surface-container text-secondary font-medium">5</span></a><a class="flex items-center justify-between px-3 py-2 rounded-lg font-body-md text-body-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="mentors" href="#"><div class="flex items-center gap-3"><span>Mentors</span></div></a></nav><div class="my-3 border-t border-outline-variant/30"></div><div class="flex flex-col gap-1"><a class="flex items-center justify-between px-3 py-2 rounded-lg font-body-md text-body-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="assistant" href="#"><div class="flex items-center gap-3"><span class="text-primary-container font-medium">Ask assistant</span></div><kbd class="font-label-sm text-[11px] px-1.5 py-0.5 rounded bg-surface-container-high text-secondary border border-outline-variant/40 leading-none">⌘J</kbd></a></div></div></div><div class="p-3 border-t border-outline-variant/20"><div class="flex items-center justify-between p-2 rounded-xl hover:bg-surface-container transition-colors cursor-pointer"><div class="flex items-center gap-2.5 overflow-hidden"><img alt="Profile" class="w-8 h-8 rounded-full object-cover shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBm8-FrUrOOqXHiUe2FPlxIziDvYRUYXrcXzI82FmldCZ_V9s4rsNIoGOcBnqeK6nrEdRgnzPgY5SEFsxzmHt9pL4PbXsyXB-6UEQUzzcUCyBTNqTB1f8qFbvX28byHronaRelnZ8_A0owDnFN1X1SR0-WOuTMnHw7hKyXXwMFomd3hfMvJyVO4r4VNQ0tSTHvDbIyDGQibYWPrMsv2Awg34LOZO1WQepmWFQ9kBXSmCZ9thYkp7VPEzQ"/><div class="flex flex-col min-w-0"><span class="font-body-md text-[13px] font-semibold text-on-surface truncate leading-tight">Aarav Patel</span><span class="font-body-sm text-body-sm text-secondary truncate leading-tight">Seed Founder</span></div></div><span class="material-symbols-outlined text-secondary text-[18px]">more_vert</span></div></div></aside><div class="pl-[232px]"><header class="fixed top-0 left-[232px] right-0 bg-surface-container-lowest border-b border-outline-variant/30 z-40"><div class="h-14 px-8 border-b border-outline-variant/20 flex items-center justify-between"><div class="flex items-center gap-1.5 font-body-md text-body-md text-secondary"><span class="hover:text-on-surface transition-colors cursor-pointer">Workspace</span><span class="text-outline-variant">/</span><span class="hover:text-on-surface transition-colors cursor-pointer">Lumina AI</span><span class="text-outline-variant">/</span><button class="flex items-center gap-1 font-medium text-on-surface hover:text-primary transition-colors"><span>Roles &amp; Candidates</span><span class="material-symbols-outlined text-[16px]">expand_more</span></button></div><div class="flex items-center gap-4"><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-3 text-[18px] text-secondary">search</span><input class="w-64 pl-9 pr-12 py-1.5 h-9 bg-surface-container-low border border-outline-variant/40 rounded-lg font-body-sm text-body-sm text-on-surface placeholder:text-secondary focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" placeholder="Search candidates, skills..." type="text"/><kbd class="absolute right-2.5 font-label-sm text-[10px] px-1 py-0.5 rounded bg-surface-container text-secondary border border-outline-variant/40 leading-none">⌘K</kbd></div><button class="relative p-2 rounded-full hover:bg-surface-container text-secondary hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 bg-primary-container rounded-full ring-2 ring-surface-container-lowest"></span></button><button class="inline-flex items-center gap-1.5 px-3.5 h-9 rounded-lg border border-outline-variant/50 bg-surface-container-lowest text-on-surface font-body-md text-body-md font-medium hover:bg-surface-container transition-colors shadow-sm"><span class="material-symbols-outlined text-[16px] text-secondary">download</span><span>Export List</span></button><button class="inline-flex items-center gap-1.5 px-4 h-9 rounded-lg bg-primary-container text-on-primary font-body-md text-body-md font-medium hover:bg-primary transition-colors shadow-sm"><span class="material-symbols-outlined text-[16px]">add</span><span>Create Role</span></button></div></div><div class="px-8 py-3.5 flex items-center justify-between gap-6"><div class="flex items-center gap-3.5 min-w-0"><div class="w-10 h-10 rounded-xl bg-primary-container/10 border border-primary-container/20 flex items-center justify-center text-primary-container shrink-0"><span class="material-symbols-outlined text-[22px]">memory</span></div><div class="min-w-0"><div class="flex items-center gap-2.5"><h1 class="font-headline-sm text-headline-sm font-semibold text-on-surface tracking-tight truncate">Lumina AI — Enterprise vLLM Routing &amp; Proxy</h1><span class="inline-flex items-center px-2 py-0.5 rounded-full font-label-sm text-[11px] font-semibold tracking-wide uppercase bg-primary-fixed/40 text-primary-container border border-primary-container/20 shrink-0">VALIDATING • B2B INFRA • STAGE GATE 2</span></div></div></div><div class="flex items-center gap-4 shrink-0"><div class="flex items-center gap-2.5 px-3 py-1.5 rounded-xl bg-surface-container-low border border-outline-variant/30"><div class="relative w-8 h-8 flex items-center justify-center"><svg class="w-8 h-8 -rotate-90 transform" viewbox="0 0 36 36"><path class="text-outline-variant/40" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3.5"></path><path class="text-primary-container" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="78, 100" stroke-linecap="round" stroke-width="3.5"></path></svg><span class="absolute font-label-sm text-[10px] font-bold text-on-surface">78</span></div><div class="flex flex-col"><span class="font-label-sm text-[10px] font-semibold uppercase tracking-wider text-secondary leading-tight">Conviction</span><span class="font-body-sm text-[12px] font-semibold text-on-surface leading-tight">78/100 Strong</span></div></div></div></div><div class="px-8 border-t border-outline-variant/20 flex items-center gap-2"><nav class="flex items-center gap-1 font-body-md text-body-md -mb-px" data-active-classes="border-primary-container text-primary-container font-semibold"><a class="px-3.5 py-3 border-b-2 border-transparent text-secondary hover:text-on-surface transition-colors" data-path="idea-workspace-validation" href="#">Validation</a><a class="px-3.5 py-3 border-b-2 border-transparent text-secondary hover:text-on-surface transition-colors flex items-center gap-1.5" data-path="idea-workspace-competitors" href="#"><span>Competitors</span><span class="font-label-sm text-[11px] px-1.5 py-0.2 rounded-full bg-surface-container text-secondary font-medium">6</span></a><a class="px-3.5 py-3 border-b-2 border-transparent text-secondary hover:text-on-surface transition-colors" data-path="idea-workspace-revenue" href="#">Revenue</a><a class="px-3.5 py-3 border-b-2 border-transparent text-secondary hover:text-on-surface transition-colors" data-path="idea-workspace-plan" href="#"><span>Plan</span></a><a class="px-3.5 py-3 border-b-2 border-transparent text-secondary hover:text-on-surface transition-colors flex items-center gap-1.5" data-path="idea-workspace-roles-candidates" href="#"><span>Roles &amp; Candidates</span><span class="font-label-sm text-[11px] px-1.5 py-0.2 rounded-full bg-primary-fixed/40 text-primary-container font-semibold border border-primary-container/20">2 Roles • 5 Candidates</span></a></nav></div></header><main class="relative pt-[172px] w-full min-h-screen"><div class="flex flex-col w-full relative">
+<!-- Underlying Page Content (Roles & Candidates Canvas) -->
+<div class="px-8 py-8 w-full max-w-[1440px] mx-auto select-none pointer-events-none filter blur-[2px] opacity-60 transition-all duration-300">
+<!-- Workspace Subheader Stats Strip -->
+<div class="grid grid-cols-4 gap-4 mb-8">
+<div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-secondary">Open Core Roles</span>
+<span class="p-1.5 rounded-lg bg-surface-container text-primary-container material-symbols-outlined text-[18px]">engineering</span>
+</div>
+<div class="mt-4 flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg font-bold text-on-surface">2</span>
+<span class="font-label-sm text-label-sm text-secondary">eBPF Kernel &amp; AI Infra</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-secondary">Verified Matches</span>
+<span class="p-1.5 rounded-lg bg-primary-fixed/30 text-primary-container material-symbols-outlined text-[18px]">verified_user</span>
+</div>
+<div class="mt-4 flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg font-bold text-on-surface">5</span>
+<span class="font-label-sm text-label-sm text-primary-container font-medium">92% avg fit score</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-secondary">Direct Warm Paths</span>
+<span class="p-1.5 rounded-lg bg-surface-container text-secondary material-symbols-outlined text-[18px]">hub</span>
+</div>
+<div class="mt-4 flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg font-bold text-on-surface">11</span>
+<span class="font-label-sm text-label-sm text-secondary">via 3 Stanford &amp; YC peers</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-secondary">Pipeline Velocity</span>
+<span class="p-1.5 rounded-lg bg-surface-container text-primary-container material-symbols-outlined text-[18px]">bolt</span>
+</div>
+<div class="mt-4 flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg font-bold text-on-surface">4.8d</span>
+<span class="font-label-sm text-label-sm text-secondary">to first technical chat</span>
+</div>
+</div>
+</div>
+<!-- Active Candidates Table Preview -->
+<div class="bg-surface-container-lowest rounded-2xl shadow-sm overflow-hidden mb-12">
+<div class="px-6 py-4 flex items-center justify-between bg-surface-container-low/40">
+<div class="flex items-center gap-3">
+<span class="font-headline-sm text-headline-sm font-semibold text-on-surface">Candidate Shortlist</span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm text-secondary">Founding eBPF &amp; Systems Engineer</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-label-md text-label-md text-secondary">Filter by Conviction Score &gt; 90%</span>
+</div>
+</div>
+<div class="p-6 space-y-3">
+<!-- Item 1 (Target) -->
+<div class="p-4 rounded-xl bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-11 h-11 rounded-full bg-surface-container-highest"></div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-[15px] font-semibold text-on-surface">Elena Rostova, Ph.D.</span>
+<span class="px-2 py-0.5 rounded-full font-label-sm text-label-sm bg-primary-fixed/40 text-primary-container font-semibold">96% Match</span>
+</div>
+<span class="font-body-sm text-body-sm text-secondary">Senior Systems Engineer @ Fastly • ex-Cloudflare Workers</span>
+</div>
+</div>
+<button class="px-4 py-2 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md font-medium">Reach Out</button>
+</div>
+<!-- Item 2 -->
+<div class="p-4 rounded-xl bg-surface-container-lowest flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-11 h-11 rounded-full bg-surface-container-highest"></div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-[15px] font-semibold text-on-surface">Marcus Vance</span>
+<span class="px-2 py-0.5 rounded-full font-label-sm text-label-sm bg-surface-container font-semibold text-secondary">89% Match</span>
+</div>
+<span class="font-body-sm text-body-sm text-secondary">Staff Infrastructure Engineer @ Datadog • Linux kernel tracing</span>
+</div>
+</div>
+<button class="px-4 py-2 rounded-lg bg-surface-container text-on-surface font-label-md text-label-md font-medium">Review Notes</button>
+</div>
+<!-- Item 3 -->
+<div class="p-4 rounded-xl bg-surface-container-lowest flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-11 h-11 rounded-full bg-surface-container-highest"></div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-[15px] font-semibold text-on-surface">Dr. Jin-Woo Park</span>
+<span class="px-2 py-0.5 rounded-full font-label-sm text-label-sm bg-surface-container font-semibold text-secondary">86% Match</span>
+</div>
+<span class="font-body-sm text-body-sm text-secondary">Principal Architect @ Isovalent • Cilium Maintainer</span>
+</div>
+</div>
+<button class="px-4 py-2 rounded-lg bg-surface-container text-on-surface font-label-md text-label-md font-medium">Review Notes</button>
+</div>
+</div>
+</div>
+</div>
+<!-- MODAL BACKDROP OVERLAY -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-8 bg-inverse-surface/40 backdrop-blur-sm overflow-y-auto animate-fade-in" id="outreachModalBackdrop">
+<!-- Modal Card (Width ~680px) -->
+<div aria-labelledby="modal-title" aria-modal="true" class="relative w-full max-w-[680px] my-auto bg-surface-container-lowest rounded-2xl shadow-xl flex flex-col overflow-hidden transform transition-all" role="dialog">
+<!-- Top Subtle Status Accent Line -->
+<div class="h-1.5 w-full bg-gradient-to-r from-primary via-primary-container to-primary-fixed-dim"></div>
+<!-- Modal Header -->
+<div class="px-7 pt-6 pb-4 flex items-start justify-between bg-surface-container-lowest">
+<div class="flex flex-col gap-1 pr-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container text-[20px]" style="font-variation-settings: 'FILL' 1;">forward_to_inbox</span>
+<h2 class="font-headline-sm text-headline-sm font-semibold text-on-surface tracking-tight" id="modal-title">
+              Send Outreach via NexBridge Talent Network
+            </h2>
+</div>
+<p class="font-body-sm text-body-sm text-secondary">
+            Warm introduction synthesized with verified credentials and Lumina AI’s venture thesis.
+          </p>
+</div>
+<button aria-label="Close dialog" class="w-8 h-8 rounded-full flex items-center justify-center text-secondary hover:text-on-surface hover:bg-surface-container transition-colors shrink-0" id="closeModalBtn" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Candidate Preview Strip -->
+<div class="mx-7 my-2 p-4 rounded-xl bg-surface-container-low flex flex-col gap-3">
+<div class="flex items-start justify-between gap-4">
+<div class="flex items-center gap-3.5 min-w-0">
+<img class="w-12 h-12 rounded-full object-cover shrink-0 shadow-sm" data-alt="A portrait of Elena Rostova, a 30-something systems engineer with sharp wire-rimmed glasses in a minimalist studio office with gentle warm light, wearing an espresso knit sweater, thoughtful calm expression, natural shallow depth of field." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbkAbWqenzMUfhE44sIO4k37ElcpYQBKGpHKZDJLcSrVokAkpLRz0VLd07WoM5GASKm5BLYzLn1V3v8tIReHIZ3amDPtF8xEvcKFDRBvjYlEog949xor3o3kBfvWF_b4al9y62PJomHADk3PpMDexzJim7P3X-1R4gOh5dpEq2BtT4KjK62NampC1fNCtxttOaz7ID64kiZNGAvDcFgZKOZ0FyctX-nQx8mW6uT8cvE9jZ9YVGJ8OepA"/>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-headline-sm text-[15px] font-semibold text-on-surface truncate">Elena Rostova, Ph.D.</span>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full font-label-sm text-label-sm font-semibold bg-primary-fixed/50 text-primary-container">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+                  96% Fit
+                </span>
+<span class="font-label-sm text-[11px] text-secondary">Founding eBPF &amp; Kernel Engineer</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary truncate mt-0.5">
+                Senior Systems Engineer @ Fastly • ex-Cloudflare Workers
+              </p>
+</div>
+</div>
+<div class="shrink-0 flex items-center gap-1 px-2 py-1 rounded bg-surface-container-lowest shadow-sm">
+<span class="material-symbols-outlined text-[16px] text-primary-container">offline_bolt</span>
+<span class="font-label-sm text-label-sm font-bold text-on-surface">Top 1%</span>
+</div>
+</div>
+<!-- Warm Bridge Context Indicator -->
+<div class="pt-2.5 flex items-center gap-2 font-body-sm text-[12px] text-secondary">
+<span class="material-symbols-outlined text-[16px] text-primary-container shrink-0">handshake</span>
+<span class="truncate">
+<strong class="font-medium text-on-surface">Connected through:</strong> Stanford Systems Lab Alumni &amp; Open-source Cilium contributor network
+          </span>
+</div>
+</div>
+<!-- Modal Body Form Area -->
+<div class="px-7 py-3 space-y-4 max-h-[593px] overflow-y-auto">
+<!-- Outreach Mode Segmented Control -->
+<div class="flex flex-col gap-1.5">
+<span class="font-label-sm text-label-sm font-semibold text-secondary uppercase tracking-wider">Outreach Mode</span>
+<div class="grid grid-cols-3 p-1 rounded-xl bg-surface-container-low">
+<button class="flex items-center justify-center gap-2 py-2 px-3 rounded-lg font-label-md text-label-md font-semibold bg-surface-container-lowest text-primary-container shadow-sm transition-all" type="button">
+<span class="material-symbols-outlined text-[16px]">auto_awesome</span>
+<span>AI-Generated Pitch</span>
+</button>
+<button class="flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg font-label-md text-label-md text-secondary hover:text-on-surface transition-all" type="button">
+<span class="material-symbols-outlined text-[16px]">mail</span>
+<span>Founder Direct</span>
+</button>
+<button class="flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg font-label-md text-label-md text-secondary hover:text-on-surface transition-all" type="button">
+<span class="material-symbols-outlined text-[16px]">support_agent</span>
+<span>Talent Partner Intro</span>
+</button>
+</div>
+</div>
+<!-- Sender Identity & Attachments Row -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Sender Identity -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm font-semibold text-secondary uppercase tracking-wider" for="sender-identity">Sender Identity</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-[18px] text-primary-container pointer-events-none">account_circle</span>
+<select class="w-full pl-9 pr-8 py-2 rounded-lg bg-surface-container-low font-body-sm text-body-sm text-on-surface appearance-none focus:outline-none focus:ring-2 focus:ring-primary-container/20 cursor-pointer" id="sender-identity">
+<option selected="">Aarav Patel (Founder, Lumina AI • aarav@lumina.ai)</option>
+<option>Elena Lin (Co-Founder &amp; COO • elena@lumina.ai)</option>
+<option>NexBridge Executive Talent Node (Warm Intro Proxy)</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 text-[18px] text-secondary pointer-events-none">arrow_drop_down</span>
+</div>
+</div>
+<!-- Attachments / Toggles -->
+<div class="flex flex-col gap-1.5 justify-end">
+<span class="font-label-sm text-label-sm font-semibold text-secondary uppercase tracking-wider">Dossier Inclusion</span>
+<div class="flex items-center gap-3 h-[38px] px-3 rounded-lg bg-surface-container-low">
+<label class="flex items-center gap-2 cursor-pointer select-none">
+<input checked="" class="w-4 h-4 rounded text-primary-container focus:ring-0 accent-primary-container cursor-pointer" type="checkbox"/>
+<span class="font-body-sm text-body-sm text-on-surface font-medium truncate">Stage Gate 2 Dossier (Score 78)</span>
+</label>
+</div>
+</div>
+</div>
+<!-- Message Box Container -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<label class="flex items-center gap-1.5 font-label-sm text-label-sm font-semibold text-secondary uppercase tracking-wider" for="outreach-note">
+<span>Outreach Note</span>
+<span class="font-label-sm text-[11px] font-normal lowercase tracking-normal text-primary-container bg-primary-fixed/40 px-1.5 py-0.2 rounded">tailored to eBPF research &amp; Fastly background</span>
+</label>
+<span class="font-label-sm text-label-sm text-secondary" id="charCount">864 / 1,500 chars</span>
+</div>
+<div class="relative rounded-xl bg-surface-container-low focus-within:ring-2 focus-within:ring-primary-container/30 transition-all">
+<textarea class="w-full p-3.5 bg-transparent font-body-md text-body-md text-on-surface leading-relaxed placeholder:text-secondary focus:outline-none resize-none" id="outreach-note" rows="7">Hi Elena,
+
+I noticed your impactful work on Cilium eBPF XDP hook packet parsing and your time scaling Cloudflare Workers core.
+
+I’m currently building Lumina AI — an enterprise sovereign vLLM routing proxy with sub-4ms packet interception built on eBPF and AWS Nitro enclaves. We’ve validated demand with 14 enterprise accounts ($42k ACV pipeline, Stage Gate 2 score 78/100) and are funded to build out the alpha kernel.
+
+Given your background in zero-copy kernel networking, you’d have complete technical ownership of our data plane as our Founding eBPF &amp; Systems Engineer (with co-founder equity allocation, 2.0% - 3.5% + competitive base).
+
+Would you be open to a quick 20-minute chat this Thursday or Friday to walk through the architecture and benchmarks?
+
+Best,
+Aarav Patel
+Founder &amp; CEO, Lumina AI (aarav@lumina.ai)</textarea>
+<!-- Quick Link / Loom Toggle bar inside textarea footer -->
+<div class="px-3.5 py-2.5 bg-surface-container/60 rounded-b-xl flex items-center justify-between">
+<label class="flex items-center gap-2 cursor-pointer select-none">
+<input checked="" class="w-3.5 h-3.5 rounded text-primary-container accent-primary-container cursor-pointer" type="checkbox"/>
+<span class="font-body-sm text-[12px] text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">videocam</span>
+                  Include 90s Founder Architecture Loom (sub-4ms vLLM demo)
+                </span>
+</label>
+<button class="flex items-center gap-1 font-label-sm text-label-sm font-semibold text-primary-container hover:text-primary transition-colors" id="regeneratePitchBtn" type="button">
+<span class="material-symbols-outlined text-[15px]">refresh</span>
+<span>Refine AI Tone</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Dynamic AI Suggestions Chips Row -->
+<div class="flex flex-col gap-1.5 pt-1">
+<span class="font-label-sm text-[11px] text-secondary font-medium uppercase tracking-wider">Quick Augmentations:</span>
+<div class="flex flex-wrap gap-2">
+<button class="ai-chip inline-flex items-center gap-1 px-3 py-1 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface hover:bg-primary-fixed/40 hover:text-primary-container transition-all" type="button">
+<span class="material-symbols-outlined text-[14px] text-primary-container">add_circle</span>
+<span>+ Highlight 4.2x latency moat</span>
+</button>
+<button class="ai-chip inline-flex items-center gap-1 px-3 py-1 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface hover:bg-primary-fixed/40 hover:text-primary-container transition-all" type="button">
+<span class="material-symbols-outlined text-[14px] text-primary-container">add_circle</span>
+<span>+ Emphasize $1.42M ARR pipeline</span>
+</button>
+<button class="ai-chip inline-flex items-center gap-1 px-3 py-1 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface hover:bg-primary-fixed/40 hover:text-primary-container transition-all" type="button">
+<span class="material-symbols-outlined text-[14px] text-primary-container">add_circle</span>
+<span>+ Offer Co-founder title explicitly</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Modal Footer -->
+<div class="px-7 py-4 bg-surface-container-low flex flex-col sm:flex-row items-center justify-between gap-4 mt-2">
+<!-- Left: NexBridge Guarantee Badge -->
+<div class="flex items-center gap-2 text-secondary font-body-sm text-[12px] leading-tight">
+<span class="material-symbols-outlined text-primary-container text-[18px]">verified</span>
+<span>
+<strong class="font-semibold text-on-surface">NexBridge Guarantee:</strong> 100% response within 48h or talent credit refunded.
+          </span>
+</div>
+<!-- Right: Actions -->
+<div class="flex items-center gap-2.5 w-full sm:w-auto justify-end">
+<button class="px-3.5 h-10 rounded-lg bg-surface-container-lowest text-on-surface font-body-md text-body-md font-medium hover:bg-surface-container transition-colors shadow-sm" id="saveTemplateBtn" type="button">
+            Save as Template
+          </button>
+<button class="inline-flex items-center justify-center gap-2 px-5 h-10 rounded-full bg-primary-container text-on-primary font-body-md text-body-md font-medium hover:bg-primary transition-all shadow-md active:scale-95" id="sendOutreachBtn" type="button">
+<span>Send outreach &amp; log to CRM</span>
+<span class="material-symbols-outlined text-[18px]">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Simple interactive micro-interactions for the outreach modal
+  (function initOutreachModal() {
+    const backdrop = document.getElementById('outreachModalBackdrop');
+    const closeBtn = document.getElementById('closeModalBtn');
+    const textarea = document.getElementById('outreach-note');
+    const charCount = document.getElementById('charCount');
+    const sendBtn = document.getElementById('sendOutreachBtn');
+    const saveBtn = document.getElementById('saveTemplateBtn');
+    const chips = document.querySelectorAll('.ai-chip');
+
+    // Live character counter
+    if (textarea && charCount) {
+      const updateCount = () => {
+        charCount.textContent = `${textarea.value.length} / 1,500 chars`;
+      };
+      textarea.addEventListener('input', updateCount);
+    }
+
+    // Append AI prompt chips to textarea
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        const textToInsert = chip.textContent.replace('+', '').trim();
+        if (textarea) {
+          textarea.value += `\n\nP.S. Specifically worth noting: we ${textToInsert.toLowerCase()}.`;
+          textarea.dispatchEvent(new Event('input'));
+          textarea.scrollTop = textarea.scrollHeight;
+          chip.classList.add('opacity-40', 'pointer-events-none');
+        }
+      });
+    });
+
+    // Send button feedback state
+    if (sendBtn) {
+      sendBtn.addEventListener('click', () => {
+        const originalContent = sendBtn.innerHTML;
+        sendBtn.innerHTML = `
+          <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          <span>Dispatching Warm Intro...</span>
+        `;
+        setTimeout(() => {
+          sendBtn.innerHTML = `
+            <span class="material-symbols-outlined text-[18px]">done</span>
+            <span>Outreach Dispatched!</span>
+          `;
+          sendBtn.classList.remove('bg-primary-container');
+          sendBtn.classList.add('bg-primary');
+          setTimeout(() => {
+            if (backdrop) {
+              backdrop.classList.add('opacity-0', 'pointer-events-none');
+              backdrop.style.transition = 'opacity 0.25s ease-out';
+            }
+          }, 800);
+        }, 1200);
+      });
+    }
+
+    // Dismissal triggers
+    if (closeBtn && backdrop) {
+      closeBtn.addEventListener('click', () => {
+        backdrop.classList.add('opacity-0', 'pointer-events-none');
+        backdrop.style.transition = 'opacity 0.2s ease-out';
+      });
+    }
+
+    // Save template toast feedback
+    if (saveBtn) {
+      saveBtn.addEventListener('click', () => {
+        const prevText = saveBtn.textContent;
+        saveBtn.textContent = 'Saved to Workspace!';
+        setTimeout(() => {
+          saveBtn.textContent = prevText;
+        }, 2000);
+      });
+    }
+  })();
+</script></main></div></body></html>

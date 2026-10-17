@@ -1,0 +1,15 @@
+{
+  "name": "hackshift-iiitd",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "start": "./start.sh",
+    "dev:all": "./start.sh",
+    "dev": "npm --prefix frontend run dev",
+    "dev:backend": "backend/venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload --app-dir backend",
+    "dev:fastapi": "backend/venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload --app-dir backend",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "seed": "backend/venv/bin/python backend/seed/seed.py",
+    "build": "npm --prefix frontend run build"
+  }
+}
