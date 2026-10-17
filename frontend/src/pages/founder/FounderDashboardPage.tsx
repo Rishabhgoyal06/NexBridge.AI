@@ -31,8 +31,8 @@ export const FounderDashboardPage: React.FC = () => {
 
   usePageContext({
     pageKey: 'founder_dashboard',
-    title: 'Founder Dashboard — NutriFit AI',
-    summary: 'Executive overview of NutriFit AI: 78/100 validation score, 5 active AI agents, 6 matched candidates, and 3.23x LTV:CAC.',
+    title: `Founder Dashboard — ${idea?.title || 'Active Venture'}`,
+    summary: `Executive overview of ${idea?.title || 'Venture'}: ${idea?.score || 78}/100 validation score, ${idea?.agents?.length || 5} active AI agents, ${candidates.length} matched candidates, and ${idea?.revenue?.ltvCacRatio || '3.2'}x LTV:CAC.`,
     data: { score: idea?.score, status: idea?.status, candidateCount: candidates.length },
   });
 
@@ -47,8 +47,9 @@ export const FounderDashboardPage: React.FC = () => {
           setIsLoading(false);
           return;
         }
-        setIdea(ideas[0]);
-        const candList = await outreachService.getCandidates();
+        const activeIdea = ideas[0];
+        setIdea(activeIdea);
+        const candList = await outreachService.getCandidates('all', activeIdea);
         setCandidates(candList.slice(0, 3));
         const requests = await mentorService.getRequests();
         setMentorRequests(requests);
@@ -235,7 +236,16 @@ export const FounderDashboardPage: React.FC = () => {
             </div>
 
             <p className="font-body-md text-body-md text-on-surface mt-4 leading-relaxed">
-              Your market demand index (84%) proves strong gym-goer appetite for autonomous carb-cycling. However, the <strong className="text-amber-800 font-semibold">Skeptic agent flagged Day-30 churn</strong> as your critical risk. Focus your energy this week on locking candidate <strong className="text-on-surface font-semibold">Elena Rostova (Staff Mobile Architect, 94% match)</strong> to finalize the zero-friction Apple HealthKit sync.
+              Your market demand index ({idea.metrics.marketDemand}%) proves solid buyer appetite for{' '}
+              <strong className="text-on-surface font-semibold">{idea.title}</strong>. However, the{' '}
+              <strong className="text-amber-800 font-semibold">
+                {idea.agents.find((a) => a.status === 'flagged')?.name || 'Skeptic'} flagged {idea.risks[0]?.title || 'Day-30 drop-off'}
+              </strong>{' '}
+              as your critical risk. Focus your energy this sprint on locking candidate{' '}
+              <strong className="text-on-surface font-semibold">
+                {candidates[0]?.name || 'Lead Architect'} ({candidates[0]?.role || idea.roles[0]?.title}, {candidates[0]?.matchScore || 94}% match)
+              </strong>{' '}
+              to finalize your {idea.plan.milestones[0]?.title || 'core engine'}.
             </p>
 
             <div className="mt-5 p-4 rounded-xl bg-amber-50/70 border border-amber-200/70 flex items-start gap-3">
@@ -244,10 +254,11 @@ export const FounderDashboardPage: React.FC = () => {
               </span>
               <div>
                 <h4 className="font-label-md text-label-md font-semibold text-amber-900">
-                  Pre-Mortem Vulnerability: Nutrition Fatigue
+                  Pre-Mortem Vulnerability: {idea.risks[0]?.title || 'Customer Drop-Off'}
                 </h4>
                 <p className="font-body-sm text-body-sm text-amber-900/80 mt-0.5">
-                  Manual weighing causes 71% of users to quit within 28 days. Counter this with automated 1-click Instacart grocery order integration and wearable strain sync.
+                  {idea.risks[0]?.description || 'Users drop off if initial friction is high.'}{' '}
+                  Counter this: {idea.risks[0]?.mitigation || 'Implement automated zero-click ingestion.'}
                 </p>
               </div>
             </div>

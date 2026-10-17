@@ -193,8 +193,10 @@ async def build_full_idea(idea_row: dict) -> Idea:
         roles=roles
     )
 
+from app.auth import UserClaims, get_current_user_claims, get_optional_user_claims
+
 @router.get("/ideas", response_model=List[Idea])
-async def list_ideas(claims: UserClaims = Depends(get_current_user_claims)):
+async def list_ideas(claims: Optional[UserClaims] = Depends(get_optional_user_claims)):
     """Lists all submitted ideas"""
     rows = await fetch_all("SELECT * FROM public.ideas ORDER BY created_at DESC")
     ideas = []
@@ -216,10 +218,11 @@ async def get_idea_by_id(idea_id: str):
     return await build_full_idea(row)
 
 @router.post("/ideas/validate", response_model=Idea)
-async def validate_idea(payload: CreateIdeaRequest, claims: UserClaims = Depends(get_current_user_claims)):
+async def validate_idea(payload: CreateIdeaRequest, claims: Optional[UserClaims] = Depends(get_optional_user_claims)):
     """Runs parallel 5-agent stress test pipeline and returns synthesized venture"""
     idea_dict = payload.model_dump(by_alias=True)
-    idea = await run_parallel_validation(idea_dict, claims.user_id)
+    user_id = claims.user_id if claims else "a0000000-0000-0000-0000-000000000001"
+    idea = await run_parallel_validation(idea_dict, user_id)
     return idea
 
 @router.get("/ideas/{idea_id}/validation", response_model=ValidationRunStatus)

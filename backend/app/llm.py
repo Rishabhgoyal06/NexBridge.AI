@@ -4,7 +4,13 @@ import json
 import random
 from typing import Any, Dict, Optional, Type, TypeVar
 from pydantic import BaseModel
-import google.generativeai as genai
+try:
+    import google.generativeai as genai
+    _has_genai = True
+except ImportError:
+    genai = None
+    _has_genai = False
+
 from app.config import GEMINI_API_KEY, GEMINI_MODEL
 
 T = TypeVar("T", bound=BaseModel)
@@ -14,7 +20,7 @@ _RESPONSE_CACHE: Dict[str, Any] = {}
 
 # Initialize Gemini SDK if API key is provided
 _gemini_configured = False
-if GEMINI_API_KEY:
+if _has_genai and GEMINI_API_KEY:
     try:
         genai.configure(api_key=GEMINI_API_KEY)
         _gemini_configured = True
@@ -22,7 +28,7 @@ if GEMINI_API_KEY:
         print(f"⚠️ Gemini configuration warning: {e}")
 
 def is_ai_configured() -> bool:
-    return bool(GEMINI_API_KEY and _gemini_configured)
+    return bool(_has_genai and GEMINI_API_KEY and _gemini_configured)
 
 def get_cache_key(prompt: str, inputs: Any = None) -> str:
     serialized = json.dumps(inputs, sort_keys=True, default=str) if inputs else ""

@@ -1,7 +1,10 @@
 import json
 import ssl
 from typing import Any, Dict, List, Optional
-import asyncpg
+try:
+    import asyncpg
+except ImportError:
+    asyncpg = None
 import httpx
 from app.config import (
     DATABASE_URL,
@@ -11,7 +14,7 @@ from app.config import (
     SUPABASE_ANON_KEY
 )
 
-_pool: Optional[asyncpg.Pool] = None
+_pool: Optional[Any] = None
 
 def get_ssl_context():
     ctx = ssl.create_default_context()
@@ -23,6 +26,10 @@ async def init_db_pool():
     global _pool
     if _pool is not None:
         return _pool
+
+    if asyncpg is None:
+        print("⚠️ Warning: asyncpg is not installed, running in database-less mode.")
+        return None
 
     ssl_ctx = get_ssl_context()
     # Try pooler URL first for reliable IPv4 resolution

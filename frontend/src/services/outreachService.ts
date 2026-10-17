@@ -1,6 +1,7 @@
-import { Candidate, OutreachMessage } from '@/types';
+import { Candidate, OutreachMessage, Idea } from '@/types';
 import { demoCandidates, demoOutreachPipeline } from './mockData';
 import { delay, api, USE_MOCKS } from '@/lib/http';
+import { synthesizeCandidatesForIdea } from './ideaSynthesizer';
 
 const CANDIDATES_KEY = 'nexbridge_candidates';
 const PIPELINE_KEY = 'nexbridge_outreach_pipeline';
@@ -32,21 +33,29 @@ function getStoredPipeline(): OutreachMessage[] {
 }
 
 export const outreachService = {
-  async getCandidates(roleId?: string): Promise<Candidate[]> {
+  async getCandidates(roleId?: string, idea?: Idea | null): Promise<Candidate[]> {
+    if (idea && idea.roles && idea.roles.length > 0) {
+      const synthesized = synthesizeCandidatesForIdea(idea);
+      if (roleId && roleId !== 'all') {
+        return synthesized.filter((c) => c.appliedJobRoleId === roleId);
+      }
+      return synthesized;
+    }
+
     if (!USE_MOCKS) {
       try {
         const liveList = await api<Candidate[]>('/candidates');
         if (liveList && liveList.length > 0) {
-          if (roleId) return liveList.filter((c) => c.appliedJobRoleId === roleId);
+          if (roleId && roleId !== 'all') return liveList.filter((c) => c.appliedJobRoleId === roleId);
           return liveList;
         }
       } catch (err) {
         console.warn('Backend /candidates error, falling back:', err);
       }
     }
-    await delay(400, 700);
+    await delay(200, 400);
     const list = getStoredCandidates();
-    if (roleId) {
+    if (roleId && roleId !== 'all') {
       return list.filter((c) => c.appliedJobRoleId === roleId);
     }
     return list;

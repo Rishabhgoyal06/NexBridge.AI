@@ -1,6 +1,7 @@
 import { Idea, ValidationAgent } from '@/types';
 import { demoIdea } from './mockData';
 import { delay, api, USE_MOCKS } from '@/lib/http';
+import { synthesizeIdea } from './ideaSynthesizer';
 
 const IDEAS_STORAGE_PREFIX = 'nexbridge_ideas_';
 
@@ -45,7 +46,7 @@ export const ideaService = {
         console.warn('Backend /ideas error, falling back:', err);
       }
     }
-    await delay(300, 500);
+    await delay(200, 400);
     return getStoredIdeas();
   },
 
@@ -58,10 +59,21 @@ export const ideaService = {
         console.warn(`Backend /ideas/${id} error, falling back:`, err);
       }
     }
-    await delay(300, 500);
+    await delay(150, 300);
     const ideas = getStoredIdeas();
     const found = ideas.find((i) => i.id === id);
-    return found || null as unknown as Idea;
+    if (found) return found;
+
+    if (id === 'idea_gym_meal_planner' || id === 'idea_nutrifit_ai') {
+      return demoIdea;
+    }
+
+    // Resilient fallback: synthesize valid venture so navigation never fails
+    return synthesizeIdea({
+      id,
+      title: 'Active Venture Concept',
+      description: 'Autonomous venture concept undergoing multi-agent analysis and validation.',
+    });
   },
 
   async createIdea(input: {
@@ -79,24 +91,12 @@ export const ideaService = {
         });
         return validated;
       } catch (err) {
-        console.warn('Backend /ideas/validate error, falling back:', err);
+        console.warn('Backend /ideas/validate error, falling back to dynamic synthesizer:', err);
       }
     }
-    await delay(400, 700);
+    await delay(300, 600);
     const ideas = getStoredIdeas();
-    const newIdea: Idea = {
-      ...demoIdea,
-      id: `idea_${Date.now()}`,
-      title: input.title,
-      tagline: input.tagline || 'AI Venture',
-      description: input.description,
-      category: input.category || 'Artificial Intelligence',
-      targetMarket: input.targetMarket || 'Tech enthusiasts',
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-      status: 'validated',
-      score: 76,
-    };
+    const newIdea = synthesizeIdea(input);
     ideas.unshift(newIdea);
     saveIdeas(ideas);
     return newIdea;
@@ -109,12 +109,13 @@ export const ideaService = {
     if (!USE_MOCKS) {
       try {
         const targetId = `idea_val_${Date.now()}`;
+        // Generate initial blueprint
+        const preview = synthesizeIdea({ ...ideaInput, id: targetId });
+
         // Mark all 5 agents as running initially in UI
-        const baseAgents: ValidationAgent[] = JSON.parse(JSON.stringify(demoIdea.agents));
         if (onAgentUpdate) {
-          baseAgents.forEach((a) => {
-            a.status = 'running';
-            onAgentUpdate(a, false);
+          preview.agents.forEach((a) => {
+            onAgentUpdate({ ...a, status: 'running' }, false);
           });
         }
 
@@ -167,42 +168,30 @@ export const ideaService = {
 
         return validated;
       } catch (err) {
-        console.warn('Backend live validation error, engaging mock fallback:', err);
+        console.warn('Backend live validation error, engaging dynamic domain synthesizer:', err);
       }
     }
 
-    // Mock Branch
-    const baseAgents: ValidationAgent[] = JSON.parse(JSON.stringify(demoIdea.agents));
-    baseAgents.forEach((a) => (a.status = 'running'));
+    // Dynamic Synthesis Engine (Fully tailored to user's title, description, category, and targetMarket)
+    const synthesized = synthesizeIdea(ideaInput);
 
-    const agentPromises = baseAgents.map(async (agent, index) => {
-      const runtime = 700 + index * 350 + Math.random() * 250;
+    // Stream progressive agent updates to UI with realistic sequential completion
+    const agentPromises = synthesized.agents.map(async (finalAgent, index) => {
+      const runtime = 550 + index * 320 + Math.random() * 200;
       await new Promise((resolve) => setTimeout(resolve, runtime));
-      agent.status = agent.name === 'Skeptic' ? 'flagged' : 'completed';
       if (onAgentUpdate) {
-        onAgentUpdate(agent, true);
+        onAgentUpdate(finalAgent, true);
       }
-      return agent;
+      return finalAgent;
     });
 
     await Promise.all(agentPromises);
 
-    const generatedIdea: Idea = {
-      ...demoIdea,
-      id: `idea_val_${Date.now()}`,
-      title: ideaInput.title || 'AI Venture',
-      description: ideaInput.description || demoIdea.description,
-      targetMarket: ideaInput.targetMarket || demoIdea.targetMarket,
-      agents: baseAgents,
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-    };
-
     const ideas = getStoredIdeas();
-    ideas.unshift(generatedIdea);
+    ideas.unshift(synthesized);
     saveIdeas(ideas);
 
-    return generatedIdea;
+    return synthesized;
   },
 
   // Alias for backwards compatibility

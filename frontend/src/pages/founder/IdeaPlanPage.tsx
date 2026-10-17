@@ -10,8 +10,8 @@ export const IdeaPlanPage: React.FC = () => {
 
   usePageContext({
     pageKey: 'idea_plan',
-    title: 'System Architecture & Sprints Plan — NutriFit AI',
-    summary: 'Execution roadmap and technical architecture: React Native mobile client, Python FastAPI backend, PostgreSQL + pgvector, Claude 3.5 Sonnet Vision, and 3-stage milestone timeline.',
+    title: `System Architecture & Sprints Plan — ${idea?.title || 'Venture'}`,
+    summary: `Execution roadmap and technical architecture for ${idea?.title || 'Venture'}: ${idea?.plan?.architecture?.type || 'Modern Cloud Architecture'}, ${idea?.plan?.milestones?.length || 3}-stage milestone timeline.`,
     data: { milestonesCount: idea?.plan?.milestones?.length, stackCount: idea?.plan?.techStack?.length },
   });
 

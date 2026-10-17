@@ -13,7 +13,14 @@ export const Sidebar: React.FC = () => {
   // If user has no idea yet, "My Ideas" → New Idea page; otherwise → their workspace
   const ideaBase = activeIdeaId ? `/ideas/${activeIdeaId}` : '/ideas/new';
 
-  const founderNavItems = [
+  interface NavItem {
+    label: string;
+    path: string;
+    icon: string;
+    badge?: string;
+  }
+
+  const founderNavItems: NavItem[] = [
     { label: 'Dashboard', path: '/founder/dashboard', icon: 'grid_view' },
     { label: 'My Ideas', path: activeIdeaId ? `${ideaBase}/validation` : '/ideas/new', icon: 'lightbulb' },
     { label: 'Candidates', path: activeIdeaId ? `${ideaBase}/roles` : '/ideas/new', icon: 'group' },
@@ -21,14 +28,14 @@ export const Sidebar: React.FC = () => {
     { label: 'Mentors', path: '/mentors', icon: 'explore' },
   ];
 
-  const talentNavItems = [
+  const talentNavItems: NavItem[] = [
     { label: 'Startup Matches', path: '/talent/matches', icon: 'compare_arrows', badge: '6' },
     { label: 'Applications', path: '/talent/applications', icon: 'assignment', badge: '5' },
     { label: 'Growth Reports', path: '/talent/applications/app_1/report', icon: 'psychology', badge: '2' },
     { label: 'Mentors', path: '/mentors', icon: 'school' },
   ];
 
-  const mentorNavItems = [
+  const mentorNavItems: NavItem[] = [
     { label: 'Directory', path: '/mentors', icon: 'explore' },
     { label: 'Session Requests', path: '/mentors/requests', icon: 'calendar_month', badge: '2' },
     { label: 'My Profile', path: '/mentors/mentor_1', icon: 'account_circle' },

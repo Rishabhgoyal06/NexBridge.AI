@@ -23,8 +23,8 @@ export const IdeaRolesCandidatesPage: React.FC = () => {
 
   usePageContext({
     pageKey: 'idea_roles_candidates',
-    title: 'Required Roles & Talent Candidates — NutriFit AI',
-    summary: 'Team assembly matching: 3 essential roles identified from tech stack, 6 matched candidates from the talent database with match percentages and skill gap breakdowns.',
+    title: `Required Roles & Talent Candidates — ${idea?.title || 'Venture'}`,
+    summary: `Team assembly matching: ${idea?.roles?.length || 3} essential roles identified from tech stack, matched candidates from the talent database with match percentages and skill gap breakdowns.`,
     data: { candidateCount: candidates.length, rolesCount: idea?.roles?.length },
   });
 
@@ -33,18 +33,19 @@ export const IdeaRolesCandidatesPage: React.FC = () => {
       if (id) {
         const found = await ideaService.getIdeaById(id);
         setIdea(found);
-        const cList = await outreachService.getCandidates();
+        const cList = await outreachService.getCandidates(selectedRole, found);
         setCandidates(cList);
       }
     }
     load();
-  }, [id]);
+  }, [id, selectedRole]);
 
   const handleOpenOutreach = (cand: Candidate) => {
     setOutreachCandidate(cand);
-    setOutreachSubject(`${cand.role} role at NutriFit AI (${cand.matchScore}% AI Match • Pre-Seed)`);
+    const ideaTitle = idea?.title || 'our venture';
+    setOutreachSubject(`${cand.role} role at ${ideaTitle} (${cand.matchScore}% AI Match • Pre-Seed)`);
     setOutreachBody(
-      `Hi ${cand.name},\n\nI came across your profile on NexBridge and was impressed by your track record at ${cand.currentCompany}.\n\nWe are building NutriFit AI to automate nutritional carb-cycling for strength athletes with 1-click grocery fulfillment. Our AI technical architect flagged your experience in ${cand.skills.filter((s) => s.matched).map((s) => s.name).slice(0, 3).join(', ')} as an exceptional match for our team.\n\nWould you be open to a 20-minute intro call this week to review our architecture and equity allocation?\n\nBest,\n${user?.name || 'Aarav Patel'}\nFounder, NutriFit AI`
+      `Hi ${cand.name},\n\nI came across your profile on NexBridge and was impressed by your track record at ${cand.currentCompany}.\n\nWe are building ${ideaTitle} (${idea?.tagline || idea?.description?.slice(0, 90) || 'an autonomous AI-powered platform'}). Our AI technical architect flagged your experience in ${cand.skills.filter((s) => s.matched).map((s) => s.name).slice(0, 3).join(', ')} as an exceptional match for our team.\n\nWould you be open to a 20-minute intro call this week to review our architecture and equity allocation?\n\nBest,\n${user?.name || 'Founder'}\nFounder, ${ideaTitle}`
     );
     setSentSuccess(false);
   };

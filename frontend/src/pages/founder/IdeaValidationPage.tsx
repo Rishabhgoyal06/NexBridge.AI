@@ -13,8 +13,8 @@ export const IdeaValidationPage: React.FC = () => {
 
   usePageContext({
     pageKey: 'idea_validation',
-    title: '5-Agent Parallel Validation — NutriFit AI',
-    summary: 'Parallel validation synthesis: 78/100 score. Market Analyst (84%), Competitor Researcher (68%), Revenue Critic (74%), Technical Architect (82%), Skeptic (59% flagged risk).',
+    title: `5-Agent Parallel Validation — ${idea?.title || 'Venture'}`,
+    summary: `Parallel validation synthesis: ${idea?.score || 78}/100 score across 5 autonomous interrogator agents.`,
     data: { score: idea?.score, agents: idea?.agents?.map((a) => ({ name: a.name, score: a.score })) },
   });
 

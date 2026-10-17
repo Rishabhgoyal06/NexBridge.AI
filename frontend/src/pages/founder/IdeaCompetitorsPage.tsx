@@ -10,8 +10,8 @@ export const IdeaCompetitorsPage: React.FC = () => {
 
   usePageContext({
     pageKey: 'idea_competitors',
-    title: 'Competitors & Defensibility Moat — NutriFit AI',
-    summary: 'Competitive landscape analysis: MyFitnessPal (legacy), MacroFactor (direct), Carbon Diet Coach (direct), and Eat This Much (indirect). Our moat: autonomous closed-loop grocery execution & dynamic carb-cycling.',
+    title: `Competitors & Defensibility Moat — ${idea?.title || 'Venture'}`,
+    summary: `Competitive landscape analysis across ${idea?.competitors?.map((c) => c.name).join(', ') || 'incumbents'}. Defensibility moat: ${idea?.competitors[0]?.ourMoat || 'Autonomous closed-loop execution'}.`,
     data: { competitorsCount: idea?.competitors?.length },
   });
 
@@ -36,11 +36,11 @@ export const IdeaCompetitorsPage: React.FC = () => {
             shield
           </span>
           <h3 className="font-headline-sm text-headline-sm font-semibold text-on-surface">
-            The Defensibility Moat
+            The Defensibility Moat for {idea.title}
           </h3>
         </div>
         <p className="font-body-md text-body-md text-secondary leading-relaxed">
-          Competitors treat meal planning as a passive database entry problem. NutriFit AI operates as an <strong className="text-on-surface font-semibold">autonomous closed loop</strong>: sensing physical strain through wearable biometrics, dynamically periodizing carbohydrates, generating verified macro-calibrated recipes, and dispatching 1-click grocery fulfillment via Instacart.
+          {idea.strengths[0]?.description || idea.competitors[0]?.ourMoat || `${idea.title} differentiates by eliminating legacy friction with autonomous, closed-loop execution tailored specifically for ${idea.targetMarket}.`}
         </p>
       </div>
 

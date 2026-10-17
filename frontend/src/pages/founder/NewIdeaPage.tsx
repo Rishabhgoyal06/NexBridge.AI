@@ -13,12 +13,10 @@ export const NewIdeaPage: React.FC = () => {
 
   const navigate = useNavigate();
 
-  const [title, setTitle] = useState('NutriFit AI');
-  const [tagline, setTagline] = useState('AI meal planner for gym-goers with dynamic carb-cycling & 1-click cart prep');
-  const [targetMarket, setTargetMarket] = useState('Strength athletes, bodybuilders, functional fitness athletes (US TAM: $4.2B)');
-  const [description, setDescription] = useState(
-    'An intelligent nutrition platform engineered specifically for strength athletes. Combines real-time workout telemetry from Apple Watch & Whoop with computer vision plate-scanning to automatically adjust macro targets and dispatch exact grocery orders via Instacart.'
-  );
+  const [title, setTitle] = useState('');
+  const [tagline, setTagline] = useState('');
+  const [targetMarket, setTargetMarket] = useState('');
+  const [description, setDescription] = useState('');
 
   const [isValidating, setIsValidating] = useState(false);
   const [agentProgress, setAgentProgress] = useState<
@@ -42,6 +40,7 @@ export const NewIdeaPage: React.FC = () => {
 
   const handleRunValidation = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!title.trim() || !description.trim()) return;
     setIsValidating(true);
 
     // Set agents to running
@@ -51,7 +50,7 @@ export const NewIdeaPage: React.FC = () => {
 
     try {
       const generatedIdea = await ideaService.simulateParallelValidation(
-        { title, description, targetMarket },
+        { title, description, targetMarket, tagline },
         (agent: ValidationAgent) => {
           setAgentProgress((prev) =>
             prev.map((a) =>

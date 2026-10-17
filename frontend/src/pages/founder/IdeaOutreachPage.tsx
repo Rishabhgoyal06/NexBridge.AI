@@ -9,8 +9,8 @@ export const IdeaOutreachPage: React.FC = () => {
 
   usePageContext({
     pageKey: 'outreach_pipeline',
-    title: 'Candidate Outreach Pipeline Kanban — NutriFit AI',
-    summary: 'Candidate relationship management: 4 active outreach messages across Drafts, Sent, In Conversation, and Offer stages.',
+    title: 'Candidate Outreach Pipeline Kanban',
+    summary: 'Candidate relationship management: active outreach messages across Drafts, Sent, In Conversation, and Offer stages.',
     data: { pipelineCount: pipeline.length },
   });
 

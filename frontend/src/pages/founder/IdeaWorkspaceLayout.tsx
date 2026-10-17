@@ -17,12 +17,27 @@ export const IdeaWorkspaceLayout: React.FC = () => {
     fetchIdea();
   }, [id]);
 
+  const getCategoryIcon = (cat?: string) => {
+    if (!cat) return 'rocket_launch';
+    const lower = cat.toLowerCase();
+    if (lower.includes('robot') || lower.includes('drone') || lower.includes('hardware')) return 'precision_manufacturing';
+    if (lower.includes('health') || lower.includes('fitness') || lower.includes('bio')) return 'health_and_safety';
+    if (lower.includes('fintech') || lower.includes('finance') || lower.includes('payment')) return 'account_balance';
+    if (lower.includes('dev') || lower.includes('infra') || lower.includes('code')) return 'terminal';
+    if (lower.includes('cyber') || lower.includes('security')) return 'shield';
+    if (lower.includes('ed') || lower.includes('learn')) return 'school';
+    if (lower.includes('commerce') || lower.includes('retail')) return 'storefront';
+    if (lower.includes('legal') || lower.includes('prop')) return 'gavel';
+    if (lower.includes('clean') || lower.includes('energy')) return 'eco';
+    return 'hub';
+  };
+
   const tabs = [
     { label: 'Validation Report', path: `/ideas/${id}/validation`, icon: 'neurology' },
     { label: 'Competitors & Moat', path: `/ideas/${id}/competitors`, icon: 'radar' },
     { label: 'Revenue & Economics', path: `/ideas/${id}/revenue`, icon: 'payments' },
     { label: 'System Plan & Tech', path: `/ideas/${id}/plan`, icon: 'terminal' },
-    { label: 'Roles & Candidates', path: `/ideas/${id}/roles`, icon: 'groups', badge: '6' },
+    { label: 'Roles & Candidates', path: `/ideas/${id}/roles`, icon: 'groups', badge: `${idea?.roles?.length || 3}` },
     { label: 'Outreach Pipeline', path: `/ideas/${id}/outreach`, icon: 'send', badge: '4' },
   ];
 
@@ -34,12 +49,14 @@ export const IdeaWorkspaceLayout: React.FC = () => {
           <div className="flex flex-wrap items-center justify-between gap-4 pb-4">
             <div className="flex items-center gap-3.5">
               <div className="w-11 h-11 rounded-xl bg-primary-container text-on-primary flex items-center justify-center font-bold text-lg shadow-sm">
-                <span className="material-symbols-outlined text-[24px]">fitness_center</span>
+                <span className="material-symbols-outlined text-[24px]">
+                  {getCategoryIcon(idea?.category)}
+                </span>
               </div>
               <div>
                 <div className="flex items-center gap-2.5">
                   <h1 className="font-headline-md text-headline-md font-semibold text-on-surface tracking-tight">
-                    {idea?.title || 'NutriFit AI'}
+                    {idea?.title || 'Active Concept'}
                   </h1>
                   <span className="px-2.5 py-0.5 rounded-full bg-primary-fixed/40 text-primary-container font-label-sm text-label-sm font-semibold">
                     {idea?.status === 'validated' ? 'Validated Signal' : 'Active Evaluation'}
@@ -49,7 +66,7 @@ export const IdeaWorkspaceLayout: React.FC = () => {
                   </span>
                 </div>
                 <p className="font-body-sm text-body-sm text-secondary mt-0.5">
-                  {idea?.tagline || 'AI meal planner for gym-goers with dynamic carb-cycling & 1-click cart prep'}
+                  {idea?.tagline || idea?.description?.slice(0, 95) || 'Autonomous venture evaluation & execution'}
                 </p>
               </div>
             </div>

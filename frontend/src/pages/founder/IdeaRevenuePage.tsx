@@ -11,8 +11,8 @@ export const IdeaRevenuePage: React.FC = () => {
 
   usePageContext({
     pageKey: 'idea_revenue',
-    title: 'Revenue & Unit Economics — NutriFit AI',
-    summary: 'Unit economics and pricing strategy: 3.23x LTV:CAC ratio, $38 blended CAC, $122.90 LTV, 78.4% gross margin, and 3-tier subscription with grocery affiliate monetization.',
+    title: `Revenue & Unit Economics — ${idea?.title || 'Venture'}`,
+    summary: `Unit economics and pricing strategy: ${idea?.revenue?.ltvCacRatio || '3.2'}x LTV:CAC ratio, $${idea?.revenue?.cac || '38'} blended CAC, $${idea?.revenue?.ltv || '120'} LTV, and ${idea?.revenue?.grossMargin || '78'}% gross margin.`,
     data: { ltvCac: idea?.revenue?.ltvCacRatio, ltv: idea?.revenue?.ltv, cac: idea?.revenue?.cac },
   });
 
