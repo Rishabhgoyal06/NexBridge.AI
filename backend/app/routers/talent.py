@@ -4,7 +4,7 @@ from fastapi import APIRouter, File, UploadFile, Depends, HTTPException
 from app.auth import UserClaims, get_current_user_claims
 from app.models import (
     TalentProfile, StartupMatch, Application, RejectionReport,
-    MissingSkillDetail, FocusArea, LearningWeek
+    MissingSkillDetail, FocusArea, LearningWeek, ValidationAgent
 )
 from app.services.resume_service import parse_and_store_resume
 from app.services.matching_service import calculate_match
@@ -15,35 +15,42 @@ router = APIRouter(prefix="", tags=["Talent"])
 
 @router.get("/talent/profile", response_model=TalentProfile)
 async def get_talent_profile(claims: UserClaims = Depends(get_current_user_claims)):
-    """Returns talent profile with extracted skills and resume metadata"""
-    r = await fetch_one("SELECT * FROM public.talent_profiles WHERE id = 'tal_01'")
+    """Returns talent profile with extracted skills and resume metadata for the authenticated user"""
+    r = await fetch_one("SELECT * FROM public.talent_profiles WHERE user_id::text = $1 ORDER BY parsed_at DESC NULLS LAST LIMIT 1", str(claims.user_id))
     if not r:
+        r = await fetch_one("SELECT * FROM public.talent_profiles WHERE email = $1", claims.email)
+
+    if r:
+        raw_skills = json.loads(r["skills"]) if isinstance(r["skills"], str) else (r["skills"] or [])
+        raw_agents = json.loads(r["agent_evaluations"]) if r.get("agent_evaluations") and isinstance(r["agent_evaluations"], str) else (r.get("agent_evaluations") or [])
+        agents_list = [ValidationAgent(**ag) for ag in raw_agents] if raw_agents else []
         return TalentProfile(
-            id="tal_01",
-            name="Taras Kowalski",
-            headline="Staff Distributed Systems Architect & High-Throughput Network Engineer",
-            bio="Specialized in asynchronous distributed protocols, Linux eBPF telemetry, and sub-millisecond low-latency proxy architectures in Rust and Go.",
-            location="San Francisco, CA",
-            experience_years=8,
-            skills=[
-                "Distributed Systems", "Rust", "Go", "FastAPI", "PostgreSQL",
-                "Redis", "Docker", "Kubernetes", "Linux eBPF", "Raft Consensus"
-            ],
-            resume_file_name="taras_kowalski_staff_systems_resume.pdf",
-            parsed_at="2026-10-15T09:30:00Z"
+            id=r["id"],
+            name=r["name"],
+            headline=r.get("headline") or "Software Architect",
+            bio=r.get("bio") or "",
+            location=r.get("location") or "Remote",
+            experience_years=r.get("experience_years") or 0,
+            skills=raw_skills,
+            resume_file_name=r.get("resume_path"),
+            parsed_at=str(r.get("parsed_at") or "Just now"),
+            agents=agents_list
         )
 
-    raw_skills = json.loads(r["skills"]) if isinstance(r["skills"], str) else (r["skills"] or [])
+    # User has not uploaded a resume yet — return their account-linked starter profile
+    user_p = await fetch_one("SELECT * FROM public.profiles WHERE id::text = $1", str(claims.user_id))
+    u_name = user_p.get("name") or user_p.get("full_name") or claims.email.split("@")[0].replace(".", " ").title() if user_p else claims.email.split("@")[0].replace(".", " ").title()
     return TalentProfile(
-        id=r["id"],
-        name=r["name"],
-        headline=r.get("headline") or "Software Architect",
-        bio=r.get("bio") or "",
-        location=r.get("location") or "San Francisco, CA",
-        experience_years=r.get("experience_years") or 8,
-        skills=raw_skills,
-        resume_file_name=r.get("resume_path") or "taras_kowalski_staff_systems_resume.pdf",
-        parsed_at=str(r.get("parsed_at") or "Just now")
+        id=f"tal_{claims.user_id[:8]}",
+        name=u_name,
+        headline="Co-Builder / Candidate • Upload resume to activate matching",
+        bio="Upload your resume to extract your verified skills and trigger AI Agent evaluation across our venture network.",
+        location="Remote",
+        experience_years=0,
+        skills=[],
+        resume_file_name=None,
+        parsed_at=None,
+        agents=[]
     )
 
 @router.post("/talent/resume", response_model=TalentProfile)
@@ -73,15 +80,23 @@ async def get_startup_matches(claims: UserClaims = Depends(get_current_user_clai
             required_skills=req_skills
         )
 
+        sal_raw = t.get("salary_range") or "₹28L - ₹42L / yr"
+        if "$" in sal_raw:
+            sal_raw = sal_raw.replace("$140k - $175k", "₹26L - ₹36L / yr").replace("$160k - $190k", "₹32L - ₹44L / yr").replace("$160k - $200k", "₹35L - ₹48L / yr").replace("$130k - $160k", "₹24L - ₹32L / yr").replace("$180k - $220k", "₹42L - ₹58L / yr").replace("$170k - $210k", "₹38L - ₹52L / yr").replace("$", "₹")
+
+        stage_raw = t.get("stage") or "Seed"
+        if "$" in stage_raw:
+            stage_raw = stage_raw.replace("$750k", "₹6.2 Cr").replace("$3.2M", "₹26.5 Cr").replace("$1M", "₹8.4 Cr").replace("$4.5M", "₹37 Cr").replace("$8M", "₹66 Cr").replace("$", "₹")
+
         matches.append(StartupMatch(
             id=t["id"].replace("tar_", "match_"),
             startup_name=t["company_name"],
             role=t["role_title"],
             match_percentage=match_pct,
-            funding_stage=t.get("stage") or "Seed",
+            funding_stage=stage_raw,
             location=t.get("location") or "Remote",
             equity_range=t.get("equity_range") or "1.0% - 2.0%",
-            salary_range=t.get("salary_range") or "$160k - $200k",
+            salary_range=sal_raw,
             key_skills_matched=matched,
             missing_skills=missing,
             company_bio=t.get("company_bio") or t.get("description") or "",

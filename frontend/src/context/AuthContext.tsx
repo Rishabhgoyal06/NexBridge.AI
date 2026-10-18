@@ -6,7 +6,6 @@ import { currentUser as fallbackUser } from '@/services/mockData';
 interface AuthContextType {
   user: User;
   role: UserRole;
-  switchRole: (role: UserRole) => Promise<void>;
   login: (email: string, password: string, role?: UserRole) => Promise<User>;
   signUp: (email: string, password: string, role: UserRole, name?: string) => Promise<User>;
   logout: () => Promise<void>;
@@ -37,12 +36,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     loadUser();
   }, []);
 
-  const switchRole = async (newRole: UserRole) => {
-    const updated = await authService.switchRole(newRole);
-    setUser(updated);
-    setRole(newRole);
-  };
-
   const login = async (email: string, password: string, loginRole?: UserRole): Promise<User> => {
     const u = await authService.login(email, password, loginRole);
     setUser(u);
@@ -64,7 +57,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   return (
-    <AuthContext.Provider value={{ user, role, switchRole, login, signUp, logout, isLoading }}>
+    <AuthContext.Provider value={{ user, role, login, signUp, logout, isLoading }}>
       {children}
     </AuthContext.Provider>
   );

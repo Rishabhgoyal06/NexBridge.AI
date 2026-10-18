@@ -201,7 +201,7 @@ export const LandingPage: React.FC = () => {
                     Unit Economics
                   </div>
                   <div className="text-3xl font-bold text-on-surface">3.23x <span className="text-sm font-normal text-secondary">LTV:CAC</span></div>
-                  <p className="text-xs text-secondary mt-1">$122.90 LTV vs $38 Blended CAC</p>
+                  <p className="text-xs text-secondary mt-1">₹10,450 LTV vs ₹3,230 Blended CAC</p>
                 </div>
 
                 <div className="p-4 rounded-xl bg-surface-container-low/60 border border-outline-variant/20">

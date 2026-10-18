@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { usePageContext } from '@/context/PageContext';
 import { mentorService } from '@/services/mentorService';
 import { Mentor } from '@/types';
+import { formatHourlyRate } from '@/lib/currency';
 
 export const MentorsDirectoryPage: React.FC = () => {
   const [mentors, setMentors] = useState<Mentor[]>([]);
@@ -165,7 +166,7 @@ export const MentorsDirectoryPage: React.FC = () => {
             <div className="pt-4 border-t border-outline-variant/20 flex items-center justify-between">
               <div>
                 <span className="font-headline-sm text-base font-bold text-on-surface">
-                  ${mentor.hourlyRate}
+                  {formatHourlyRate(mentor.hourlyRate)}
                 </span>
                 <span className="text-xs text-secondary">/hour</span>
               </div>

@@ -11,6 +11,30 @@ export interface AuthResponseData {
   tokenType: string;
 }
 
+/** All localStorage key prefixes that are user-scoped. Used during logout to wipe the correct user's data. */
+const USER_SCOPED_PREFIXES = [
+  'nexbridge_ideas_',
+  'nexbridge_talent_profile_',
+  'nexbridge_candidates_',
+  'nexbridge_outreach_pipeline_',
+  'nexbridge_mentor_requests_',
+];
+
+/** Clear all localStorage keys that belong to a specific user ID. */
+function clearUserScopedData(userId: string): void {
+  const keysToRemove: string[] = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (!key) continue;
+    const isScoped = USER_SCOPED_PREFIXES.some((prefix) => key.startsWith(prefix));
+    const isThisUser = key.includes(`_${userId}`) || key.endsWith('_anon');
+    if (isScoped && isThisUser) {
+      keysToRemove.push(key);
+    }
+  }
+  keysToRemove.forEach((k) => localStorage.removeItem(k));
+}
+
 export const authService = {
   async getCurrentUser(): Promise<User | null> {
     if (!USE_MOCKS) {
@@ -76,15 +100,26 @@ export const authService = {
       return res.user;
     }
 
-    // Mock mode only
+    // Mock mode only — create a deterministic user per email+role combo
     await delay(300, 600);
     const mockUser: User = {
       ...defaultUser,
+      // Derive a stable unique ID from email so each "account" has isolated storage
+      id: `usr_${email.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_${role || 'founder'}`,
       email,
       role: role || 'founder',
-      name: email.split('@')[0].replace(/[._]/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()) || 'Demo User',
+      name:
+        email.split('@')[0].replace(/[._]/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()) ||
+        'Demo User',
+      headline:
+        role === 'founder'
+          ? 'Seed Founder • Building NutriFit AI'
+          : role === 'talent'
+          ? 'Staff Distributed Systems Architect • Open to Roles'
+          : 'Angel Investor & Product Advisor • Vance Advisory',
     };
     localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(mockUser));
+    localStorage.setItem('nexbridge_user', JSON.stringify(mockUser));
     localStorage.setItem('nexbridge_token', 'mock_token_' + Date.now());
     return mockUser;
   },
@@ -123,52 +158,45 @@ export const authService = {
     await delay(400, 700);
     const mockUser: User = {
       ...defaultUser,
+      id: `usr_${email.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_${role}`,
       email,
       role,
-      name: name || email.split('@')[0].replace(/[._]/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()) || 'Demo User',
+      name:
+        name ||
+        email.split('@')[0].replace(/[._]/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()) ||
+        'Demo User',
     };
     localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(mockUser));
+    localStorage.setItem('nexbridge_user', JSON.stringify(mockUser));
     localStorage.setItem('nexbridge_token', 'mock_token_' + Date.now());
     return mockUser;
   },
 
-  async switchRole(newRole: UserRole): Promise<User> {
-    const current = await this.getCurrentUser();
-    if (!USE_MOCKS) {
-      try {
-        const updated = await api<User>('/auth/switch-role', {
-          method: 'POST',
-          body: JSON.stringify({ role: newRole }),
-        });
-        localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(updated));
-        return updated;
-      } catch (err) {
-        console.warn('Backend switchRole notice:', err);
-      }
-    }
-
-    const updated: User = {
-      ...(current || defaultUser),
-      role: newRole,
-      headline:
-        newRole === 'founder'
-          ? 'Seed Founder • Building NutriFit AI'
-          : newRole === 'talent'
-          ? 'Staff Distributed Systems Architect • Open to Roles'
-          : 'Angel Investor & Product Advisor • Vance Advisory',
-    };
-    localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(updated));
-    return updated;
-  },
-
   async logout(): Promise<void> {
+    // Get the current user ID before clearing everything
+    let userId = 'anon';
+    try {
+      const raw = localStorage.getItem(AUTH_STORAGE_KEY) || localStorage.getItem('nexbridge_user');
+      if (raw) {
+        const u = JSON.parse(raw);
+        if (u?.id) userId = u.id;
+      }
+    } catch {}
+
+    // Sign out Supabase session
     try {
       await supabase.auth.signOut();
     } catch {
       // ignore
     }
+
+    // Clear auth keys
     localStorage.removeItem(AUTH_STORAGE_KEY);
     localStorage.removeItem('nexbridge_user');
     localStorage.removeItem('nexbridge_token');
+    localStorage.removeItem('nexbridge_ideas_anon');
+
+    // Clear all user-scoped data for THIS user
+    clearUserScopedData(userId);
   },
 };

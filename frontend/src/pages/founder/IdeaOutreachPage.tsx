@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
 import { usePageContext } from '@/context/PageContext';
 import { outreachService } from '@/services/outreachService';
-import { OutreachMessage } from '@/types';
+import { OutreachMessage, Idea } from '@/types';
 
 export const IdeaOutreachPage: React.FC = () => {
+  const { idea } = useOutletContext<{ idea: Idea | null }>();
   const [pipeline, setPipeline] = useState<OutreachMessage[]>([]);
   const [selectedMessage, setSelectedMessage] = useState<OutreachMessage | null>(null);
 
   usePageContext({
     pageKey: 'outreach_pipeline',
-    title: 'Candidate Outreach Pipeline Kanban',
-    summary: 'Candidate relationship management: active outreach messages across Drafts, Sent, In Conversation, and Offer stages.',
+    title: `Candidate Outreach Pipeline Kanban — ${idea?.title || 'Concept'}`,
+    summary: 'Candidate relationship management: Active outreach messages across Drafts, Sent, In Conversation, and Offer stages.',
     data: { pipelineCount: pipeline.length },
   });
 

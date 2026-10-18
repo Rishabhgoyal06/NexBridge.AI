@@ -38,18 +38,32 @@ const defaultTalentProfile: TalentProfile = {
   parsedAt: '2024-10-15T09:30:00Z',
 };
 
+function getTalentProfileKey(): string {
+  try {
+    const raw = localStorage.getItem('nexbridge_user') || localStorage.getItem('nexbridge_auth_user');
+    if (raw) {
+      const u = JSON.parse(raw);
+      if (u?.id) return `${TALENT_PROFILE_KEY}_${u.id}`;
+    }
+  } catch {}
+  return `${TALENT_PROFILE_KEY}_anon`;
+}
+
 export const talentService = {
   async getProfile(): Promise<TalentProfile> {
     if (!USE_MOCKS) {
       try {
         const liveProfile = await api<TalentProfile>('/talent/profile');
-        if (liveProfile) return liveProfile;
+        if (liveProfile) {
+          localStorage.setItem(getTalentProfileKey(), JSON.stringify(liveProfile));
+          return liveProfile;
+        }
       } catch (err) {
         console.warn('Backend /talent/profile error, falling back:', err);
       }
     }
     await delay(300, 500);
-    const stored = localStorage.getItem(TALENT_PROFILE_KEY);
+    const stored = localStorage.getItem(getTalentProfileKey());
     if (stored) {
       try {
         return JSON.parse(stored);
@@ -77,19 +91,27 @@ export const talentService = {
         });
         if (res.ok) {
           const updated = await res.json();
+          localStorage.setItem(getTalentProfileKey(), JSON.stringify(updated));
           return updated;
+        } else {
+          const errText = await res.text();
+          console.warn('Backend /talent/resume returned error status:', res.status, errText);
         }
       } catch (err) {
         console.warn('Backend /talent/resume error, falling back:', err);
       }
     }
     await delay(700, 1100);
+    const rawUser = localStorage.getItem('nexbridge_user');
+    const u = rawUser ? JSON.parse(rawUser) : null;
+    const baseName = fileName.replace(/\.[^/.]+$/, '').replace(/[_-]/g, ' ');
     const updated: TalentProfile = {
       ...defaultTalentProfile,
+      name: u?.name || baseName || defaultTalentProfile.name,
       resumeFileName: fileName,
       parsedAt: new Date().toISOString(),
     };
-    localStorage.setItem(TALENT_PROFILE_KEY, JSON.stringify(updated));
+    localStorage.setItem(getTalentProfileKey(), JSON.stringify(updated));
     return updated;
   },
 

@@ -1,15 +1,34 @@
-import { Candidate, OutreachMessage, Idea } from '@/types';
+import { Candidate, OutreachMessage } from '@/types';
 import { demoCandidates, demoOutreachPipeline } from './mockData';
 import { delay, api, USE_MOCKS } from '@/lib/http';
-import { synthesizeCandidatesForIdea } from './ideaSynthesizer';
 
 const CANDIDATES_KEY = 'nexbridge_candidates';
 const PIPELINE_KEY = 'nexbridge_outreach_pipeline';
 
+/** Returns a user-scoped localStorage key so each account has isolated outreach storage. */
+function getUserId(): string {
+  try {
+    const raw = localStorage.getItem('nexbridge_user') || localStorage.getItem('nexbridge_auth_user');
+    if (raw) {
+      const u = JSON.parse(raw);
+      if (u?.id) return u.id;
+    }
+  } catch {}
+  return 'anon';
+}
+
+function getCandidatesKey() {
+  return `${CANDIDATES_KEY}_${getUserId()}`;
+}
+
+function getPipelineKey() {
+  return `${PIPELINE_KEY}_${getUserId()}`;
+}
+
 function getStoredCandidates(): Candidate[] {
-  const raw = localStorage.getItem(CANDIDATES_KEY);
+  const raw = localStorage.getItem(getCandidatesKey());
   if (!raw) {
-    localStorage.setItem(CANDIDATES_KEY, JSON.stringify(demoCandidates));
+    localStorage.setItem(getCandidatesKey(), JSON.stringify(demoCandidates));
     return demoCandidates;
   }
   try {
@@ -20,9 +39,9 @@ function getStoredCandidates(): Candidate[] {
 }
 
 function getStoredPipeline(): OutreachMessage[] {
-  const raw = localStorage.getItem(PIPELINE_KEY);
+  const raw = localStorage.getItem(getPipelineKey());
   if (!raw) {
-    localStorage.setItem(PIPELINE_KEY, JSON.stringify(demoOutreachPipeline));
+    localStorage.setItem(getPipelineKey(), JSON.stringify(demoOutreachPipeline));
     return demoOutreachPipeline;
   }
   try {
@@ -33,29 +52,21 @@ function getStoredPipeline(): OutreachMessage[] {
 }
 
 export const outreachService = {
-  async getCandidates(roleId?: string, idea?: Idea | null): Promise<Candidate[]> {
-    if (idea && idea.roles && idea.roles.length > 0) {
-      const synthesized = synthesizeCandidatesForIdea(idea);
-      if (roleId && roleId !== 'all') {
-        return synthesized.filter((c) => c.appliedJobRoleId === roleId);
-      }
-      return synthesized;
-    }
-
+  async getCandidates(roleId?: string): Promise<Candidate[]> {
     if (!USE_MOCKS) {
       try {
         const liveList = await api<Candidate[]>('/candidates');
         if (liveList && liveList.length > 0) {
-          if (roleId && roleId !== 'all') return liveList.filter((c) => c.appliedJobRoleId === roleId);
+          if (roleId) return liveList.filter((c) => c.appliedJobRoleId === roleId);
           return liveList;
         }
       } catch (err) {
         console.warn('Backend /candidates error, falling back:', err);
       }
     }
-    await delay(200, 400);
+    await delay(400, 700);
     const list = getStoredCandidates();
-    if (roleId && roleId !== 'all') {
+    if (roleId) {
       return list.filter((c) => c.appliedJobRoleId === roleId);
     }
     return list;
@@ -113,12 +124,12 @@ export const outreachService = {
 
     if (candidate) {
       candidate.outreachStatus = 'contacted';
-      localStorage.setItem(CANDIDATES_KEY, JSON.stringify(candidates));
+      localStorage.setItem(getCandidatesKey(), JSON.stringify(candidates));
     }
 
     const pipeline = getStoredPipeline();
     pipeline.unshift(newMessage);
-    localStorage.setItem(PIPELINE_KEY, JSON.stringify(pipeline));
+    localStorage.setItem(getPipelineKey(), JSON.stringify(pipeline));
 
     return newMessage;
   },
@@ -156,7 +167,7 @@ export const outreachService = {
     const target = pipeline.find((m) => m.id === messageId);
     if (target) {
       target.stage = newStage;
-      localStorage.setItem(PIPELINE_KEY, JSON.stringify(pipeline));
+      localStorage.setItem(getPipelineKey(), JSON.stringify(pipeline));
     }
     return pipeline;
   },

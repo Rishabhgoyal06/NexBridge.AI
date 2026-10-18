@@ -40,7 +40,6 @@ export const NewIdeaPage: React.FC = () => {
 
   const handleRunValidation = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!title.trim() || !description.trim()) return;
     setIsValidating(true);
 
     // Set agents to running
@@ -50,7 +49,7 @@ export const NewIdeaPage: React.FC = () => {
 
     try {
       const generatedIdea = await ideaService.simulateParallelValidation(
-        { title, description, targetMarket, tagline },
+        { title, description, targetMarket },
         (agent: ValidationAgent) => {
           setAgentProgress((prev) =>
             prev.map((a) =>
@@ -177,7 +176,7 @@ export const NewIdeaPage: React.FC = () => {
               {isValidating ? (
                 <>
                   <span className="w-5 h-5 rounded-full border-2 border-on-primary border-t-transparent animate-spin"></span>
-                  <span>5 Agents Interrogating Concept...</span>
+                  <span>AI Agents Analyzing... (~45s)</span>
                 </>
               ) : (
                 <>

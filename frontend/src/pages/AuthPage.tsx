@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useSearchParams } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
 import { usePageContext } from '@/context/PageContext';
 import { UserRole } from '@/types';
@@ -13,12 +13,16 @@ export const AuthPage: React.FC = () => {
 
   const { login, signUp } = useAuth();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+
+  // Pre-select the role from the ?role= query param (set when redirected from role switcher)
+  const preselectedRole = (searchParams.get('role') as UserRole) || 'founder';
 
   const [isSignUp, setIsSignUp] = useState(false);
-  const [selectedRole, setSelectedRole] = useState<UserRole>('founder');
+  const [selectedRole, setSelectedRole] = useState<UserRole>(preselectedRole);
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('aarav@nexbridge.ai');
-  const [password, setPassword] = useState('NexBridge2026!');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -47,7 +51,7 @@ export const AuthPage: React.FC = () => {
       } else if (selectedRole === 'talent') {
         navigate('/talent/matches');
       } else {
-        navigate('/mentors');
+        navigate('/mentor/dashboard');
       }
     } catch (err: any) {
       setErrorMsg(err.message || 'Authentication failed. Please verify your credentials.');
@@ -73,7 +77,7 @@ export const AuthPage: React.FC = () => {
         } else if (demoRole === 'talent') {
           navigate('/talent/matches');
         } else {
-          navigate('/mentors');
+          navigate('/mentor/dashboard');
         }
       } catch (err: any) {
         setErrorMsg(err.message || 'Login failed.');

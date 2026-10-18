@@ -8,6 +8,7 @@ import { Idea, Candidate, JobRole } from '@/types';
 import { MatchRing } from '@/components/shared/MatchRing';
 import { SkillChip } from '@/components/shared/SkillChip';
 import { SlideOver } from '@/components/shared/SlideOver';
+import { formatSalaryRupees } from '@/lib/currency';
 
 export const IdeaRolesCandidatesPage: React.FC = () => {
   const { user } = useAuth();
@@ -21,10 +22,24 @@ export const IdeaRolesCandidatesPage: React.FC = () => {
   const [isSending, setIsSending] = useState(false);
   const [sentSuccess, setSentSuccess] = useState(false);
 
+  // Role Configuration Drawer State
+  const [isRoleDrawerOpen, setIsRoleDrawerOpen] = useState(false);
+  const [editingRoleId, setEditingRoleId] = useState<string | null>(null);
+  const [roleTitle, setRoleTitle] = useState('');
+  const [roleDept, setRoleDept] = useState('Engineering');
+  const [roleType, setRoleType] = useState('Co-Founder');
+  const [roleUrgency, setRoleUrgency] = useState('Immediate / Day 1');
+  const [roleSalary, setRoleSalary] = useState('₹28L - ₹42L / yr');
+  const [roleEquity, setRoleEquity] = useState('5.0% - 10.0%');
+  const [roleRationale, setRoleRationale] = useState('');
+  const [roleDemandIndex, setRoleDemandIndex] = useState(88);
+  const [roleSkillsInput, setRoleSkillsInput] = useState('');
+  const [isSavingRole, setIsSavingRole] = useState(false);
+
   usePageContext({
     pageKey: 'idea_roles_candidates',
-    title: `Required Roles & Talent Candidates — ${idea?.title || 'Venture'}`,
-    summary: `Team assembly matching: ${idea?.roles?.length || 3} essential roles identified from tech stack, matched candidates from the talent database with match percentages and skill gap breakdowns.`,
+    title: `Required Roles & Talent Candidates — ${idea?.title || 'Concept'}`,
+    summary: idea ? `Team assembly matching: ${idea.roles?.length || 3} essential roles identified, ${candidates.length} matched candidates with skill gap breakdowns.` : 'Team assembly matching',
     data: { candidateCount: candidates.length, rolesCount: idea?.roles?.length },
   });
 
@@ -33,19 +48,103 @@ export const IdeaRolesCandidatesPage: React.FC = () => {
       if (id) {
         const found = await ideaService.getIdeaById(id);
         setIdea(found);
-        const cList = await outreachService.getCandidates(selectedRole, found);
+        const cList = await outreachService.getCandidates();
         setCandidates(cList);
       }
     }
     load();
-  }, [id, selectedRole]);
+  }, [id]);
+
+  const handleOpenEditRole = (role?: JobRole) => {
+    if (role) {
+      setEditingRoleId(role.id);
+      setRoleTitle(role.title);
+      setRoleDept(role.department);
+      setRoleType(role.type);
+      setRoleUrgency(role.urgency);
+      setRoleSalary(role.salaryRange || '₹28L - ₹42L / yr');
+      setRoleEquity(role.equityRange || '5.0% - 10.0%');
+      setRoleRationale(role.marketRationale || `Critical talent driver for ${idea?.title || 'venture'} architecture and core development.`);
+      setRoleDemandIndex(role.marketDemandIndex || 88);
+      setRoleSkillsInput(role.requiredSkills.join(', '));
+    } else {
+      setEditingRoleId(null);
+      setRoleTitle('');
+      setRoleDept('Engineering');
+      setRoleType('Co-Founder');
+      setRoleUrgency('Immediate / Day 1');
+      setRoleSalary('₹28L - ₹42L / yr');
+      setRoleEquity('5.0% - 10.0%');
+      setRoleRationale(`High-priority talent requirement for ${idea?.title || 'venture'} execution.`);
+      setRoleDemandIndex(85);
+      setRoleSkillsInput('Python, React, TypeScript');
+    }
+    setIsRoleDrawerOpen(true);
+  };
+
+  const handleSaveRole = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!idea || !roleTitle.trim()) return;
+
+    setIsSavingRole(true);
+    try {
+      const parsedSkills = roleSkillsInput
+        .split(',')
+        .map((s) => s.trim())
+        .filter(Boolean);
+
+      let updatedRoles: JobRole[] = [];
+      if (editingRoleId) {
+        updatedRoles = idea.roles.map((r) =>
+          r.id === editingRoleId
+            ? {
+                ...r,
+                title: roleTitle.trim(),
+                department: roleDept,
+                type: roleType,
+                urgency: roleUrgency,
+                salaryRange: roleSalary.trim(),
+                equityRange: roleEquity.trim(),
+                marketRationale: roleRationale.trim(),
+                marketDemandIndex: Number(roleDemandIndex) || 85,
+                requiredSkills: parsedSkills,
+              }
+            : r
+        );
+      } else {
+        const newRole: JobRole = {
+          id: `role_${Date.now()}`,
+          title: roleTitle.trim(),
+          department: roleDept,
+          type: roleType,
+          urgency: roleUrgency,
+          requiredSkills: parsedSkills,
+          preferredSkills: [],
+          candidateMatchesCount: 3,
+          salaryRange: roleSalary.trim(),
+          equityRange: roleEquity.trim(),
+          marketRationale: roleRationale.trim(),
+          marketDemandIndex: Number(roleDemandIndex) || 85,
+        };
+        updatedRoles = [...idea.roles, newRole];
+      }
+
+      await ideaService.updateIdeaRoles(idea.id, updatedRoles);
+      setIdea({ ...idea, roles: updatedRoles });
+      setIsRoleDrawerOpen(false);
+    } catch (err) {
+      console.error('Failed to save role:', err);
+    } finally {
+      setIsSavingRole(false);
+    }
+  };
 
   const handleOpenOutreach = (cand: Candidate) => {
+    const ideaName = idea?.title || 'our venture';
     setOutreachCandidate(cand);
-    const ideaTitle = idea?.title || 'our venture';
-    setOutreachSubject(`${cand.role} role at ${ideaTitle} (${cand.matchScore}% AI Match • Pre-Seed)`);
+    setOutreachSubject(`${cand.role} role at ${ideaName} (${cand.matchScore}% AI Match • Pre-Seed)`);
     setOutreachBody(
-      `Hi ${cand.name},\n\nI came across your profile on NexBridge and was impressed by your track record at ${cand.currentCompany}.\n\nWe are building ${ideaTitle} (${idea?.tagline || idea?.description?.slice(0, 90) || 'an autonomous AI-powered platform'}). Our AI technical architect flagged your experience in ${cand.skills.filter((s) => s.matched).map((s) => s.name).slice(0, 3).join(', ')} as an exceptional match for our team.\n\nWould you be open to a 20-minute intro call this week to review our architecture and equity allocation?\n\nBest,\n${user?.name || 'Founder'}\nFounder, ${ideaTitle}`
+      `Hi ${cand.name},\n\nI came across your profile on NexBridge and was impressed by your track record at ${cand.currentCompany}.\n\nWe are building ${ideaName} (${idea?.tagline || idea?.description || 'an innovative AI platform'}). Our team flagged your experience in ${cand.skills.filter((s) => s.matched).map((s) => s.name).slice(0, 3).join(', ')} as an exceptional match for our founding team.\n\nWould you be open to a 20-minute intro call this week to review our architecture and equity allocation?\n\nBest,\n${user?.name || 'Founder'}\nFounder, ${ideaName}`
     );
     setSentSuccess(false);
   };
@@ -84,22 +183,42 @@ export const IdeaRolesCandidatesPage: React.FC = () => {
 
   return (
     <div className="space-y-8">
-      {/* 1. Required Engineering Roles (From AI Plan) */}
-      <div className="bg-surface-container-lowest rounded-xl p-6 border border-outline-variant/30 shadow-sm space-y-4">
-        <div className="flex flex-wrap items-center justify-between gap-4 pb-3 border-b border-outline-variant/20">
+      {/* 1. Required Engineering Roles with Market Talent Intelligence */}
+      <div className="bg-surface-container-lowest rounded-xl p-6 border border-outline-variant/30 shadow-sm space-y-5">
+        <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-outline-variant/20">
           <div className="flex items-center gap-2">
-            <span className="material-symbols-outlined text-primary-container text-[20px]">
+            <span className="material-symbols-outlined text-primary-container text-[22px]">
               work
             </span>
-            <h3 className="font-headline-sm text-headline-sm font-semibold text-on-surface">
-              Synthesized Founding Roles (3 Open)
-            </h3>
+            <div>
+              <h3 className="font-headline-sm text-headline-sm font-semibold text-on-surface">
+                Synthesized Founding Roles ({idea.roles.length} Configured)
+              </h3>
+              <p className="font-body-sm text-xs text-secondary">
+                AI market talent benchmarks, scarcity index, and competitive hiring compensation in ₹.
+              </p>
+            </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2.5">
+            <Link
+              to={`/ideas/${idea.id}/market`}
+              className="px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface text-xs font-medium transition-colors flex items-center gap-1.5"
+            >
+              <span className="material-symbols-outlined text-[15px]">insights</span>
+              <span>Market Intel &amp; Demand</span>
+            </Link>
+            <button
+              onClick={() => handleOpenEditRole()}
+              className="px-3 py-1.5 rounded-lg bg-primary-container hover:bg-primary text-on-primary text-xs font-medium transition-colors flex items-center gap-1.5 shadow-xs cursor-pointer"
+            >
+              <span className="material-symbols-outlined text-[15px]">add</span>
+              <span>+ Add Founding Role</span>
+            </button>
+            <div className="h-4 w-px bg-outline-variant/40" />
             <button
               onClick={() => setSelectedRole('all')}
-              className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${
+              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
                 selectedRole === 'all'
                   ? 'bg-primary-container text-on-primary'
                   : 'bg-surface-container text-secondary hover:text-on-surface'
@@ -111,7 +230,7 @@ export const IdeaRolesCandidatesPage: React.FC = () => {
               <button
                 key={role.id}
                 onClick={() => setSelectedRole(role.id)}
-                className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
                   selectedRole === role.id
                     ? 'bg-primary-container text-on-primary'
                     : 'bg-surface-container text-secondary hover:text-on-surface'
@@ -123,46 +242,81 @@ export const IdeaRolesCandidatesPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {idea.roles.map((r: JobRole) => (
             <div
               key={r.id}
-              onClick={() => setSelectedRole(r.id)}
-              className={`p-4 rounded-xl border transition-all cursor-pointer ${
+              className={`p-5 rounded-xl border transition-all flex flex-col justify-between ${
                 selectedRole === r.id
                   ? 'bg-primary-fixed/20 border-primary-container/60 ring-2 ring-primary-fixed shadow-xs'
                   : 'bg-surface-container-low/40 border-outline-variant/30 hover:bg-surface-container-low'
               }`}
             >
-              <div className="flex items-center justify-between mb-1.5">
-                <span className="font-label-sm text-[11px] uppercase tracking-wider font-semibold text-secondary">
-                  {r.department} • {r.type}
-                </span>
-                <span className="px-2 py-0.5 rounded-full bg-surface-container text-xs font-medium text-secondary">
-                  {r.urgency}
-                </span>
-              </div>
-
-              <h4 className="font-headline-sm text-sm font-semibold text-on-surface mb-2">
-                {r.title}
-              </h4>
-
-              <div className="flex flex-wrap gap-1 mb-3">
-                {r.requiredSkills.map((sk: string, idx: number) => (
-                  <span
-                    key={idx}
-                    className="font-label-sm text-[10px] px-2 py-0.5 rounded bg-surface-container-high text-secondary"
-                  >
-                    {sk}
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="font-label-sm text-[11px] uppercase tracking-wider font-semibold text-secondary">
+                    {r.department} • {r.type}
                   </span>
-                ))}
+                  <span className="px-2 py-0.5 rounded-full bg-surface-container text-[11px] font-medium text-secondary">
+                    {r.urgency}
+                  </span>
+                </div>
+
+                <h4 className="font-headline-sm text-sm font-semibold text-on-surface mb-3">
+                  {r.title}
+                </h4>
+
+                {/* Market Talent Intelligence Card */}
+                <div className="bg-surface-container-lowest/80 rounded-lg p-3 border border-outline-variant/30 space-y-2 mb-3">
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-secondary font-medium">Market Benchmark:</span>
+                    <span className="font-semibold text-on-surface">{formatSalaryRupees(r.salaryRange)}</span>
+                  </div>
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-secondary font-medium">Target Equity:</span>
+                    <span className="font-semibold text-primary-container">{r.equityRange || '4.0% - 8.0%'}</span>
+                  </div>
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-secondary font-medium">Market Scarcity:</span>
+                    <span className="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-amber-500/10 text-amber-600 border border-amber-500/20">
+                      {r.marketDemandIndex || 88}% Scarcity Index
+                    </span>
+                  </div>
+                  {r.marketRationale && (
+                    <p className="text-[11px] text-secondary leading-relaxed pt-1.5 border-t border-outline-variant/20 italic">
+                      &ldquo;{r.marketRationale}&rdquo;
+                    </p>
+                  )}
+                </div>
+
+                <div className="flex flex-wrap gap-1 mb-3">
+                  {r.requiredSkills.map((sk: string, idx: number) => (
+                    <span
+                      key={idx}
+                      className="font-label-sm text-[10px] px-2 py-0.5 rounded bg-surface-container-high text-secondary"
+                    >
+                      {sk}
+                    </span>
+                  ))}
+                </div>
               </div>
 
-              <div className="flex items-center justify-between text-xs text-secondary pt-2 border-t border-outline-variant/20">
-                <span>{r.candidateMatchesCount} Verified Matches</span>
-                <span className="text-primary-container font-medium hover:underline">
-                  Filter Candidates →
-                </span>
+              <div className="pt-3 border-t border-outline-variant/20 flex items-center justify-between text-xs">
+                <button
+                  type="button"
+                  onClick={() => handleOpenEditRole(r)}
+                  className="font-medium text-secondary hover:text-on-surface flex items-center gap-1 cursor-pointer"
+                >
+                  <span className="material-symbols-outlined text-[14px]">tune</span>
+                  <span>Configure Role</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSelectedRole(r.id)}
+                  className="text-primary-container font-medium hover:underline cursor-pointer"
+                >
+                  {r.candidateMatchesCount} Matches →
+                </button>
               </div>
             </div>
           ))}
@@ -345,7 +499,7 @@ export const IdeaRolesCandidatesPage: React.FC = () => {
                 auto_awesome
               </span>
               <span>
-                Personalized automatically using Elena’s Strava background &amp; NutriFit’s HealthKit needs.
+                Personalized automatically using {outreachCandidate?.name ? outreachCandidate.name.split(' ')[0] : 'Candidate'}&rsquo;s background &amp; {idea?.title || 'Venture'}&rsquo;s technical stack.
               </span>
             </div>
 
@@ -368,6 +522,175 @@ export const IdeaRolesCandidatesPage: React.FC = () => {
             </button>
           </form>
         )}
+      </SlideOver>
+
+      {/* Role Configuration SlideOver Drawer */}
+      <SlideOver
+        isOpen={isRoleDrawerOpen}
+        onClose={() => setIsRoleDrawerOpen(false)}
+        title={editingRoleId ? 'Configure Founding Role' : 'Add Founding Role'}
+        subtitle={`Tailor talent requirements & market compensation in ₹ for ${idea.title}`}
+        width="max-w-lg"
+      >
+        <form onSubmit={handleSaveRole} className="space-y-4">
+          <div>
+            <label className="block font-label-sm text-xs font-semibold text-secondary uppercase tracking-wider mb-1">
+              Role Title
+            </label>
+            <input
+              type="text"
+              required
+              placeholder="e.g. CTO / Founding AI Architect"
+              value={roleTitle}
+              onChange={(e) => setRoleTitle(e.target.value)}
+              className="w-full px-3.5 py-2 bg-surface-container-low border border-outline-variant/40 rounded-lg text-xs font-body-sm text-on-surface focus:outline-none focus:border-primary-container"
+            />
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="block font-label-sm text-xs font-semibold text-secondary uppercase tracking-wider mb-1">
+                Department
+              </label>
+              <select
+                value={roleDept}
+                onChange={(e) => setRoleDept(e.target.value)}
+                className="w-full px-3 py-2 bg-surface-container-low border border-outline-variant/40 rounded-lg text-xs font-body-sm text-on-surface focus:outline-none focus:border-primary-container"
+              >
+                <option value="Engineering">Engineering</option>
+                <option value="Product">Product</option>
+                <option value="GTM / Growth">GTM / Growth</option>
+                <option value="Design">Design</option>
+                <option value="Operations">Operations</option>
+              </select>
+            </div>
+
+            <div>
+              <label className="block font-label-sm text-xs font-semibold text-secondary uppercase tracking-wider mb-1">
+                Role Type
+              </label>
+              <select
+                value={roleType}
+                onChange={(e) => setRoleType(e.target.value)}
+                className="w-full px-3 py-2 bg-surface-container-low border border-outline-variant/40 rounded-lg text-xs font-body-sm text-on-surface focus:outline-none focus:border-primary-container"
+              >
+                <option value="Co-Founder">Co-Founder</option>
+                <option value="Founding Team">Founding Team</option>
+                <option value="Senior Lead">Senior Lead</option>
+                <option value="Staff Specialist">Staff Specialist</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="block font-label-sm text-xs font-semibold text-secondary uppercase tracking-wider mb-1">
+                Hiring Urgency
+              </label>
+              <select
+                value={roleUrgency}
+                onChange={(e) => setRoleUrgency(e.target.value)}
+                className="w-full px-3 py-2 bg-surface-container-low border border-outline-variant/40 rounded-lg text-xs font-body-sm text-on-surface focus:outline-none focus:border-primary-container"
+              >
+                <option value="Immediate / Day 1">Immediate / Day 1</option>
+                <option value="Post-Seed">Post-Seed</option>
+                <option value="Series A Scaling">Series A Scaling</option>
+              </select>
+            </div>
+
+            <div>
+              <label className="block font-label-sm text-xs font-semibold text-secondary uppercase tracking-wider mb-1">
+                Market Scarcity Index (%)
+              </label>
+              <input
+                type="number"
+                min={50}
+                max={99}
+                value={roleDemandIndex}
+                onChange={(e) => setRoleDemandIndex(Number(e.target.value))}
+                className="w-full px-3 py-2 bg-surface-container-low border border-outline-variant/40 rounded-lg text-xs font-body-sm text-on-surface focus:outline-none focus:border-primary-container"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="block font-label-sm text-xs font-semibold text-secondary uppercase tracking-wider mb-1">
+                Market Benchmark Salary (₹)
+              </label>
+              <input
+                type="text"
+                required
+                placeholder="₹28L - ₹42L / yr"
+                value={roleSalary}
+                onChange={(e) => setRoleSalary(e.target.value)}
+                className="w-full px-3.5 py-2 bg-surface-container-low border border-outline-variant/40 rounded-lg text-xs font-body-sm text-on-surface focus:outline-none focus:border-primary-container"
+              />
+            </div>
+
+            <div>
+              <label className="block font-label-sm text-xs font-semibold text-secondary uppercase tracking-wider mb-1">
+                Equity Allocation
+              </label>
+              <input
+                type="text"
+                required
+                placeholder="5.0% - 10.0%"
+                value={roleEquity}
+                onChange={(e) => setRoleEquity(e.target.value)}
+                className="w-full px-3.5 py-2 bg-surface-container-low border border-outline-variant/40 rounded-lg text-xs font-body-sm text-on-surface focus:outline-none focus:border-primary-container"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block font-label-sm text-xs font-semibold text-secondary uppercase tracking-wider mb-1">
+              Required Skills (Comma-separated)
+            </label>
+            <input
+              type="text"
+              required
+              placeholder="Python, FastAPI, PyTorch, Distributed Systems"
+              value={roleSkillsInput}
+              onChange={(e) => setRoleSkillsInput(e.target.value)}
+              className="w-full px-3.5 py-2 bg-surface-container-low border border-outline-variant/40 rounded-lg text-xs font-body-sm text-on-surface focus:outline-none focus:border-primary-container"
+            />
+          </div>
+
+          <div>
+            <label className="block font-label-sm text-xs font-semibold text-secondary uppercase tracking-wider mb-1">
+              Market Hiring Rationale &amp; Strategy
+            </label>
+            <textarea
+              rows={3}
+              required
+              placeholder="Why this role is essential and what competitive advantage they unlock..."
+              value={roleRationale}
+              onChange={(e) => setRoleRationale(e.target.value)}
+              className="w-full p-3 bg-surface-container-low border border-outline-variant/40 rounded-lg text-xs font-body-sm text-on-surface leading-relaxed focus:outline-none focus:border-primary-container"
+            />
+          </div>
+
+          <div className="pt-2">
+            <button
+              type="submit"
+              disabled={isSavingRole}
+              className="w-full py-2.5 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-label-md text-sm font-medium transition-colors flex items-center justify-center gap-2 shadow-sm disabled:opacity-60 cursor-pointer"
+            >
+              {isSavingRole ? (
+                <>
+                  <span className="w-4 h-4 rounded-full border-2 border-on-primary border-t-transparent animate-spin"></span>
+                  <span>Saving Role Configuration...</span>
+                </>
+              ) : (
+                <>
+                  <span className="material-symbols-outlined text-[16px]">save</span>
+                  <span>{editingRoleId ? 'Update Role Configuration' : 'Save New Founding Role'}</span>
+                </>
+              )}
+            </button>
+          </div>
+        </form>
       </SlideOver>
     </div>
   );

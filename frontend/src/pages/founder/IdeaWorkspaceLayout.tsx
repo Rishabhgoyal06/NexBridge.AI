@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink, Outlet, useParams, Link } from 'react-router-dom';
+import { NavLink, Outlet, useParams, Link, useLocation, Navigate } from 'react-router-dom';
+import { useAuth } from '@/context/AuthContext';
 import { ideaService } from '@/services/ideaService';
 import { Idea } from '@/types';
 
 export const IdeaWorkspaceLayout: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [idea, setIdea] = useState<Idea | null>(null);
+  const { role } = useAuth();
+  const location = useLocation();
 
   useEffect(() => {
     async function fetchIdea() {
@@ -17,41 +20,35 @@ export const IdeaWorkspaceLayout: React.FC = () => {
     fetchIdea();
   }, [id]);
 
-  const getCategoryIcon = (cat?: string) => {
-    if (!cat) return 'rocket_launch';
-    const lower = cat.toLowerCase();
-    if (lower.includes('robot') || lower.includes('drone') || lower.includes('hardware')) return 'precision_manufacturing';
-    if (lower.includes('health') || lower.includes('fitness') || lower.includes('bio')) return 'health_and_safety';
-    if (lower.includes('fintech') || lower.includes('finance') || lower.includes('payment')) return 'account_balance';
-    if (lower.includes('dev') || lower.includes('infra') || lower.includes('code')) return 'terminal';
-    if (lower.includes('cyber') || lower.includes('security')) return 'shield';
-    if (lower.includes('ed') || lower.includes('learn')) return 'school';
-    if (lower.includes('commerce') || lower.includes('retail')) return 'storefront';
-    if (lower.includes('legal') || lower.includes('prop')) return 'gavel';
-    if (lower.includes('clean') || lower.includes('energy')) return 'eco';
-    return 'hub';
-  };
+  // Only founders should access the idea workspace.
+  // Talent → back to their matches, Mentor → back to their dashboard.
+  if (role === 'talent') {
+    return <Navigate to="/talent/matches" replace />;
+  }
+  if (role === 'mentor') {
+    return <Navigate to="/mentor/dashboard" replace />;
+  }
 
+  // Founder-only tabs — shown inside the idea workspace header
   const tabs = [
     { label: 'Validation Report', path: `/ideas/${id}/validation`, icon: 'neurology' },
+    { label: 'Market Analysis', path: `/ideas/${id}/market`, icon: 'insights' },
     { label: 'Competitors & Moat', path: `/ideas/${id}/competitors`, icon: 'radar' },
     { label: 'Revenue & Economics', path: `/ideas/${id}/revenue`, icon: 'payments' },
     { label: 'System Plan & Tech', path: `/ideas/${id}/plan`, icon: 'terminal' },
-    { label: 'Roles & Candidates', path: `/ideas/${id}/roles`, icon: 'groups', badge: `${idea?.roles?.length || 3}` },
+    { label: 'Roles & Candidates', path: `/ideas/${id}/roles`, icon: 'groups', badge: '6' },
     { label: 'Outreach Pipeline', path: `/ideas/${id}/outreach`, icon: 'send', badge: '4' },
   ];
 
   return (
     <div className="w-full flex flex-col flex-1 pb-16">
       {/* Workspace Sub-Header */}
-      <div className="w-full bg-surface-container-lowest border-b border-outline-variant/30 px-8 pt-6 pb-0">
+      <div className="w-full bg-surface-container-lowest border-b border-outline-variant/35 px-8 pt-6 pb-0 shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
         <div className="max-w-[1240px] mx-auto flex flex-col">
           <div className="flex flex-wrap items-center justify-between gap-4 pb-4">
             <div className="flex items-center gap-3.5">
               <div className="w-11 h-11 rounded-xl bg-primary-container text-on-primary flex items-center justify-center font-bold text-lg shadow-sm">
-                <span className="material-symbols-outlined text-[24px]">
-                  {getCategoryIcon(idea?.category)}
-                </span>
+                <span className="material-symbols-outlined text-[24px]">rocket_launch</span>
               </div>
               <div>
                 <div className="flex items-center gap-2.5">
@@ -59,14 +56,14 @@ export const IdeaWorkspaceLayout: React.FC = () => {
                     {idea?.title || 'Active Concept'}
                   </h1>
                   <span className="px-2.5 py-0.5 rounded-full bg-primary-fixed/40 text-primary-container font-label-sm text-label-sm font-semibold">
-                    {idea?.status === 'validated' ? 'Validated Signal' : 'Active Evaluation'}
+                    {idea?.status === 'validated' ? (idea?.signal || 'Validated Signal') : 'Active Evaluation'}
                   </span>
                   <span className="font-mono text-xs px-2 py-0.5 rounded bg-surface-container text-secondary font-medium">
-                    Score: {idea?.score || 78}/100
+                    Score: {idea?.score ?? 78}/100
                   </span>
                 </div>
                 <p className="font-body-sm text-body-sm text-secondary mt-0.5">
-                  {idea?.tagline || idea?.description?.slice(0, 95) || 'Autonomous venture evaluation & execution'}
+                  {idea?.tagline || idea?.description || 'Autonomous AI venture intelligence workspace'}
                 </p>
               </div>
             </div>
@@ -89,7 +86,7 @@ export const IdeaWorkspaceLayout: React.FC = () => {
             </div>
           </div>
 
-          {/* Navigation Tabs */}
+          {/* Navigation Tabs — founder-only */}
           <nav className="flex items-center gap-1 overflow-x-auto pt-2 scrollbar-none">
             {tabs.map((tab) => (
               <NavLink

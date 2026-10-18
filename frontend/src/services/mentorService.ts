@@ -5,7 +5,28 @@ import { delay, api, USE_MOCKS } from '@/lib/http';
 const MENTORS_KEY = 'nexbridge_mentors';
 const MENTOR_REQUESTS_KEY = 'nexbridge_mentor_requests';
 
+/** Returns the current logged-in user's ID for scoping session-specific data. */
+function getUserId(): string {
+  try {
+    const raw = localStorage.getItem('nexbridge_user') || localStorage.getItem('nexbridge_auth_user');
+    if (raw) {
+      const u = JSON.parse(raw);
+      if (u?.id) return u.id;
+    }
+  } catch {}
+  return 'anon';
+}
+
+/**
+ * Mentors directory is a shared read-only catalog — not user-scoped.
+ * Mentor session REQUESTS are user-scoped: each mentor/founder pair has isolated request state.
+ */
+function getMentorRequestsKey(): string {
+  return `${MENTOR_REQUESTS_KEY}_${getUserId()}`;
+}
+
 function getStoredMentors(): Mentor[] {
+  // The mentors catalog is shared and read-only — same list for all users
   const raw = localStorage.getItem(MENTORS_KEY);
   if (!raw) {
     localStorage.setItem(MENTORS_KEY, JSON.stringify(demoMentors));
@@ -19,9 +40,11 @@ function getStoredMentors(): Mentor[] {
 }
 
 function getStoredRequests(): MentorRequest[] {
-  const raw = localStorage.getItem(MENTOR_REQUESTS_KEY);
+  // Session requests ARE user-scoped (each founder/mentor has their own request list)
+  const key = getMentorRequestsKey();
+  const raw = localStorage.getItem(key);
   if (!raw) {
-    localStorage.setItem(MENTOR_REQUESTS_KEY, JSON.stringify(demoMentorRequests));
+    localStorage.setItem(key, JSON.stringify(demoMentorRequests));
     return demoMentorRequests;
   }
   try {
@@ -114,7 +137,7 @@ export const mentorService = {
 
     const requests = getStoredRequests();
     requests.unshift(newRequest);
-    localStorage.setItem(MENTOR_REQUESTS_KEY, JSON.stringify(requests));
+    localStorage.setItem(getMentorRequestsKey(), JSON.stringify(requests));
 
     return newRequest;
   },
@@ -152,7 +175,7 @@ export const mentorService = {
     const target = requests.find((r) => r.id === requestId);
     if (target) {
       target.status = status;
-      localStorage.setItem(MENTOR_REQUESTS_KEY, JSON.stringify(requests));
+      localStorage.setItem(getMentorRequestsKey(), JSON.stringify(requests));
     }
     return requests;
   },

@@ -6,6 +6,7 @@ import { mentorService } from '@/services/mentorService';
 import { RejectionReport, Mentor } from '@/types';
 import { Timeline } from '@/components/shared/Timeline';
 import { SlideOver } from '@/components/shared/SlideOver';
+import { formatHourlyRate } from '@/lib/currency';
 
 export const RejectionReportPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -299,7 +300,7 @@ export const RejectionReportPage: React.FC = () => {
           isOpen={isBookingOpen}
           onClose={() => setIsBookingOpen(false)}
           title={`Book Session with ${mentor.name}`}
-          subtitle={`${mentor.title} • $${mentor.hourlyRate}/hr`}
+          subtitle={`${mentor.title} • ${formatHourlyRate(mentor.hourlyRate)}/session`}
           width="max-w-md"
         >
           {bookingSuccess ? (

@@ -30,30 +30,33 @@ export const chatService = {
 
     if (context.pageKey === 'idea_validation' || context.pageKey === 'founder_dashboard') {
       if (lower.includes('skeptic') || lower.includes('risk') || lower.includes('churn')) {
-        reply = `The Skeptic agent scored this at 59/100, citing that **71% of fitness nutrition users quit within the first 28 days**. Because manual weighing causes rapid fatigue, your primary defense is zero-friction automation: syncing Apple Watch/Whoop strain to auto-adjust carbs and dispatching grocery ingredients directly via Instacart.`;
-        quickActions.push('Mitigate Day-30 Churn', 'Review Skeptic Report', 'Schedule Marcus Vance');
+        reply = `The Skeptic agent identified that the primary vulnerability for **${context.title}** is day-30 user habit decay and onboarding friction. To counter this, ensure time-to-first-value is under 3 minutes and implement automated recurring value notifications.`;
+        quickActions.push('Mitigate Day-30 Churn', 'Review Skeptic Report', 'Defensive Moat Strategy');
       } else if (lower.includes('score') || lower.includes('agents')) {
-        reply = `Your composite validation score is **78/100 (Strong Signal)** across 5 parallel agents. The highest conviction comes from **Market Demand (84%)** and **Technical Feasibility (82%)**, while the primary drag is the **Skeptic (59%)** over long-term habit compliance.`;
+        reply = `Your composite validation score for **${context.title}** reflects strong conviction across market demand and technical feasibility, with the primary optimization area centered on early cohort retention.`;
         quickActions.push('View Competitor Moat', 'Explore Unit Economics');
+      } else if (lower.includes('market') || lower.includes('demand') || lower.includes('tam')) {
+        reply = `Market analysis for **${context.title}** demonstrates high customer pull and willingness to pay. Target buyers report acute daily friction with unautomated alternatives, supporting tiered SaaS subscription pricing.`;
+        quickActions.push('Review TAM Sizing', 'Explore GTM Beachhead');
       } else {
-        reply = `I am analyzing **${context.title}** (${context.summary}). With an active sprint on NutriFit AI, would you like me to stress-test your pricing model, prepare outreach for candidate Elena Rostova, or book a consultation with Marcus Vance?`;
+        reply = `I am analyzing **${context.title}** (${context.summary}). Would you like me to stress-test your unit economics, evaluate competitor moats, or draft targeted candidate outreach messages?`;
         quickActions.push('Ask about unit economics', 'View matched candidates', 'Analyze competitors');
       }
     } else if (context.pageKey === 'idea_competitors') {
-      reply = `Against **MyFitnessPal** and **MacroFactor**, your primary moat is *closed-loop execution*. MyFitnessPal is burdened by legacy manual logging with inaccurate user databases. MacroFactor calculates expenditure but leaves the user to cook and shop. NutriFit bridges the gap with automated grocery delivery and biometric carb-cycling.`;
-      quickActions.push('Compare Pricing', 'Draft Moat Summary');
+      reply = `Against direct incumbents in this category, **${context.title}**'s primary structural moat is *closed-loop automated execution*. While legacy alternatives act as passive tools, your platform embeds directly into daily operating workflows with high switching costs.`;
+      quickActions.push('Compare Pricing Tiers', 'Draft Moat Summary');
     } else if (context.pageKey === 'idea_revenue') {
-      reply = `Your unit economics indicate a **3.23x LTV:CAC** ($122.90 LTV vs $38 CAC) with a **3.1 month payback period**. Adding grocery affiliate fees (~$4.20/order) lifts gross margins to 78.4%. The biggest sensitivity is keeping on-device CoreML vision inference costs under $0.008 per scan.`;
+      reply = `Your unit economics for **${context.title}** indicate a sustainable **3.2x+ LTV:CAC** with a projected sub-4 month payback period. Software gross margins exceeding 74% allow efficient capital recycling into growth.`;
       quickActions.push('Simulate 10% Churn Spike', 'View Pricing Tiers');
     } else if (context.pageKey === 'rejection_report') {
-      reply = `For the **HyperScale Labs** role, the primary hurdle was kernel-level networking and Raft consensus. You have **3 weeks remaining** before the Nov 7 re-evaluation. Focus on Week 1: building a working eBPF XDP filter that logs TCP round-trip delays, then book a prep call with mentor Marcus Vance.`;
-      quickActions.push('Export PDF Report', 'Book Marcus Vance', 'Review Week 1 Tasks');
+      reply = `For your technical debrief on **${context.title}**, prioritize hands-on architecture milestone deliverables and schedule 1-on-1 advisor sessions to accelerate re-evaluation readiness.`;
+      quickActions.push('Export PDF Report', 'Book Advisor Session', 'Review Milestone Tasks');
     } else if (context.pageKey === 'mentors_directory') {
-      reply = `For consumer fitness and retention, I strongly recommend **Marcus Vance** (ex-VP Product at Peloton & Strava, $250/hr). For nutrition database architecture and USDA grounding, connect with **Sarah Lin** (ex-Chief Architect at MyFitnessPal).`;
-      quickActions.push('Request Marcus Vance', 'Request Sarah Lin');
+      reply = `Based on your venture goals for **${context.title}**, connect with experienced operators specializing in category GTM, product-led growth, and scalable cloud architectures.`;
+      quickActions.push('Request Advisor Call', 'Browse Directory');
     } else if (context.pageKey === 'talent_matches') {
-      reply = `You have strong 94% alignment with **NutriFit AI** for the Lead Mobile Architect position. They require React Native and HealthKit telemetry syncing, matching your exact prior background.`;
-      quickActions.push('Apply to NutriFit AI', 'Update Resume');
+      reply = `Review candidates aligned with the core engineering and design roles identified in **${context.title}**'s system plan.`;
+      quickActions.push('Review Candidates', 'Send Message');
     } else {
       reply = `I'm your NexBridge executive co-pilot on **${context.title}**. Ask me to analyze market signals, summarize candidate profiles, draft investor updates, or suggest actionable next steps.`;
       quickActions.push('Summarize Page', 'Identify Key Risks', 'Next Best Action');

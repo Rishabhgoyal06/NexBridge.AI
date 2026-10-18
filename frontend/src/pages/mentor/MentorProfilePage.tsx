@@ -3,6 +3,7 @@ import { useParams, Link, useSearchParams } from 'react-router-dom';
 import { usePageContext } from '@/context/PageContext';
 import { mentorService } from '@/services/mentorService';
 import { Mentor } from '@/types';
+import { formatHourlyRate } from '@/lib/currency';
 
 export const MentorProfilePage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -20,7 +21,7 @@ export const MentorProfilePage: React.FC = () => {
   usePageContext({
     pageKey: 'mentor_profile',
     title: mentor ? `Advisor Profile — ${mentor.name}` : 'Mentor Profile',
-    summary: `Operator profile for ${mentor?.name || 'Marcus Vance'}: ${mentor?.title || 'ex-VP Product at Peloton & Strava'}. $${mentor?.hourlyRate || 250}/hr.`,
+    summary: `Operator profile for ${mentor?.name || 'Marcus Vance'}: ${mentor?.title || 'ex-VP Product at Peloton & Strava'}. ${formatHourlyRate(mentor?.hourlyRate || 250)}/hr.`,
     data: { mentorId: id, rating: mentor?.rating },
   });
 
@@ -109,7 +110,7 @@ export const MentorProfilePage: React.FC = () => {
             Advisory Retainer
           </div>
           <div className="flex items-baseline gap-1">
-            <span className="text-3xl font-bold font-mono text-on-surface">${mentor.hourlyRate}</span>
+            <span className="text-3xl font-bold font-mono text-on-surface">{formatHourlyRate(mentor.hourlyRate)}</span>
             <span className="text-xs text-secondary">/hour</span>
           </div>
           <span className="text-[11px] text-primary-container font-medium">
@@ -175,7 +176,7 @@ export const MentorProfilePage: React.FC = () => {
               </h4>
               <p className="font-body-sm text-xs text-secondary leading-relaxed">
                 Marcus has been notified and usually responds within 4 business hours. You can track this under{' '}
-                <Link to="/mentors/requests" className="text-primary-container font-semibold hover:underline">
+                <Link to="/mentor/requests" className="text-primary-container font-semibold hover:underline">
                   Session Requests
                 </Link>
                 .
@@ -231,7 +232,7 @@ export const MentorProfilePage: React.FC = () => {
                 disabled={isSubmitting}
                 className="w-full py-2.5 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-label-md text-sm font-medium transition-colors shadow-sm disabled:opacity-60 cursor-pointer"
               >
-                {isSubmitting ? 'Submitting...' : `Request Session ($${mentor.hourlyRate})`}
+                {isSubmitting ? 'Submitting...' : `Request Session (${formatHourlyRate(mentor.hourlyRate)})`}
               </button>
             </form>
           )}

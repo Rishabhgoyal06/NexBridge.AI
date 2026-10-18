@@ -10,6 +10,7 @@ import { ScoreRing } from '@/components/shared/ScoreRing';
 import { StatCard } from '@/components/shared/StatCard';
 import { SkillChip } from '@/components/shared/SkillChip';
 import { MatchRing } from '@/components/shared/MatchRing';
+import { formatRupees } from '@/lib/currency';
 
 export const FounderDashboardPage: React.FC = () => {
   const { user } = useAuth();
@@ -31,8 +32,10 @@ export const FounderDashboardPage: React.FC = () => {
 
   usePageContext({
     pageKey: 'founder_dashboard',
-    title: `Founder Dashboard — ${idea?.title || 'Active Venture'}`,
-    summary: `Executive overview of ${idea?.title || 'Venture'}: ${idea?.score || 78}/100 validation score, ${idea?.agents?.length || 5} active AI agents, ${candidates.length} matched candidates, and ${idea?.revenue?.ltvCacRatio || '3.2'}x LTV:CAC.`,
+    title: idea ? `Founder Dashboard — ${idea.title}` : 'Founder Dashboard',
+    summary: idea
+      ? `Executive overview of ${idea.title}: ${idea.score}/100 validation score.`
+      : 'Executive venture overview.',
     data: { score: idea?.score, status: idea?.status, candidateCount: candidates.length },
   });
 
@@ -47,9 +50,8 @@ export const FounderDashboardPage: React.FC = () => {
           setIsLoading(false);
           return;
         }
-        const activeIdea = ideas[0];
-        setIdea(activeIdea);
-        const candList = await outreachService.getCandidates('all', activeIdea);
+        setIdea(ideas[0]);
+        const candList = await outreachService.getCandidates();
         setCandidates(candList.slice(0, 3));
         const requests = await mentorService.getRequests();
         setMentorRequests(requests);
@@ -101,6 +103,29 @@ export const FounderDashboardPage: React.FC = () => {
     );
   }
 
+  const metrics = idea.metrics || {
+    marketDemand: 80,
+    unitEconomics: 70,
+    technicalFeasibility: 80,
+    competitiveMoat: 70,
+    timingExecution: 80,
+  };
+
+  const revenue = idea.revenue || {
+    modelType: 'Subscription',
+    cac: 42,
+    ltv: 138,
+    ltvCacRatio: 3.28,
+    grossMargin: 74,
+    paybackMonths: 3.6,
+    pricingTiers: [],
+    assumptions: [],
+    unitEconomicsSummary: 'Healthy unit economics profile.',
+  };
+
+  const agents = idea.agents || [];
+  const flaggedAgent = agents.find((a) => a.status === 'flagged');
+
   return (
     <div className="max-w-[1200px] mx-auto p-8 w-full pb-20">
       {/* GREETING & STATUS BANNER */}
@@ -128,7 +153,7 @@ export const FounderDashboardPage: React.FC = () => {
             <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
           </span>
           <span className="font-body-sm text-body-sm text-secondary">
-            Last synced 14m ago with Stripe &amp; PostHog
+            Live AI Telemetry Active
           </span>
           <button
             className="text-secondary hover:text-on-surface transition-colors flex items-center"
@@ -167,28 +192,31 @@ export const FounderDashboardPage: React.FC = () => {
 
           {/* Breakdown Bars */}
           <div className="space-y-3.5 pt-4">
-            <div>
+            <Link to={`/ideas/${idea.id}/market`} className="block group hover:opacity-90 transition-opacity">
               <div className="flex justify-between items-center mb-1.5 font-body-sm text-body-sm">
-                <span className="text-secondary font-medium">Market Demand &amp; Pull</span>
-                <span className="text-on-surface font-semibold font-mono">{idea.metrics.marketDemand}%</span>
+                <span className="text-secondary group-hover:text-primary-container font-medium flex items-center gap-1">
+                  <span>Market Demand &amp; Pull</span>
+                  <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
+                </span>
+                <span className="text-on-surface font-semibold font-mono">{metrics.marketDemand}%</span>
               </div>
               <div className="w-full h-1.5 rounded-full bg-surface-container-high overflow-hidden">
                 <div
                   className="h-full rounded-full bg-primary-container"
-                  style={{ width: `${idea.metrics.marketDemand}%` }}
+                  style={{ width: `${metrics.marketDemand}%` }}
                 ></div>
               </div>
-            </div>
+            </Link>
 
             <div>
               <div className="flex justify-between items-center mb-1.5 font-body-sm text-body-sm">
                 <span className="text-secondary font-medium">Unit Economics &amp; Pricing</span>
-                <span className="text-on-surface font-semibold font-mono">{idea.metrics.unitEconomics}%</span>
+                <span className="text-on-surface font-semibold font-mono">{metrics.unitEconomics}%</span>
               </div>
               <div className="w-full h-1.5 rounded-full bg-surface-container-high overflow-hidden">
                 <div
                   className="h-full rounded-full bg-primary-container"
-                  style={{ width: `${idea.metrics.unitEconomics}%` }}
+                  style={{ width: `${metrics.unitEconomics}%` }}
                 ></div>
               </div>
             </div>
@@ -196,18 +224,41 @@ export const FounderDashboardPage: React.FC = () => {
             <div>
               <div className="flex justify-between items-center mb-1.5 font-body-sm text-body-sm">
                 <span className="text-secondary font-medium">Technical Feasibility</span>
-                <span className="text-on-surface font-semibold font-mono">{idea.metrics.technicalFeasibility}%</span>
+                <span className="text-on-surface font-semibold font-mono">{metrics.technicalFeasibility}%</span>
               </div>
               <div className="w-full h-1.5 rounded-full bg-surface-container-high overflow-hidden">
                 <div
                   className="h-full rounded-full bg-primary-container"
-                  style={{ width: `${idea.metrics.technicalFeasibility}%` }}
+                  style={{ width: `${metrics.technicalFeasibility}%` }}
                 ></div>
               </div>
             </div>
           </div>
 
-          <div className="pt-6 border-t border-outline-variant/20 mt-6">
+          <div className="pt-4 border-t border-outline-variant/20 mt-4 text-center">
+            <span className="font-label-sm text-[11px] uppercase tracking-wider text-primary font-bold block mb-1">
+              Conviction Driver
+            </span>
+            <p className="font-body-sm text-xs text-on-surface leading-relaxed font-medium">
+              {(() => {
+                if (!agents || agents.length === 0) {
+                  return 'Weighted composite index calculated across market demand, unit economics, and execution risk vectors.';
+                }
+                const sorted = [...agents].sort((a, b) => b.score - a.score);
+                const topAgent = sorted[0];
+                const lowestAgent = sorted[sorted.length - 1];
+                if (idea.score >= 80) {
+                  return `High venture conviction anchored by strong ${topAgent.name} signals (${topAgent.score}/100), with manageable ${lowestAgent.name.toLowerCase()} execution trade-offs (${lowestAgent.score}/100).`;
+                } else if (idea.score >= 70) {
+                  return `Solid opportunity led by ${topAgent.name} (${topAgent.score}/100), tempered by ${lowestAgent.name} (${lowestAgent.score}/100): "${lowestAgent.verdict}"`;
+                } else {
+                  return `Cautionary conviction: ${lowestAgent.name} flagged critical resistance (${lowestAgent.score}/100) that dampens initial ${topAgent.name} traction (${topAgent.score}/100).`;
+                }
+              })()}
+            </p>
+          </div>
+
+          <div className="pt-4 border-t border-outline-variant/20 mt-4">
             <Link
               to={`/ideas/${idea.id}/validation`}
               className="w-full flex items-center justify-center gap-1.5 py-2.5 rounded-lg bg-surface-container hover:bg-surface-container-high font-label-md text-label-md font-medium text-on-surface transition-colors"
@@ -236,16 +287,15 @@ export const FounderDashboardPage: React.FC = () => {
             </div>
 
             <p className="font-body-md text-body-md text-on-surface mt-4 leading-relaxed">
-              Your market demand index ({idea.metrics.marketDemand}%) proves solid buyer appetite for{' '}
-              <strong className="text-on-surface font-semibold">{idea.title}</strong>. However, the{' '}
-              <strong className="text-amber-800 font-semibold">
-                {idea.agents.find((a) => a.status === 'flagged')?.name || 'Skeptic'} flagged {idea.risks[0]?.title || 'Day-30 drop-off'}
-              </strong>{' '}
-              as your critical risk. Focus your energy this sprint on locking candidate{' '}
-              <strong className="text-on-surface font-semibold">
-                {candidates[0]?.name || 'Lead Architect'} ({candidates[0]?.role || idea.roles[0]?.title}, {candidates[0]?.matchScore || 94}% match)
-              </strong>{' '}
-              to finalize your {idea.plan.milestones[0]?.title || 'core engine'}.
+              Your market demand index ({metrics.marketDemand}%) validates customer appetite for{' '}
+              <strong className="text-on-surface font-semibold">{idea.title}</strong>.{' '}
+              {flaggedAgent ? (
+                <>
+                  The <strong className="text-amber-800 font-semibold">{flaggedAgent.name} agent flagged key friction</strong>: &ldquo;{flaggedAgent.verdict}&rdquo;.
+                </>
+              ) : (
+                <>All 5 AI validation agents give positive signals for this venture phase.</>
+              )}
             </p>
 
             <div className="mt-5 p-4 rounded-xl bg-amber-50/70 border border-amber-200/70 flex items-start gap-3">
@@ -254,16 +304,22 @@ export const FounderDashboardPage: React.FC = () => {
               </span>
               <div>
                 <h4 className="font-label-md text-label-md font-semibold text-amber-900">
-                  Pre-Mortem Vulnerability: {idea.risks[0]?.title || 'Customer Drop-Off'}
+                  Strategic Priority: Execution &amp; Moat
                 </h4>
                 <p className="font-body-sm text-body-sm text-amber-900/80 mt-0.5">
-                  {idea.risks[0]?.description || 'Users drop off if initial friction is high.'}{' '}
-                  Counter this: {idea.risks[0]?.mitigation || 'Implement automated zero-click ingestion.'}
+                  {flaggedAgent ? flaggedAgent.detailedAnalysis || flaggedAgent.verdict : 'Prioritize early user feedback loops and technical prototyping to widen your competitive moat.'}
                 </p>
               </div>
             </div>
 
             <div className="flex flex-wrap items-center gap-3 mt-6">
+              <Link
+                to={`/ideas/${idea.id}/market`}
+                className="px-4 py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md font-medium flex items-center gap-1.5 transition-colors"
+              >
+                <span className="material-symbols-outlined text-[16px]">insights</span>
+                <span>Market Analysis</span>
+              </Link>
               <Link
                 to={`/ideas/${idea.id}/roles`}
                 className="px-4 py-2 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-label-md text-label-md font-medium flex items-center gap-1.5 transition-colors shadow-sm"
@@ -292,21 +348,21 @@ export const FounderDashboardPage: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <StatCard
               title="LTV:CAC Ratio"
-              value={`${idea.revenue.ltvCacRatio}x`}
+              value={`${revenue.ltvCacRatio}x`}
               subtitle="Target: >3.0x"
               trend={{ value: '+0.4x', isPositive: true }}
               icon="balance"
             />
             <StatCard
               title="Estimated LTV"
-              value={`$${idea.revenue.ltv.toFixed(0)}`}
-              subtitle="8.2 mos lifetime"
-              trend={{ value: '+$14.20', isPositive: true }}
+              value={formatRupees(revenue.ltv ?? 138)}
+              subtitle="Cohort lifetime"
+              trend={{ value: `CAC: ${formatRupees(revenue.cac ?? 42)}`, isPositive: true }}
               icon="monetization_on"
             />
             <StatCard
               title="Payback Period"
-              value={`${idea.revenue.paybackMonths} mo`}
+              value={`${revenue.paybackMonths} mo`}
               subtitle="Cohort recovery"
               trend={{ value: '-0.3 mo', isPositive: true }}
               icon="timer"
@@ -334,41 +390,56 @@ export const FounderDashboardPage: React.FC = () => {
           </div>
 
           <div className="space-y-3">
-            {idea.agents.map((agent) => (
-              <div
-                key={agent.id}
-                className="p-3 rounded-lg bg-surface-container-low/50 border border-outline-variant/20 flex items-center justify-between"
-              >
-                <div className="flex items-center gap-3 min-w-0">
-                  <div className="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary-container shrink-0">
-                    <span className="material-symbols-outlined text-[17px]">{agent.icon}</span>
-                  </div>
-                  <div className="min-w-0">
-                    <div className="font-headline-sm text-[13px] font-semibold text-on-surface truncate">
-                      {agent.name}
-                    </div>
-                    <div className="font-body-sm text-[11px] text-secondary truncate">
-                      {agent.verdict}
-                    </div>
-                  </div>
-                </div>
+            {agents.map((agent) => {
+              const targetRoute =
+                agent.name === 'Market Analyst'
+                  ? `/ideas/${idea.id}/market`
+                  : agent.name === 'Competitor Researcher'
+                  ? `/ideas/${idea.id}/competitors`
+                  : agent.name === 'Revenue Critic'
+                  ? `/ideas/${idea.id}/revenue`
+                  : agent.name === 'Technical Architect'
+                  ? `/ideas/${idea.id}/plan`
+                  : `/ideas/${idea.id}/validation`;
 
-                <div className="flex items-center gap-2.5 shrink-0 ml-2">
-                  <span className="font-mono text-xs font-semibold text-on-surface">
-                    {agent.score}/100
-                  </span>
-                  <span
-                    className={`font-label-sm text-[10px] px-2 py-0.5 rounded-full font-medium ${
-                      agent.status === 'flagged'
-                        ? 'bg-amber-100 text-amber-800 font-semibold'
-                        : 'bg-primary-fixed/40 text-primary-container'
-                    }`}
-                  >
-                    {agent.status === 'flagged' ? 'Vulnerable' : 'Strong'}
-                  </span>
-                </div>
-              </div>
-            ))}
+              return (
+                <Link
+                  key={agent.id}
+                  to={targetRoute}
+                  className="p-3 rounded-lg bg-surface-container-low/50 hover:bg-surface-container border border-outline-variant/20 flex items-center justify-between transition-colors cursor-pointer group"
+                >
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="w-8 h-8 rounded-lg bg-surface-container group-hover:bg-primary-container group-hover:text-on-primary flex items-center justify-center text-primary-container shrink-0 transition-colors">
+                      <span className="material-symbols-outlined text-[17px]">{agent.icon}</span>
+                    </div>
+                    <div className="min-w-0">
+                      <div className="font-headline-sm text-[13px] font-semibold text-on-surface group-hover:text-primary-container truncate flex items-center gap-1">
+                        <span>{agent.name}</span>
+                        <span className="material-symbols-outlined text-[13px] opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span>
+                      </div>
+                      <div className="font-body-sm text-[11px] text-secondary truncate">
+                        {agent.verdict}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2.5 shrink-0 ml-2">
+                    <span className="font-mono text-xs font-semibold text-on-surface">
+                      {agent.score}/100
+                    </span>
+                    <span
+                      className={`font-label-sm text-[10px] px-2 py-0.5 rounded-full font-medium ${
+                        agent.status === 'flagged'
+                          ? 'bg-amber-100 text-amber-800 font-semibold'
+                          : 'bg-primary-fixed/40 text-primary-container'
+                      }`}
+                    >
+                      {agent.status === 'flagged' ? 'Vulnerable' : 'Strong'}
+                    </span>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
 
@@ -416,7 +487,7 @@ export const FounderDashboardPage: React.FC = () => {
                       {cand.role}
                     </div>
                     <div className="flex flex-wrap gap-1 mt-1">
-                      {cand.skills.slice(0, 3).map((s, idx) => (
+                      {(cand.skills || []).slice(0, 3).map((s, idx) => (
                         <SkillChip key={idx} name={s.name} matched={s.matched} size="sm" />
                       ))}
                     </div>

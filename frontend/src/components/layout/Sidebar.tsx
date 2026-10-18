@@ -1,60 +1,112 @@
 import React from 'react';
-import { NavLink, Link, useNavigate } from 'react-router-dom';
+import { NavLink, Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
 import { useGlobalPageContext } from '@/context/PageContext';
 import { useActiveIdea } from '@/hooks/useActiveIdea';
+
+interface NavItem {
+  label: string;
+  path: string;
+  icon: string;
+  badge?: string;
+}
+
+// ─── WORKSPACE CONFIGURATIONS ──────────────────────────────────────────────
+//
+//  FOUNDER: Dashboard + Idea workspace analysis tabs + Candidates + Outreach + Find Mentors
+//  TALENT:  Startup Matches + Applications + Growth Reports   (no ideas, no candidates, no mentors)
+//  MENTOR:  My Dashboard + Session Requests + My Profile      (own workspace, not the public directory)
+//
+// ───────────────────────────────────────────────────────────────────────────
 
 export const Sidebar: React.FC = () => {
   const { user, role, logout } = useAuth();
   const { toggleChat } = useGlobalPageContext();
   const navigate = useNavigate();
+  const location = useLocation();
   const { activeIdeaId } = useActiveIdea();
 
-  // If user has no idea yet, "My Ideas" → New Idea page; otherwise → their workspace
   const ideaBase = activeIdeaId ? `/ideas/${activeIdeaId}` : '/ideas/new';
 
-  interface NavItem {
-    label: string;
-    path: string;
-    icon: string;
-    badge?: string;
-  }
+  // Derive workspace purely from the URL — this is the source of truth.
+  // This prevents cross-contamination regardless of the stored auth role.
+  const isTalentWorkspace = location.pathname.startsWith('/talent');
+  const isMentorWorkspace =
+    location.pathname.startsWith('/mentor/') || location.pathname === '/mentor';
+  const isFounderWorkspace =
+    location.pathname.startsWith('/founder') ||
+    location.pathname.startsWith('/ideas') ||
+    location.pathname.startsWith('/mentors'); // /mentors is the founder's advisor directory
 
-  const founderNavItems: NavItem[] = [
+  // Fall back to the stored auth role for pages not under a scoped route (e.g. landing)
+  const workspace: 'founder' | 'talent' | 'mentor' = isTalentWorkspace
+    ? 'talent'
+    : isMentorWorkspace
+      ? 'mentor'
+      : isFounderWorkspace
+        ? 'founder'
+        : role;
+
+  // ── Founder nav ────────────────────────────────────────────────────────
+  // Note: Candidates & Outreach Pipeline are accessed via the workspace TABS
+  // inside the idea view — not duplicated here as standalone sidebar items.
+  const founderNav: NavItem[] = [
     { label: 'Dashboard', path: '/founder/dashboard', icon: 'grid_view' },
-    { label: 'My Ideas', path: activeIdeaId ? `${ideaBase}/validation` : '/ideas/new', icon: 'lightbulb' },
-    { label: 'Candidates', path: activeIdeaId ? `${ideaBase}/roles` : '/ideas/new', icon: 'group' },
-    { label: 'Outreach Pipeline', path: activeIdeaId ? `${ideaBase}/outreach` : '/ideas/new', icon: 'send' },
-    { label: 'Mentors', path: '/mentors', icon: 'explore' },
+    {
+      label: 'My Ideas',
+      path: activeIdeaId ? `${ideaBase}/validation` : '/ideas/new',
+      icon: 'lightbulb',
+    },
+    { label: 'Find Mentors', path: '/mentors', icon: 'explore' },
   ];
 
-  const talentNavItems: NavItem[] = [
+  // ── Talent nav: only co-builder features ───────────────────────────────
+  const talentNav: NavItem[] = [
     { label: 'Startup Matches', path: '/talent/matches', icon: 'compare_arrows', badge: '6' },
-    { label: 'Applications', path: '/talent/applications', icon: 'assignment', badge: '5' },
-    { label: 'Growth Reports', path: '/talent/applications/app_1/report', icon: 'psychology', badge: '2' },
-    { label: 'Mentors', path: '/mentors', icon: 'school' },
+    { label: 'My Applications', path: '/talent/applications', icon: 'assignment', badge: '5' },
+    {
+      label: 'Growth Reports',
+      path: '/talent/applications/app_1/report',
+      icon: 'psychology',
+      badge: '2',
+    },
   ];
 
-  const mentorNavItems: NavItem[] = [
-    { label: 'Directory', path: '/mentors', icon: 'explore' },
-    { label: 'Session Requests', path: '/mentors/requests', icon: 'calendar_month', badge: '2' },
-    { label: 'My Profile', path: '/mentors/mentor_1', icon: 'account_circle' },
+  // ── Mentor nav: mentor's own private advisory workspace ────────────────
+  const mentorNav: NavItem[] = [
+    { label: 'My Dashboard', path: '/mentor/dashboard', icon: 'dashboard' },
+    { label: 'Session Requests', path: '/mentor/requests', icon: 'calendar_month', badge: '2' },
+    { label: 'My Profile', path: '/mentor/profile', icon: 'account_circle' },
   ];
 
   const currentNav =
-    role === 'founder'
-      ? founderNavItems
-      : role === 'talent'
-      ? talentNavItems
-      : mentorNavItems;
+    workspace === 'founder'
+      ? founderNav
+      : workspace === 'talent'
+        ? talentNav
+        : mentorNav;
+
+  const workspaceLabel =
+    workspace === 'founder'
+      ? 'Founder Workspace'
+      : workspace === 'talent'
+        ? 'Co-Builder Workspace'
+        : 'Advisor Workspace';
+
+  const workspaceIcon =
+    workspace === 'founder'
+      ? 'rocket_launch'
+      : workspace === 'talent'
+        ? 'handshake'
+        : 'verified_user';
 
   return (
-    <aside className="fixed left-0 top-0 h-screen w-[232px] bg-surface-container-lowest border-r border-outline-variant/30 z-50 flex flex-col justify-between select-none">
+    <aside className="fixed left-0 top-0 h-screen w-[232px] bg-surface-container-lowest border-r border-outline-variant/35 shadow-[1px_0_4px_rgba(0,0,0,0.03)] z-50 flex flex-col justify-between select-none">
       <div className="flex flex-col">
         {/* Brand Header */}
         <Link
           to="/"
-          className="h-14 px-4 flex items-center gap-2.5 border-b border-outline-variant/20 hover:opacity-90 transition-opacity"
+          className="h-14 px-4 flex items-center gap-2.5 border-b border-outline-variant/25 hover:opacity-90 transition-opacity"
         >
           <div className="w-7 h-7 rounded-lg bg-primary-container flex items-center justify-center text-on-primary font-bold text-sm">
             <span className="material-symbols-outlined text-[18px]">hub</span>
@@ -67,10 +119,13 @@ export const Sidebar: React.FC = () => {
           </span>
         </Link>
 
-        {/* Role indicator pill */}
-        <div className="px-4 pt-3 pb-1">
+        {/* Workspace Pill — context-aware label & icon */}
+        <div className="px-4 pt-3 pb-2 flex items-center gap-2">
+          <span className="material-symbols-outlined text-[14px] text-primary-container">
+            {workspaceIcon}
+          </span>
           <span className="font-label-sm text-[10px] uppercase tracking-wider text-outline font-semibold">
-            {role.toUpperCase()} WORKSPACE
+            {workspaceLabel}
           </span>
         </div>
 
@@ -82,10 +137,9 @@ export const Sidebar: React.FC = () => {
                 key={item.path}
                 to={item.path}
                 className={({ isActive }) =>
-                  `flex items-center justify-between px-3 py-2 rounded-lg transition-colors font-body-md text-body-md ${
-                    isActive
-                      ? 'bg-primary-fixed/30 text-primary-container font-medium'
-                      : 'text-on-surface-variant hover:bg-surface-container hover:text-on-surface'
+                  `flex items-center justify-between px-3 py-2 rounded-lg transition-colors font-body-md text-body-md ${isActive
+                    ? 'bg-primary-fixed/30 text-primary-container font-medium'
+                    : 'text-on-surface-variant hover:bg-surface-container hover:text-on-surface'
                   }`
                 }
               >
@@ -137,8 +191,8 @@ export const Sidebar: React.FC = () => {
               <span className="font-body-md text-[13px] font-semibold text-on-surface truncate leading-tight">
                 {user.name}
               </span>
-              <span className="font-body-sm text-[11px] text-secondary truncate leading-tight capitalize">
-                {user.role} Intent
+              <span className="font-body-sm text-[11px] text-secondary truncate leading-tight">
+                {workspaceLabel}
               </span>
             </div>
           </div>

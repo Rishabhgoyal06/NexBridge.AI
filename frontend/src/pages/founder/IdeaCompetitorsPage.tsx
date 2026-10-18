@@ -10,8 +10,8 @@ export const IdeaCompetitorsPage: React.FC = () => {
 
   usePageContext({
     pageKey: 'idea_competitors',
-    title: `Competitors & Defensibility Moat — ${idea?.title || 'Venture'}`,
-    summary: `Competitive landscape analysis across ${idea?.competitors?.map((c) => c.name).join(', ') || 'incumbents'}. Defensibility moat: ${idea?.competitors[0]?.ourMoat || 'Autonomous closed-loop execution'}.`,
+    title: `Competitors & Defensibility Moat — ${idea?.title || 'Concept'}`,
+    summary: idea ? `Competitive landscape: ${idea.competitors?.map((c) => c.name).join(', ')}. Moat: ${idea.competitors?.[0]?.ourMoat || 'Defensible workflow automation'}.` : 'Competitive landscape analysis',
     data: { competitorsCount: idea?.competitors?.length },
   });
 
@@ -27,20 +27,38 @@ export const IdeaCompetitorsPage: React.FC = () => {
 
   if (!idea) return null;
 
+  const topMoat = idea.competitors?.find((c) => c.ourMoat)?.ourMoat;
+
   return (
     <div className="space-y-8">
       {/* Moat Thesis Callout */}
       <div className="bg-surface-container-lowest rounded-xl p-6 border border-outline-variant/30 shadow-sm">
-        <div className="flex items-center gap-2 pb-3 border-b border-outline-variant/20 mb-3">
-          <span className="material-symbols-outlined text-primary-container text-[20px]">
-            shield
-          </span>
-          <h3 className="font-headline-sm text-headline-sm font-semibold text-on-surface">
-            The Defensibility Moat for {idea.title}
-          </h3>
+        <div className="flex items-center justify-between gap-2 pb-3 border-b border-outline-variant/20 mb-3">
+          <div className="flex items-center gap-2">
+            <span className="material-symbols-outlined text-primary-container text-[20px]">
+              shield
+            </span>
+            <h3 className="font-headline-sm text-headline-sm font-semibold text-on-surface">
+              The Defensibility Moat &amp; Competitor Matrix
+            </h3>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-800 border border-blue-200 font-label-sm text-xs font-semibold flex items-center gap-1">
+              <span className="material-symbols-outlined text-[13px]">public</span>
+              <span>Web Grounded</span>
+            </span>
+          </div>
         </div>
         <p className="font-body-md text-body-md text-secondary leading-relaxed">
-          {idea.strengths[0]?.description || idea.competitors[0]?.ourMoat || `${idea.title} differentiates by eliminating legacy friction with autonomous, closed-loop execution tailored specifically for ${idea.targetMarket}.`}
+          {topMoat ? (
+            <span>
+              {topMoat} Unlike incumbent tools that treat user interactions as passive entry logs, <strong className="text-on-surface font-semibold">{idea.title}</strong> operates as an autonomous, high-conviction system delivering immediate, end-to-end value.
+            </span>
+          ) : (
+            <span>
+              Incumbents treat the space as a passive database entry problem. <strong className="text-on-surface font-semibold">{idea.title}</strong> establishes defensibility through proprietary domain models, deep customer workflow integration, and continuous execution.
+            </span>
+          )}
         </p>
       </div>
 
@@ -111,7 +129,7 @@ export const IdeaCompetitorsPage: React.FC = () => {
             {/* Our Differentiation Moat */}
             <div className="pt-3 border-t border-outline-variant/20 bg-primary-fixed/20 p-3 rounded-lg">
               <span className="font-label-sm text-xs font-semibold text-primary-container uppercase tracking-wider block mb-0.5">
-                NutriFit Strategic Wedge
+                {idea.title} Strategic Wedge
               </span>
               <p className="font-body-sm text-xs text-on-surface">
                 {comp.ourMoat}

@@ -15,7 +15,7 @@ export type SignalTier = 'Strong Signal' | 'Moderate Signal' | 'Caution' | 'High
 
 export interface ValidationAgent {
   id: string;
-  name: 'Market Analyst' | 'Competitor Researcher' | 'Revenue Critic' | 'Technical Architect' | 'Skeptic';
+  name: string;
   roleTitle: string;
   icon: string;
   score: number;
@@ -58,9 +58,15 @@ export interface RevenueAnalysis {
   unitEconomicsSummary: string;
 }
 
+export interface TechStackItem {
+  name: string;
+  justification: string;
+  icon?: string;
+}
+
 export interface TechStackCategory {
   category: string;
-  items: { name: string; justification: string; icon?: string }[];
+  items: TechStackItem[];
 }
 
 export interface Milestone {
@@ -94,11 +100,15 @@ export interface JobRole {
   id: string;
   title: string;
   department: string;
-  type: 'Full-Time' | 'Co-Founder' | 'Contract';
-  urgency: 'Immediate' | 'Next Quarter' | 'Post-Seed';
+  type: 'Full-Time' | 'Co-Founder' | 'Contract' | string;
+  urgency: 'Immediate' | 'Next Quarter' | 'Post-Seed' | string;
   requiredSkills: string[];
-  preferredSkills: string[];
+  preferredSkills?: string[];
   candidateMatchesCount: number;
+  salaryRange?: string;
+  equityRange?: string;
+  marketRationale?: string;
+  marketDemandIndex?: number;
 }
 
 export interface CandidateSkill {
@@ -137,6 +147,8 @@ export interface OutreachMessage {
 
 export interface Idea {
   id: string;
+  founderId?: string;
+  userId?: string;
   title: string;
   tagline: string;
   description: string;
@@ -171,6 +183,51 @@ export interface Idea {
   revenue: RevenueAnalysis;
   plan: StructuredPlan;
   roles: JobRole[];
+  marketAnalysis?: MarketAnalysis;
+  agentDiscussions?: Record<string, AgentDiscussionMessage[]>;
+}
+
+export interface AgentDiscussionMessage {
+  id: string;
+  sender: 'user' | 'agent';
+  agentName: string;
+  subParameter?: string;
+  content: string;
+  timestamp: string;
+  suggestedFollowUps?: string[];
+  scoreNote?: string;
+}
+
+export interface TargetBuyerPersona {
+  archetype: string;
+  acutePain: string;
+  budgetVector: string;
+}
+
+export interface GtmVector {
+  id?: string;
+  title: string;
+  description: string;
+  channel: string;
+}
+
+export interface LiveWebSource {
+  title: string;
+  snippet: string;
+  sourceQuery?: string;
+}
+
+export interface MarketAnalysis {
+  tam: string;
+  sam: string;
+  som?: string;
+  cagr: string;
+  optimalPriceTier: string;
+  tamRationale?: string;
+  targetBuyerPersona: TargetBuyerPersona;
+  gtmVectors: GtmVector[];
+  liveSources: LiveWebSource[];
+  fetchedAt?: string;
 }
 
 export interface TalentProfile {
@@ -183,6 +240,7 @@ export interface TalentProfile {
   skills: string[];
   resumeFileName?: string;
   parsedAt?: string;
+  agents?: ValidationAgent[];
 }
 
 export interface StartupMatch {

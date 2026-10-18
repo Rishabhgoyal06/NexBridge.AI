@@ -1,5 +1,5 @@
 from typing import Any, Dict, List, Literal, Optional
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, field_validator
 from pydantic.alias_generators import to_camel
 
 class CamelModel(BaseModel):
@@ -55,7 +55,7 @@ AgentName = Literal[
 
 class ValidationAgent(CamelModel):
     id: str
-    name: AgentName
+    name: str
     role_title: str
     icon: str
     score: int
@@ -69,7 +69,7 @@ class ValidationRunStatus(CamelModel):
     id: str
     idea_id: str
     status: Literal['pending', 'running', 'completed', 'flagged']
-    overall_score: int
+    overall_score: float | int
     agents: List[ValidationAgent] = []
 
 # =========================================================================
@@ -123,7 +123,19 @@ class Milestone(CamelModel):
     target_date: str
     goals: List[str] = []
     deliverables: List[str] = []
-    status: Literal['done', 'current', 'upcoming']
+    status: Literal['done', 'current', 'upcoming'] = 'upcoming'
+
+    @field_validator('status', mode='before')
+    @classmethod
+    def normalize_status(cls, v):
+        if not v:
+            return 'upcoming'
+        s = str(v).strip().lower()
+        if s in ('done', 'completed', 'complete', 'finished'):
+            return 'done'
+        if s in ('current', 'in progress', 'in_progress', 'active'):
+            return 'current'
+        return 'upcoming'
 
 class ProductStrategy(CamelModel):
     vision: str
@@ -152,6 +164,10 @@ class JobRole(CamelModel):
     required_skills: List[str] = []
     preferred_skills: List[str] = []
     candidate_matches_count: int = 0
+    salary_range: Optional[str] = '₹24L - ₹36L / yr'
+    equity_range: Optional[str] = '1.5% - 3.0%'
+    market_rationale: Optional[str] = 'Key founding hire required to build core product and execute pilot milestones.'
+    market_demand_index: Optional[int] = 88
 
 # =========================================================================
 # Ideas
@@ -177,8 +193,38 @@ class IdeaStrength(CamelModel):
     description: str
     score: int = 85
 
+class TargetBuyerPersona(CamelModel):
+    archetype: str
+    acute_pain: str
+    budget_vector: str
+
+class GtmVector(CamelModel):
+    id: str
+    title: str
+    description: str
+    channel: str
+
+class LiveWebSource(CamelModel):
+    title: str
+    snippet: str
+    source_query: Optional[str] = None
+
+class MarketAnalysis(CamelModel):
+    tam: str = "₹18,500 Cr ($2.2B)"
+    sam: str = "₹4,200 Cr ($500M)"
+    som: Optional[str] = "₹580 Cr ($70M)"
+    cagr: str = "+22.4% YoY"
+    optimal_price_tier: str = "₹799 / mo"
+    tam_rationale: Optional[str] = "Derived from real-time web search and market intelligence."
+    target_buyer_persona: TargetBuyerPersona
+    gtm_vectors: List[GtmVector] = []
+    live_sources: List[LiveWebSource] = []
+    fetched_at: Optional[str] = None
+
 class Idea(CamelModel):
     id: str
+    founder_id: Optional[str] = None
+    user_id: Optional[str] = None
     title: str
     tagline: str = ""
     description: str
@@ -187,7 +233,7 @@ class Idea(CamelModel):
     stage: str = "Pre-Seed / Active Validation"
     created_at: str
     updated_at: str
-    score: int = 75
+    score: float | int = 75.0
     status: IdeaValidationStatus = "validated"
     signal: SignalTier = "Strong Signal"
     metrics: IdeaMetrics = IdeaMetrics()
@@ -198,6 +244,23 @@ class Idea(CamelModel):
     revenue: Optional[RevenueAnalysis] = None
     plan: Optional[StructuredPlan] = None
     roles: List[JobRole] = []
+    market_analysis: Optional[MarketAnalysis] = None
+    agent_discussions: Optional[Dict[str, List[dict]]] = None
+
+class AgentDiscussionMessage(CamelModel):
+    id: str
+    sender: Literal['user', 'agent']
+    agent_name: str
+    sub_parameter: Optional[str] = None
+    content: str
+    timestamp: str
+    suggested_follow_ups: Optional[List[str]] = []
+    score_note: Optional[str] = None
+
+class AgentDiscussionRequest(CamelModel):
+    message: str
+    sub_parameter: Optional[str] = None
+    history: List[dict] = []
 
 class CreateIdeaRequest(CamelModel):
     id: Optional[str] = None
@@ -265,6 +328,7 @@ class TalentProfile(CamelModel):
     skills: List[str] = []
     resume_file_name: Optional[str] = None
     parsed_at: Optional[str] = None
+    agents: List[ValidationAgent] = []
 
 class ParsedProfile(CamelModel):
     name: str
